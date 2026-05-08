@@ -78,7 +78,7 @@
   .finput { width:100%; padding:10px 13px; border:2px solid #e0d0ff; border-radius:10px; font-family:'Poppins',sans-serif; font-size:0.85rem; outline:none; }
   .finput:focus { border-color:var(--purple); }
   .loc-btn { width:100%; background:#f0e6ff; color:var(--purple); border:2px dashed #d8b4fe; border-radius:10px; padding:10px; font-family:'Poppins',sans-serif; font-size:0.82rem; font-weight:600; cursor:pointer; margin-top:10px; }
-  .loc-res { font-size:0.73rem; color:green; background:#e8ffe8; border-radius:8px; padding:6px 10px; margin-top:6px; }
+  .loc-ok { font-size:0.73rem; color:green; background:#e8ffe8; border-radius:8px; padding:6px 10px; margin-top:6px; }
 
   /* PAYMENT */
   .pay-opts { display:flex; gap:8px; margin:10px 0; }
@@ -126,7 +126,7 @@
   .combo-price{font-size:0.92rem;font-weight:800;color:var(--purple)}
   .combo-old{font-size:0.67rem;color:#bbb;text-decoration:line-through;margin-left:3px}
   .combo-add{background:var(--yellow);color:var(--purple);border:none;border-radius:7px;padding:5px 10px;font-family:'Poppins',sans-serif;font-size:0.74rem;font-weight:800;cursor:pointer}
-
+  
   /* REVIEWS CSS */
   .rev-section{padding:18px 0 10px}
   .rev-header{display:flex;align-items:center;justify-content:space-between;padding:0 16px;margin-bottom:10px}
@@ -139,7 +139,6 @@
   .rating-count{font-size:0.65rem;color:#aaa}
   .bars{flex:1}
   .brow{display:flex;align-items:center;gap:5px;margin-bottom:4px}
-  .brow:last-child{margin-bottom:0}
   .blbl{font-size:0.66rem;color:#888;font-weight:600;width:7px}
   .bwrap{flex:1;background:#f0e6ff;border-radius:50px;height:5px;overflow:hidden}
   .bfill{height:100%;border-radius:50px;background:linear-gradient(90deg,var(--purple),#9333ea)}
@@ -174,7 +173,7 @@
   <h1>LIQUIDO</h1>
   <p>Fresh • Fast • Flavourful</p>
 </div>
-<div class="banner">🏷️ Tag us on Social Media & Google Review → Get 10% OFF!  |  Extra Cheese ₹20</div>
+<div class="banner">🏷️ Tag us on Social Media & Google Review → Get 10% OFF!  |  Extra Cheese ₹20</div>
 
 <div class="combos-section">
   <div class="combos-header">
@@ -189,36 +188,78 @@
         <div class="combo-body"><div class="combo-name">Cheesy Crunch Combo</div><div class="combo-sub">Grilled Cheese Sandwich + Plain Salted Fries + Soft Drink</div><div class="combo-footer"><div><span class="combo-price">₹189</span></div><button class="combo-add">Add</button></div></div>
       </div>
       <div class="combo-card" onclick="addItem('Maggi Chill Combo',99)">
-        <div class="combo-badge save">💰 SAVE</div>
+        <div class="combo-badge new">⭐ NEW</div>
         <img class="combo-img" src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=300&q=80" onerror="this.style.background='#f0e6ff'" alt="">
         <div class="combo-body"><div class="combo-name">Maggi Chill Combo</div><div class="combo-sub">Peri Peri Fries + Soft Drink (Glass)</div><div class="combo-footer"><div><span class="combo-price">₹99</span></div><button class="combo-add">Add</button></div></div>
       </div>
-      <div class="combo-card" onclick="addItem('Crunch and Chill Combo',139)">
-        <div class="combo-badge hot">🔥 HOT</div>
+      <div class="combo-card" onclick="addItem('Crunch & Chill Combo',139)">
+        <div class="combo-badge save">💰 SAVE</div>
         <img class="combo-img" src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=300&q=80" onerror="this.style.background='#f0e6ff'" alt="">
         <div class="combo-body"><div class="combo-name">Crunch & Chill Combo</div><div class="combo-sub">Kurkure Momos (Full) + Soft Drink (Glass)</div><div class="combo-footer"><div><span class="combo-price">₹139</span></div><button class="combo-add">Add</button></div></div>
       </div>
       <div class="combo-card" onclick="addItem('Paneer Power Combo',149)">
-        <div class="combo-badge new">⭐ NEW</div>
+        <div class="combo-badge hot">🔥 HOT</div>
         <img class="combo-img" src="https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=300&q=80" onerror="this.style.background='#f0e6ff'" alt="">
         <div class="combo-body"><div class="combo-name">Paneer Power Combo</div><div class="combo-sub">Paneer Wrap + Soft Drink (Glass)</div><div class="combo-footer"><div><span class="combo-price">₹149</span></div><button class="combo-add">Add</button></div></div>
       </div>
       <div class="combo-card" onclick="addItem('Paneer Crunch Combo',199)">
         <div class="combo-badge save">💰 SAVE</div>
-        <img class="combo-img" src="https://images.unsplash.com/photo-1559054663-e8d23213f55c?w=300&q=80" onerror="this.style.background='#f0e6ff'" alt="">
+        <img class="combo-img" src="https://images.unsplash.com/photo-1509722747041-616f39b57569?w=300&q=80" onerror="this.style.background='#f0e6ff'" alt="">
         <div class="combo-body"><div class="combo-name">Paneer Crunch Combo</div><div class="combo-sub">Paneer Cheese Sandwich + Plain Salted Fries</div><div class="combo-footer"><div><span class="combo-price">₹199</span></div><button class="combo-add">Add</button></div></div>
       </div>
       <div class="combo-card" onclick="addItem('Momo Duo Combo',159)">
-        <div class="combo-badge hot">🔥 HOT</div>
+        <div class="combo-badge new">⭐ DUO</div>
         <img class="combo-img" src="https://images.unsplash.com/photo-1626804475297-41608ea09aeb?w=300&q=80" onerror="this.style.background='#f0e6ff'" alt="">
-        <div class="combo-body"><div class="combo-name">Momo Duo Combo</div><div class="combo-sub">2 Plates Steam Momos (Full) + Soft Drink (Glass)</div><div class="combo-footer"><div><span class="combo-price">₹159</span></div><button class="combo-add">Add</button></div></div>
+        <div class="combo-body"><div class="combo-name">Momo Duo Combo</div><div class="combo-sub">2 Plates Steam Momos (Full) + Soft Drink</div><div class="combo-footer"><div><span class="combo-price">₹159</span></div><button class="combo-add">Add</button></div></div>
       </div>
     </div>
   </div>
 </div>
-
 <div class="tabs-wrap"><div class="tabs" id="tabs"></div></div>
 <div class="menu-section" id="menuSection"></div>
+
+
+<div class="rev-section">
+  <div class="rev-header">
+    <div class="rev-title">⭐ Customer <span>Reviews</span></div>
+    <a class="google-rev-btn" href="https://g.page/r/CQk7fsXPf0tTEBE/review" target="_blank">🌟 Review Karo</a>
+  </div>
+  <div class="rating-bar">
+    <div style="text-align:center">
+      <div class="rating-num">4.8</div>
+      <div class="rating-stars">⭐⭐⭐⭐⭐</div>
+      <div class="rating-count">48 reviews</div>
+    </div>
+    <div class="bars">
+      <div class="brow"><span class="blbl">5</span><div class="bwrap"><div class="bfill" style="width:82%"></div></div><span class="bcount">39</span></div>
+      <div class="brow"><span class="blbl">4</span><div class="bwrap"><div class="bfill" style="width:12%"></div></div><span class="bcount">6</span></div>
+      <div class="brow"><span class="blbl">3</span><div class="bwrap"><div class="bfill" style="width:4%"></div></div><span class="bcount">2</span></div>
+      <div class="brow"><span class="blbl">2</span><div class="bwrap"><div class="bfill" style="width:2%"></div></div><span class="bcount">1</span></div>
+      <div class="brow"><span class="blbl">1</span><div class="bwrap"><div class="bfill" style="width:0%"></div></div><span class="bcount">0</span></div>
+    </div>
+  </div>
+  <div class="rev-track-wrap">
+    <div class="rev-track" id="revRow">
+      <div class="rev-card"><div class="rev-top-row"><div class="rev-avatar" style="background:#6B21A8">P</div><div><div class="rev-name">Priya Sharma</div><div class="rev-date">2 days ago</div></div></div><div class="rev-stars">⭐⭐⭐⭐⭐</div><div class="rev-text">Momos bahut tasty the! Schezwan sauce perfect tha. Jaldi delivery bhi hui!</div><div class="rev-tag">🥟 Momos</div></div>
+      <div class="rev-card"><div class="rev-top-row"><div class="rev-avatar" style="background:#dc2626">R</div><div><div class="rev-name">Rahul Verma</div><div class="rev-date">1 week ago</div></div></div><div class="rev-stars">⭐⭐⭐⭐⭐</div><div class="rev-text">Cold coffee aur Oreo Shake dono amazing! Price bhi affordable. Best cafe!</div><div class="rev-tag">☕ Cold Coffee</div></div>
+      <div class="rev-card"><div class="rev-top-row"><div class="rev-avatar" style="background:#16a34a">A</div><div><div class="rev-name">Anjali Singh</div><div class="rev-date">3 days ago</div></div></div><div class="rev-stars">⭐⭐⭐⭐⭐</div><div class="rev-text">Maggi ekdum ghar jaisi! Butter Cheese Maggi try ki — bahut achi thi!</div><div class="rev-tag">🍜 Maggi</div></div>
+      <div class="rev-card"><div class="rev-top-row"><div class="rev-avatar" style="background:#ea580c">V</div><div><div class="rev-name">Vikas Meena</div><div class="rev-date">5 days ago</div></div></div><div class="rev-stars">⭐⭐⭐⭐⭐</div><div class="rev-text">Paneer sandwich aur cold coffee combo — perfect! Quality mast thi. 10/10!</div><div class="rev-tag">🥪 Sandwich</div></div>
+      <div class="rev-card"><div class="rev-top-row"><div class="rev-avatar" style="background:#0891b2">S</div><div><div class="rev-name">Sneha Joshi</div><div class="rev-date">1 week ago</div></div></div><div class="rev-stars">⭐⭐⭐⭐⭐</div><div class="rev-text">Peri Peri fries try karo zaroor! Crispy aur spicy — maza aa gaya!</div><div class="rev-tag">🍟 Fries</div></div>
+      <div class="rev-card"><div class="rev-top-row"><div class="rev-avatar" style="background:#7c3aed">M</div><div><div class="rev-name">Mohit Kumar</div><div class="rev-date">2 weeks ago</div></div></div><div class="rev-stars">⭐⭐⭐⭐⭐</div><div class="rev-text">Gym ke baad Tofu Wrap + Water — healthy aur tasty! Liquido best hai!</div><div class="rev-tag">🌯 Wrap</div></div>
+      <div class="rev-card"><div class="rev-top-row"><div class="rev-avatar" style="background:#be185d">N</div><div><div class="rev-name">Neha Gupta</div><div class="rev-date">3 days ago</div></div></div><div class="rev-stars">⭐⭐⭐⭐⭐</div><div class="rev-text">Fire Tossed Momos — ekdum fire jaisi! Spicy but loved it!</div><div class="rev-tag">🔥 Fire Momos</div></div>
+      <div class="rev-card"><div class="rev-top-row"><div class="rev-avatar" style="background:#059669">K</div><div><div class="rev-name">Kartik Agarwal</div><div class="rev-date">4 days ago</div></div></div><div class="rev-stars">⭐⭐⭐⭐⭐</div><div class="rev-text">Kitkat Oreo Shake piya — woh toh best tha! Thick aur creamy!</div><div class="rev-tag">🥤 Shake</div></div>
+    </div>
+  </div>
+  <div class="write-rev">
+    <div class="write-rev-title">⭐ Aapka Experience Kaisa Tha?</div>
+    <div class="write-rev-sub">Google pe review do → 10% discount pao agle order pe!</div>
+    <div class="write-rev-btns">
+      <a class="btn-google" href="https://g.page/r/CQk7fsXPf0tTEBE/review" target="_blank">🌟 Google Review</a>
+      <a class="btn-wa" href="https://wa.me/917014809238?text=Hi%20Liquido!%20Maine%20aapka%20khana%20try%20kiya%20aur%20bahut%20pasand%20aaya!" target="_blank">💬 WhatsApp</a>
+    </div>
+  </div>
+</div>
+<a class="float-rev" href="https://g.page/r/CQk7fsXPf0tTEBE/review" target="_blank">⭐ Review Karo</a>
 
 <button class="cart-btn" id="cartBtn" style="display:none" onclick="openCart()">
   <span>🛒 View Cart</span>
@@ -242,84 +283,73 @@ const WA = '917014809238';
 const UPI = 'BHARATPE.8P0M0U9N8Z03820@fbpe';
 const UNAME = 'Liquido';
 
-const I = {
-  momos: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Momos_on_a_plate.jpg/400px-Momos_on_a_plate.jpg',
-  sandwich: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Grilled_cheese_on_white_with_tomato_soup.jpg/400px-Grilled_cheese_on_white_with_tomato_soup.jpg',
-  maggi: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Masala_Maggi.jpg/400px-Masala_Maggi.jpg',
-  wrap: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Burrito_-_Gusta_Me_%285765119734%29.jpg/400px-Burrito_-_Gusta_Me_%285765119734%29.jpg',
-  coffee: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/400px-A_small_cup_of_coffee.JPG',
-  shake: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Oreo_Shake.jpg/400px-Oreo_Shake.jpg',
-  burger: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PNG_transparency_demonstration_1.png/400px-PNG_transparency_demonstration_1.png',
-  fries: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Potato-Chips.jpg/400px-Potato-Chips.jpg',
-  drink: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/2006_09_06_-_Iced_Tea.jpg/400px-2006_09_06_-_Iced_Tea.jpg',
-};
-
 const menuData = [
   { cat:'Momos', items:[
-    { name:'Veg Steam Momos', img:I.momos, sizes:[{l:'Half (5pc)',p:50},{l:'Full (10pc)',p:80}] },
-    { name:'Deep Fried Momos', img:I.momos, sizes:[{l:'Half (5pc)',p:50},{l:'Full (10pc)',p:90}] },
-    { name:'Pan Fried Momos', img:I.momos, sizes:[{l:'Half (5pc)',p:50},{l:'Full (10pc)',p:90}] },
-    { name:'Fire Tossed Momos', img:I.momos, sizes:[{l:'Half (5pc)',p:70},{l:'Full (10pc)',p:99}] },
-    { name:'Kurkure Veg Momos', img:I.momos, sizes:[{l:'Half (5pc)',p:89},{l:'Full (10pc)',p:129}] },
-    { name:'Schezwan Momos', img:I.momos, sizes:[{l:'Half (5pc)',p:119},{l:'Full (10pc)',p:149}] },
-    { name:'Peri Peri Momos', img:I.momos, sizes:[{l:'Half (5pc)',p:119},{l:'Full (10pc)',p:149}] },
+    { name:'Veg Steam Momos', img:'https://images.unsplash.com/photo-1626804475297-41608ea09aeb?w=200&q=80', sizes:[{l:'Half (5pc)',p:50},{l:'Full (10pc)',p:80}] },
+    { name:'Deep Fried Momos', img:'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=200&q=80', sizes:[{l:'Half (5pc)',p:50},{l:'Full (10pc)',p:90}] },
+    { name:'Pan Fried Momos', img:'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=200&q=80', sizes:[{l:'Half (5pc)',p:50},{l:'Full (10pc)',p:90}] },
+    { name:'Fire Tossed Momos', img:'https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=200&q=80', sizes:[{l:'Half (5pc)',p:70},{l:'Full (10pc)',p:99}] },
+    { name:'Kurkure Veg Momos', img:'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=200&q=80', sizes:[{l:'Half (5pc)',p:89},{l:'Full (10pc)',p:129}] },
+    { name:'Schezwan Momos', img:'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=200&q=80', sizes:[{l:'Half (5pc)',p:119},{l:'Full (10pc)',p:149}] },
+    { name:'Peri Peri Momos', img:'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=200&q=80', sizes:[{l:'Half (5pc)',p:119},{l:'Full (10pc)',p:149}] },
   ]},
   { cat:'Sandwich', items:[
-    { name:'Grilled Sandwich', img:I.sandwich, price:79 },
-    { name:'Grilled Cheese Sandwich', img:I.sandwich, price:99 },
-    { name:'Cheese Corn Sandwich', img:I.sandwich, price:99 },
-    { name:'Paneer Sandwich', img:I.sandwich, price:119 },
-    { name:'Paneer Cheese Sandwich', img:I.sandwich, price:139 },
-    { name:'Cheese Sandwich', img:I.sandwich, price:139 },
+    { name:'Grilled Sandwich', img:'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=200&q=80', price:79 },
+    { name:'Grilled Cheese Sandwich', img:'https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=200&q=80', price:99 },
+    { name:'Cheese Corn Sandwich', img:'https://images.unsplash.com/photo-1553909489-cd47e0907980?w=200&q=80', price:99 },
+    { name:'Paneer Sandwich', img:'https://images.unsplash.com/photo-1559054663-e8d23213f55c?w=200&q=80', price:119 },
+    { name:'Paneer Cheese Sandwich', img:'https://images.unsplash.com/photo-1509722747041-616f39b57569?w=200&q=80', price:139 },
+    { name:'Cheese Sandwich', img:'https://images.unsplash.com/photo-1528736235302-52922df5c122?w=200&q=80', price:139 },
   ]},
   { cat:'Maggi', items:[
-    { name:'Masala Maggi', img:I.maggi, price:40 },
-    { name:'Vegetable Maggi', img:I.maggi, price:50 },
-    { name:'Vegetable Cheese Maggi', img:I.maggi, price:80 },
-    { name:'Butter Maggi', img:I.maggi, price:60 },
-    { name:'Butter Cheese Maggi', img:I.maggi, price:80 },
-    { name:'Schezwan Masala Maggi', img:I.maggi, price:70 },
-    { name:'Schezwan Cheese Maggi', img:I.maggi, price:80 },
-    { name:'Peri Peri Cheese Maggi', img:I.maggi, price:80 },
+    { name:'Masala Maggi', img:'https://images.unsplash.com/photo-1585032226651-759b368d7246?w=200&q=80', price:40 },
+    { name:'Vegetable Maggi', img:'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=200&q=80', price:50 },
+    { name:'Vegetable Cheese Maggi', img:'https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?w=200&q=80', price:80 },
+    { name:'Butter Maggi', img:'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=200&q=80', price:60 },
+    { name:'Butter Cheese Maggi', img:'https://images.unsplash.com/photo-1548943487-a2e4e43b4853?w=200&q=80', price:80 },
+    { name:'Schezwan Masala Maggi', img:'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=200&q=80', price:70 },
+    { name:'Schezwan Cheese Maggi', img:'https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=200&q=80', price:80 },
+    { name:'Peri Peri Cheese Maggi', img:'https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=200&q=80', price:80 },
   ]},
   { cat:'Wrap', items:[
-    { name:'Classic Veggie Delight Wrap', img:I.wrap, price:89 },
-    { name:'Tandoori Paneer Power Wrap', img:I.wrap, price:129 },
-    { name:'Tofu Wrap (Gym Special)', img:I.wrap, price:139 },
+    { name:'Classic Veggie Delight Wrap', img:'https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=200&q=80', price:89 },
+    { name:'Tandoori Paneer Power Wrap', img:'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=200&q=80', price:129 },
+    { name:'Tofu Wrap (Gym Special)', img:'https://images.unsplash.com/photo-1551248429-40975aa4de74?w=200&q=80', price:139 },
   ]},
   { cat:'Cold Coffee', items:[
-    { name:'Classic Cold Coffee', img:I.coffee, price:59 },
-    { name:'Java Chip Cold Coffee', img:I.coffee, price:79 },
-    { name:'Double Chocolate CC', img:I.coffee, price:99 },
-    { name:'Oreo Cold Coffee', img:I.coffee, price:99 },
+    { name:'Classic Cold Coffee', img:'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=200&q=80', price:59 },
+    { name:'Java Chip Cold Coffee', img:'https://images.unsplash.com/photo-1583579192608-b6a8c4a84b51?w=200&q=80', price:79 },
+    { name:'Double Chocolate CC', img:'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?w=200&q=80', price:99 },
+    { name:'Oreo Cold Coffee', img:'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=200&q=80', price:99 },
   ]},
   { cat:'Shake', items:[
-    { name:'Oreo Shake', img:I.shake, price:79 },
-    { name:'Mango Shake', img:I.shake, price:79 },
-    { name:'Strawberry Shake', img:I.shake, price:79 },
-    { name:'Blueberry Shake', img:I.shake, price:79 },
-    { name:'Bubblegum Shake', img:I.shake, price:99 },
-    { name:'Kitkat Shake', img:I.shake, price:99 },
-    { name:'Kitkat Oreo Shake', img:I.shake, price:99 },
+    { name:'Oreo Shake', img:'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=200&q=80', price:79 },
+    { name:'Mango Shake', img:'https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=200&q=80', price:79 },
+    { name:'Strawberry Shake', img:'https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=200&q=80', price:79 },
+    { name:'Blueberry Shake', img:'https://images.unsplash.com/photo-1505252585461-04db1eb84625?w=200&q=80', price:79 },
+    { name:'Bubblegum Shake', img:'https://images.unsplash.com/photo-1582192730841-2a682d7375f9?w=200&q=80', price:99 },
+    { name:'Kitkat Shake', img:'https://images.unsplash.com/photo-1541658016709-82835a93c14f?w=200&q=80', price:99 },
+    { name:'Kitkat Oreo Shake', img:'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=200&q=80', price:99 },
   ]},
   { cat:'Burger', items:[
-    { name:'Aloo Tikki Burger', img:I.burger, price:49 },
-    { name:'Veg Cheesy Burger', img:I.burger, price:59 },
-    { name:'Veg Paneer Burger', img:I.burger, price:89 },
+    { name:'Aloo Tikki Burger', img:'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=200&q=80', price:49 },
+    { name:'Veg Cheesy Burger', img:'https://images.unsplash.com/photo-1550547660-d9450f859349?w=200&q=80', price:59 },
+    { name:'Veg Paneer Burger', img:'https://images.unsplash.com/photo-1596956470007-2bf6095e7e16?w=200&q=80', price:89 },
   ]},
   { cat:'Fries', items:[
-    { name:'Plain Salted Fries', img:I.fries, price:69 },
-    { name:'Peri Peri Masala Fries', img:I.fries, price:99 },
-    { name:'Crispy Garlic Butter Fries', img:I.fries, price:129 },
+    { name:'Plain Salted Fries', img:'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=200&q=80', price:69 },
+    { name:'Peri Peri Masala Fries', img:'https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=200&q=80', price:99 },
+    { name:'Crispy Garlic Butter Fries', img:'https://images.unsplash.com/photo-1576107232684-1279f390859f?w=200&q=80', price:129 },
   ]},
   { cat:'Drinks', items:[
-    { name:'Water Bottle', img:I.drink, price:20 },
-    { name:'Soft Drinks', img:I.drink, price:null },
+    { name:'Water Bottle', img:'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=200&q=80', price:20 },
+    { name:'Soft Drinks', img:'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=200&q=80', price:null },
   ]},
 ];
 
 let cart = [], locText = '', locCoords = '', payMethod = 'upi';
 
+// TABS
 const tabsEl = document.getElementById('tabs');
 menuData.forEach((cat, i) => {
   const b = document.createElement('button');
@@ -333,6 +363,7 @@ menuData.forEach((cat, i) => {
   tabsEl.appendChild(b);
 });
 
+// MENU
 const menuEl = document.getElementById('menuSection');
 menuData.forEach((cat, ci) => {
   const sec = document.createElement('div');
@@ -412,7 +443,7 @@ function renderCart() {
     <label class="flabel">📞 Phone Number *</label>
     <input class="finput" id="cPhone" placeholder="WhatsApp number" type="tel">
     <label class="flabel">📍 Delivery Address *</label>
-    <input class="finput" id="cAddr" placeholder="Ghar/dukaan no., gali, area" id="cAddr">
+    <input class="finput" id="cAddr" placeholder="Ghar/dukaan no., gali, area">
     <button class="loc-btn" id="locBtn" onclick="getLocation()">📍 GPS se Location Detect Karo</button>
     <div id="locRes"></div>
     <label class="flabel">📝 Special Instructions (optional)</label>
@@ -465,7 +496,7 @@ function getLocation() {
       const lat = pos.coords.latitude.toFixed(5);
       const lng = pos.coords.longitude.toFixed(5);
       locCoords = `${lat},${lng}`;
-      locText = `https://maps.google.com/?q=${lat},${lng}`;
+      locText = `http://maps.google.com/maps?q=${lat},${lng}`;
       res.innerHTML = `<div class="loc-ok">✅ Location detect ho gayi! (${lat}, ${lng})<br><a href="${locText}" target="_blank" style="color:green;font-size:0.72rem;">Map pe dekho</a></div>`;
       btn.textContent = '✅ Location Detect Ho Gayi';
     },
@@ -495,6 +526,7 @@ function placeOrder() {
   const items = cart.map(i=>`• ${i.name} × ${i.qty} = ₹${i.price*i.qty}`).join('\n');
   const orderId = 'LQ-' + Math.floor(1000 + Math.random()*9000);
 
+  // WhatsApp message
   let msg = `🛒 *Order from Liquido*\n`;
   msg += `🆔 *Order ID: ${orderId}*\n\n`;
   msg += `🍽️ *Items:*\n${items}\n\n`;
@@ -502,13 +534,13 @@ function placeOrder() {
   msg += `💳 *Payment:* ${payMethod==='upi'?'UPI / Online':'Cash on Delivery'}\n\n`;
   msg += `👤 *Naam:* ${name}\n`;
   msg += `📞 *Phone:* ${phone}\n`;
-  if (addr) msg += `🏠 *Delivery Address:* ${addr}\n`;
+  if (addr) msg += `🏠 *Address:* ${addr}\n`;
   if (locText) msg += `📍 *Live Location:* ${locText}\n`;
   if (note) msg += `📝 *Instructions:* ${note}\n`;
   msg += `\nPlease confirm my order. Thank you! 🙏`;
 
   window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, '_blank');
-  showToast('✅ Order bhej diya!');
+  showToast('✅ Order bhej diya! Order ID: ' + orderId);
 }
 
 function showToast(msg) {
@@ -517,49 +549,11 @@ function showToast(msg) {
   setTimeout(()=>t.classList.remove('show'), 2000);
 }
 
+// Combo + Review infinite scroll
 ['comboRow','revRow'].forEach(id=>{
   const t=document.getElementById(id);
   if(t) t.innerHTML+=t.innerHTML;
 });
 </script>
-
-<div class="rev-section">
-  <div class="rev-header">
-    <div class="rev-title">⭐ Customer <span>Reviews</span></div>
-    <a class="google-rev-btn" href="https://g.page/r/CQk7fsXPf0tTEBE/review" target="_blank">🌟 Review Karo</a>
-  </div>
-  <div class="rating-bar">
-    <div style="text-align:center">
-      <div class="rating-num">4.8</div>
-      <div class="rating-stars">⭐⭐⭐⭐⭐</div>
-      <div class="rating-count">48 reviews</div>
-    </div>
-    <div class="bars">
-      <div class="brow"><span class="blbl">5</span><div class="bwrap"><div class="bfill" style="width:82%"></div></div><span class="bcount">39</span></div>
-      <div class="brow"><span class="blbl">4</span><div class="bwrap"><div class="bfill" style="width:12%"></div></div><span class="bcount">6</span></div>
-      <div class="brow"><span class="blbl">3</span><div class="bwrap"><div class="bfill" style="width:4%"></div></div><span class="bcount">2</span></div>
-      <div class="brow"><span class="blbl">2</span><div class="bwrap"><div class="bfill" style="width:2%"></div></div><span class="bcount">1</span></div>
-      <div class="brow"><span class="blbl">1</span><div class="bwrap"><div class="bfill" style="width:0%"></div></div><span class="bcount">0</span></div>
-    </div>
-  </div>
-  <div class="rev-track-wrap">
-    <div class="rev-track" id="revRow">
-      <div class="rev-card"><div class="rev-top-row"><div class="rev-avatar" style="background:#6B21A8">P</div><div><div class="rev-name">Priya Sharma</div><div class="rev-date">2 days ago</div></div></div><div class="rev-stars">⭐⭐⭐⭐⭐</div><div class="rev-text">Momos bahut tasty the! Schezwan sauce perfect tha. Jaldi delivery bhi hui!</div><div class="rev-tag">🥟 Momos</div></div>
-      <div class="rev-card"><div class="rev-top-row"><div class="rev-avatar" style="background:#dc2626">R</div><div><div class="rev-name">Rahul Verma</div><div class="rev-date">1 week ago</div></div></div><div class="rev-stars">⭐⭐⭐⭐⭐</div><div class="rev-text">Cold coffee aur Oreo Shake dono amazing! Price bhi affordable. Best cafe!</div><div class="rev-tag">☕ Cold Coffee</div></div>
-      <div class="rev-card"><div class="rev-top-row"><div class="rev-avatar" style="background:#16a34a">A</div><div><div class="rev-name">Anjali Singh</div><div class="rev-date">3 days ago</div></div></div><div class="rev-stars">⭐⭐⭐⭐⭐</div><div class="rev-text">Maggi ekdum ghar jaisi! Butter Cheese Maggi try ki — bahut achi thi!</div><div class="rev-tag">🍜 Maggi</div></div>
-      <div class="rev-card"><div class="rev-top-row"><div class="rev-avatar" style="background:#ea580c">V</div><div><div class="rev-name">Vikas Meena</div><div class="rev-date">5 days ago</div></div></div><div class="rev-stars">⭐⭐⭐⭐⭐</div><div class="rev-text">Paneer sandwich aur cold coffee combo — perfect! Quality mast thi. 10/10!</div><div class="rev-tag">🥪 Sandwich</div></div>
-    </div>
-  </div>
-  <div class="write-rev">
-    <div class="write-rev-title">⭐ Aapka Experience Kaisa Tha?</div>
-    <div class="write-rev-sub">Google pe review do → 10% discount pao agle order pe!</div>
-    <div class="write-rev-btns">
-      <a class="btn-google" href="https://g.page/r/CQk7fsXPf0tTEBE/review" target="_blank">🌟 Google Review</a>
-      <a class="btn-wa" href="https://wa.me/917014809238?text=Hi%20Liquido!%20Maine%20aapka%20khana%20try%20kiya%20aur%20bahut%20pasand%20aaya!" target="_blank">💬 WhatsApp</a>
-    </div>
-  </div>
-</div>
-<a class="float-rev" href="https://g.page/r/CQk7fsXPf0tTEBE/review" target="_blank">⭐ Review Karo</a>
-
 </body>
 </html>
