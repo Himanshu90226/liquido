@@ -78,7 +78,7 @@
   .finput { width:100%; padding:10px 13px; border:2px solid #e0d0ff; border-radius:10px; font-family:'Poppins',sans-serif; font-size:0.85rem; outline:none; }
   .finput:focus { border-color:var(--purple); }
   .loc-btn { width:100%; background:#f0e6ff; color:var(--purple); border:2px dashed #d8b4fe; border-radius:10px; padding:10px; font-family:'Poppins',sans-serif; font-size:0.82rem; font-weight:600; cursor:pointer; margin-top:10px; }
-  .loc-ok { font-size:0.73rem; color:green; background:#e8ffe8; border-radius:8px; padding:6px 10px; margin-top:6px; }
+  .loc-res { font-size:0.73rem; color:green; background:#e8ffe8; border-radius:8px; padding:6px 10px; margin-top:6px; }
 
   /* PAYMENT */
   .pay-opts { display:flex; gap:8px; margin:10px 0; }
@@ -101,6 +101,71 @@
   .toast.show { opacity:1; }
 
   .cheese-note { text-align:center; font-size:0.73rem; color:var(--purple); font-weight:600; padding:6px; background:#fffde7; border-radius:8px; margin:6px 0; }
+
+  /* COMBO CSS */
+  .combos-section{padding:18px 0 8px}
+  .combos-header{display:flex;align-items:center;justify-content:space-between;padding:0 16px;margin-bottom:12px}
+  .combos-title{font-size:1rem;font-weight:800;color:#1a1a1a}
+  .combos-title span{color:var(--purple)}
+  .save-tag{background:var(--yellow);color:var(--purple);font-size:0.68rem;font-weight:800;padding:4px 10px;border-radius:20px}
+  .combos-track-wrap{overflow:hidden;width:100%;position:relative}
+  .combos-track-wrap::before,.combos-track-wrap::after{content:'';position:absolute;top:0;bottom:0;width:36px;z-index:2;pointer-events:none}
+  .combos-track-wrap::before{left:0;background:linear-gradient(to right,#f5f0e8,transparent)}
+  .combos-track-wrap::after{right:0;background:linear-gradient(to left,#f5f0e8,transparent)}
+  .combos-track{display:flex;gap:12px;padding:6px 16px 10px;animation:scrollC 26s linear infinite;width:max-content}
+  .combos-track:hover{animation-play-state:paused}
+  @keyframes scrollC{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+  .combo-card{background:white;border-radius:14px;width:185px;flex-shrink:0;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,0.09);cursor:pointer;position:relative}
+  .combo-badge{position:absolute;top:8px;left:8px;background:var(--purple);color:white;font-size:0.6rem;font-weight:800;padding:3px 7px;border-radius:7px;z-index:1}
+  .combo-badge.hot{background:#dc2626}.combo-badge.new{background:#16a34a}.combo-badge.save{background:#ea580c}
+  .combo-img{width:100%;height:115px;object-fit:cover;display:block;background:#f0e6ff}
+  .combo-body{padding:10px 11px 12px}
+  .combo-name{font-size:0.81rem;font-weight:700;color:#1a1a1a;margin-bottom:3px;line-height:1.3}
+  .combo-sub{font-size:0.67rem;color:#888;margin-bottom:7px;line-height:1.4}
+  .combo-footer{display:flex;align-items:center;justify-content:space-between}
+  .combo-price{font-size:0.92rem;font-weight:800;color:var(--purple)}
+  .combo-old{font-size:0.67rem;color:#bbb;text-decoration:line-through;margin-left:3px}
+  .combo-add{background:var(--yellow);color:var(--purple);border:none;border-radius:7px;padding:5px 10px;font-family:'Poppins',sans-serif;font-size:0.74rem;font-weight:800;cursor:pointer}
+
+  /* REVIEWS CSS */
+  .rev-section{padding:18px 0 10px}
+  .rev-header{display:flex;align-items:center;justify-content:space-between;padding:0 16px;margin-bottom:10px}
+  .rev-title{font-size:1rem;font-weight:800;color:#1a1a1a}
+  .rev-title span{color:var(--purple)}
+  .google-rev-btn{display:flex;align-items:center;gap:5px;background:white;border:2px solid #e0d0ff;border-radius:10px;padding:6px 11px;font-family:'Poppins',sans-serif;font-size:0.7rem;font-weight:700;color:var(--purple);cursor:pointer;text-decoration:none}
+  .rating-bar{background:white;border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:14px;box-shadow:0 2px 8px rgba(0,0,0,0.06);margin:0 16px 12px}
+  .rating-num{font-size:2.6rem;font-weight:900;color:var(--purple);line-height:1;text-align:center}
+  .rating-stars{font-size:0.85rem;margin-top:2px}
+  .rating-count{font-size:0.65rem;color:#aaa}
+  .bars{flex:1}
+  .brow{display:flex;align-items:center;gap:5px;margin-bottom:4px}
+  .brow:last-child{margin-bottom:0}
+  .blbl{font-size:0.66rem;color:#888;font-weight:600;width:7px}
+  .bwrap{flex:1;background:#f0e6ff;border-radius:50px;height:5px;overflow:hidden}
+  .bfill{height:100%;border-radius:50px;background:linear-gradient(90deg,var(--purple),#9333ea)}
+  .bcount{font-size:0.63rem;color:#aaa;width:16px;text-align:right}
+  .rev-track-wrap{overflow:hidden;width:100%;position:relative}
+  .rev-track-wrap::before,.rev-track-wrap::after{content:'';position:absolute;top:0;bottom:0;width:30px;z-index:2;pointer-events:none}
+  .rev-track-wrap::before{left:0;background:linear-gradient(to right,#f5f0e8,transparent)}
+  .rev-track-wrap::after{right:0;background:linear-gradient(to left,#f5f0e8,transparent)}
+  .rev-track{display:flex;gap:12px;padding:6px 16px 10px;animation:scrollR 32s linear infinite;width:max-content}
+  .rev-track:hover{animation-play-state:paused}
+  @keyframes scrollR{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+  .rev-card{background:white;border-radius:14px;padding:13px 13px 11px;width:210px;flex-shrink:0;box-shadow:0 3px 10px rgba(0,0,0,0.08)}
+  .rev-top-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+  .rev-avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.9rem;font-weight:800;color:white;flex-shrink:0}
+  .rev-name{font-size:0.78rem;font-weight:700;color:#1a1a1a}
+  .rev-date{font-size:0.63rem;color:#aaa;margin-top:1px}
+  .rev-stars{font-size:0.75rem;margin-bottom:5px}
+  .rev-text{font-size:0.74rem;color:#555;line-height:1.5}
+  .rev-tag{display:inline-block;margin-top:7px;background:#f0e6ff;color:var(--purple);font-size:0.6rem;font-weight:700;padding:3px 7px;border-radius:20px}
+  .write-rev{background:linear-gradient(135deg,var(--purple),#9333ea);border-radius:14px;padding:16px;margin:12px 16px 0;text-align:center;color:white}
+  .write-rev-title{font-size:0.95rem;font-weight:800;margin-bottom:4px}
+  .write-rev-sub{font-size:0.73rem;opacity:0.85;margin-bottom:14px;line-height:1.5}
+  .write-rev-btns{display:flex;gap:8px}
+  .btn-google{flex:1;background:white;color:var(--purple);border:none;border-radius:10px;padding:11px;font-family:'Poppins',sans-serif;font-size:0.8rem;font-weight:800;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:5px}
+  .btn-wa{flex:1;background:#25D366;color:white;border:none;border-radius:10px;padding:11px;font-family:'Poppins',sans-serif;font-size:0.8rem;font-weight:800;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:5px}
+  .float-rev{position:fixed;bottom:80px;right:14px;background:var(--purple);color:white;border:none;border-radius:50px;padding:9px 14px;font-family:'Poppins',sans-serif;font-size:0.72rem;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(107,33,168,0.5);z-index:150;text-decoration:none;display:flex;align-items:center;gap:5px}
 </style>
 </head>
 <body>
@@ -109,7 +174,49 @@
   <h1>LIQUIDO</h1>
   <p>Fresh • Fast • Flavourful</p>
 </div>
-<div class="banner">🏷️ Tag us on Social Media & Google Review → Get 10% OFF! &nbsp;</div>
+<div class="banner">🏷️ Tag us on Social Media & Google Review → Get 10% OFF!  |  Extra Cheese ₹20</div>
+
+<div class="combos-section">
+  <div class="combos-header">
+    <div class="combos-title">🔥 <span>Combo</span> Deals</div>
+    <div class="save-tag">💰 Save More!</div>
+  </div>
+  <div class="combos-track-wrap">
+    <div class="combos-track" id="comboRow">
+      <div class="combo-card" onclick="addItem('Cheesy Crunch Combo',189)">
+        <div class="combo-badge hot">🔥 HOT</div>
+        <img class="combo-img" src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=300&q=80" onerror="this.style.background='#f0e6ff'" alt="">
+        <div class="combo-body"><div class="combo-name">Cheesy Crunch Combo</div><div class="combo-sub">Grilled Cheese Sandwich + Plain Salted Fries + Soft Drink</div><div class="combo-footer"><div><span class="combo-price">₹189</span></div><button class="combo-add">Add</button></div></div>
+      </div>
+      <div class="combo-card" onclick="addItem('Maggi Chill Combo',99)">
+        <div class="combo-badge save">💰 SAVE</div>
+        <img class="combo-img" src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=300&q=80" onerror="this.style.background='#f0e6ff'" alt="">
+        <div class="combo-body"><div class="combo-name">Maggi Chill Combo</div><div class="combo-sub">Peri Peri Fries + Soft Drink (Glass)</div><div class="combo-footer"><div><span class="combo-price">₹99</span></div><button class="combo-add">Add</button></div></div>
+      </div>
+      <div class="combo-card" onclick="addItem('Crunch and Chill Combo',139)">
+        <div class="combo-badge hot">🔥 HOT</div>
+        <img class="combo-img" src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=300&q=80" onerror="this.style.background='#f0e6ff'" alt="">
+        <div class="combo-body"><div class="combo-name">Crunch & Chill Combo</div><div class="combo-sub">Kurkure Momos (Full) + Soft Drink (Glass)</div><div class="combo-footer"><div><span class="combo-price">₹139</span></div><button class="combo-add">Add</button></div></div>
+      </div>
+      <div class="combo-card" onclick="addItem('Paneer Power Combo',149)">
+        <div class="combo-badge new">⭐ NEW</div>
+        <img class="combo-img" src="https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=300&q=80" onerror="this.style.background='#f0e6ff'" alt="">
+        <div class="combo-body"><div class="combo-name">Paneer Power Combo</div><div class="combo-sub">Paneer Wrap + Soft Drink (Glass)</div><div class="combo-footer"><div><span class="combo-price">₹149</span></div><button class="combo-add">Add</button></div></div>
+      </div>
+      <div class="combo-card" onclick="addItem('Paneer Crunch Combo',199)">
+        <div class="combo-badge save">💰 SAVE</div>
+        <img class="combo-img" src="https://images.unsplash.com/photo-1559054663-e8d23213f55c?w=300&q=80" onerror="this.style.background='#f0e6ff'" alt="">
+        <div class="combo-body"><div class="combo-name">Paneer Crunch Combo</div><div class="combo-sub">Paneer Cheese Sandwich + Plain Salted Fries</div><div class="combo-footer"><div><span class="combo-price">₹199</span></div><button class="combo-add">Add</button></div></div>
+      </div>
+      <div class="combo-card" onclick="addItem('Momo Duo Combo',159)">
+        <div class="combo-badge hot">🔥 HOT</div>
+        <img class="combo-img" src="https://images.unsplash.com/photo-1626804475297-41608ea09aeb?w=300&q=80" onerror="this.style.background='#f0e6ff'" alt="">
+        <div class="combo-body"><div class="combo-name">Momo Duo Combo</div><div class="combo-sub">2 Plates Steam Momos (Full) + Soft Drink (Glass)</div><div class="combo-footer"><div><span class="combo-price">₹159</span></div><button class="combo-add">Add</button></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="tabs-wrap"><div class="tabs" id="tabs"></div></div>
 <div class="menu-section" id="menuSection"></div>
 
@@ -135,9 +242,8 @@ const WA = '917014809238';
 const UPI = 'BHARATPE.8P0M0U9N8Z03820@fbpe';
 const UNAME = 'Liquido';
 
-// Food images - reliable sources
-const I = { 
-  momos:'https://images.pexels.com/photos/18330950/pexels-photo-18330950.jpeg',
+const I = {
+  momos: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Momos_on_a_plate.jpg/400px-Momos_on_a_plate.jpg',
   sandwich: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Grilled_cheese_on_white_with_tomato_soup.jpg/400px-Grilled_cheese_on_white_with_tomato_soup.jpg',
   maggi: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Masala_Maggi.jpg/400px-Masala_Maggi.jpg',
   wrap: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Burrito_-_Gusta_Me_%285765119734%29.jpg/400px-Burrito_-_Gusta_Me_%285765119734%29.jpg',
@@ -151,7 +257,7 @@ const I = {
 const menuData = [
   { cat:'Momos', items:[
     { name:'Veg Steam Momos', img:I.momos, sizes:[{l:'Half (5pc)',p:50},{l:'Full (10pc)',p:80}] },
-    { name:'Deep Fried Momos',img:I.momos, sizes:[{l:'Half (5pc)',p:50},{l:'Full (10pc)',p:90}] },
+    { name:'Deep Fried Momos', img:I.momos, sizes:[{l:'Half (5pc)',p:50},{l:'Full (10pc)',p:90}] },
     { name:'Pan Fried Momos', img:I.momos, sizes:[{l:'Half (5pc)',p:50},{l:'Full (10pc)',p:90}] },
     { name:'Fire Tossed Momos', img:I.momos, sizes:[{l:'Half (5pc)',p:70},{l:'Full (10pc)',p:99}] },
     { name:'Kurkure Veg Momos', img:I.momos, sizes:[{l:'Half (5pc)',p:89},{l:'Full (10pc)',p:129}] },
@@ -214,7 +320,6 @@ const menuData = [
 
 let cart = [], locText = '', locCoords = '', payMethod = 'upi';
 
-// TABS
 const tabsEl = document.getElementById('tabs');
 menuData.forEach((cat, i) => {
   const b = document.createElement('button');
@@ -228,7 +333,6 @@ menuData.forEach((cat, i) => {
   tabsEl.appendChild(b);
 });
 
-// MENU
 const menuEl = document.getElementById('menuSection');
 menuData.forEach((cat, ci) => {
   const sec = document.createElement('div');
@@ -386,17 +490,25 @@ function placeOrder() {
   if (!name) { showToast('❗ Naam likhein'); return; }
   if (!phone) { showToast('❗ Phone number likhein'); return; }
   if (!addr && !locText) { showToast('❗ Address ya location dein'); return; }
+
   const total = cart.reduce((s,i)=>s+i.price*i.qty,0);
   const items = cart.map(i=>`• ${i.name} × ${i.qty} = ₹${i.price*i.qty}`).join('\n');
-  let msg = `🍽️ *LIQUIDO — Naya Order*\n\n`;
-  msg += `👤 *Naam:* ${name}\n📞 *Phone:* ${phone}\n\n`;
-  msg += `📦 *Order:*\n${items}\n\n`;
+  const orderId = 'LQ-' + Math.floor(1000 + Math.random()*9000);
+
+  let msg = `🛒 *Order from Liquido*\n`;
+  msg += `🆔 *Order ID: ${orderId}*\n\n`;
+  msg += `🍽️ *Items:*\n${items}\n\n`;
   msg += `💰 *Total: ₹${total}*\n`;
   msg += `💳 *Payment:* ${payMethod==='upi'?'UPI / Online':'Cash on Delivery'}\n\n`;
-  if (addr) msg += `📍 *Address:* ${addr}\n`;
-  if (locText) msg += `🗺️ *Live Location:* ${locText}\n`;
-  if (note) msg += `📝 *Instructions:* ${note}`;
+  msg += `👤 *Naam:* ${name}\n`;
+  msg += `📞 *Phone:* ${phone}\n`;
+  if (addr) msg += `🏠 *Delivery Address:* ${addr}\n`;
+  if (locText) msg += `📍 *Live Location:* ${locText}\n`;
+  if (note) msg += `📝 *Instructions:* ${note}\n`;
+  msg += `\nPlease confirm my order. Thank you! 🙏`;
+
   window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, '_blank');
+  showToast('✅ Order bhej diya!');
 }
 
 function showToast(msg) {
@@ -404,6 +516,50 @@ function showToast(msg) {
   t.textContent = msg; t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'), 2000);
 }
+
+['comboRow','revRow'].forEach(id=>{
+  const t=document.getElementById(id);
+  if(t) t.innerHTML+=t.innerHTML;
+});
 </script>
+
+<div class="rev-section">
+  <div class="rev-header">
+    <div class="rev-title">⭐ Customer <span>Reviews</span></div>
+    <a class="google-rev-btn" href="https://g.page/r/CQk7fsXPf0tTEBE/review" target="_blank">🌟 Review Karo</a>
+  </div>
+  <div class="rating-bar">
+    <div style="text-align:center">
+      <div class="rating-num">4.8</div>
+      <div class="rating-stars">⭐⭐⭐⭐⭐</div>
+      <div class="rating-count">48 reviews</div>
+    </div>
+    <div class="bars">
+      <div class="brow"><span class="blbl">5</span><div class="bwrap"><div class="bfill" style="width:82%"></div></div><span class="bcount">39</span></div>
+      <div class="brow"><span class="blbl">4</span><div class="bwrap"><div class="bfill" style="width:12%"></div></div><span class="bcount">6</span></div>
+      <div class="brow"><span class="blbl">3</span><div class="bwrap"><div class="bfill" style="width:4%"></div></div><span class="bcount">2</span></div>
+      <div class="brow"><span class="blbl">2</span><div class="bwrap"><div class="bfill" style="width:2%"></div></div><span class="bcount">1</span></div>
+      <div class="brow"><span class="blbl">1</span><div class="bwrap"><div class="bfill" style="width:0%"></div></div><span class="bcount">0</span></div>
+    </div>
+  </div>
+  <div class="rev-track-wrap">
+    <div class="rev-track" id="revRow">
+      <div class="rev-card"><div class="rev-top-row"><div class="rev-avatar" style="background:#6B21A8">P</div><div><div class="rev-name">Priya Sharma</div><div class="rev-date">2 days ago</div></div></div><div class="rev-stars">⭐⭐⭐⭐⭐</div><div class="rev-text">Momos bahut tasty the! Schezwan sauce perfect tha. Jaldi delivery bhi hui!</div><div class="rev-tag">🥟 Momos</div></div>
+      <div class="rev-card"><div class="rev-top-row"><div class="rev-avatar" style="background:#dc2626">R</div><div><div class="rev-name">Rahul Verma</div><div class="rev-date">1 week ago</div></div></div><div class="rev-stars">⭐⭐⭐⭐⭐</div><div class="rev-text">Cold coffee aur Oreo Shake dono amazing! Price bhi affordable. Best cafe!</div><div class="rev-tag">☕ Cold Coffee</div></div>
+      <div class="rev-card"><div class="rev-top-row"><div class="rev-avatar" style="background:#16a34a">A</div><div><div class="rev-name">Anjali Singh</div><div class="rev-date">3 days ago</div></div></div><div class="rev-stars">⭐⭐⭐⭐⭐</div><div class="rev-text">Maggi ekdum ghar jaisi! Butter Cheese Maggi try ki — bahut achi thi!</div><div class="rev-tag">🍜 Maggi</div></div>
+      <div class="rev-card"><div class="rev-top-row"><div class="rev-avatar" style="background:#ea580c">V</div><div><div class="rev-name">Vikas Meena</div><div class="rev-date">5 days ago</div></div></div><div class="rev-stars">⭐⭐⭐⭐⭐</div><div class="rev-text">Paneer sandwich aur cold coffee combo — perfect! Quality mast thi. 10/10!</div><div class="rev-tag">🥪 Sandwich</div></div>
+    </div>
+  </div>
+  <div class="write-rev">
+    <div class="write-rev-title">⭐ Aapka Experience Kaisa Tha?</div>
+    <div class="write-rev-sub">Google pe review do → 10% discount pao agle order pe!</div>
+    <div class="write-rev-btns">
+      <a class="btn-google" href="https://g.page/r/CQk7fsXPf0tTEBE/review" target="_blank">🌟 Google Review</a>
+      <a class="btn-wa" href="https://wa.me/917014809238?text=Hi%20Liquido!%20Maine%20aapka%20khana%20try%20kiya%20aur%20bahut%20pasand%20aaya!" target="_blank">💬 WhatsApp</a>
+    </div>
+  </div>
+</div>
+<a class="float-rev" href="https://g.page/r/CQk7fsXPf0tTEBE/review" target="_blank">⭐ Review Karo</a>
+
 </body>
 </html>
