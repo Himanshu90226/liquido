@@ -95,7 +95,7 @@
 </head>
 <body>
 
-<div class="splash" id="splash">
+<div class="splash" id="splash" style="pointer-events:none">
   <h1>LIQUIDO</h1>
   <p style="color:#e0c8ff">Fresh • Fast • Flavourful</p>
 </div>
@@ -313,9 +313,11 @@ function toggleDark() {
   btn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
 }
 
-window.addEventListener('load', () => {
-  setTimeout(() => document.getElementById('splash').classList.add('hide'), 1500);
-});
+setTimeout(()=>{
+  const s = document.getElementById('splash');
+  if(s){ s.style.opacity='0'; setTimeout(()=>s.style.display='none', 400); }
+}, 800);
+function dummy_load() {
 
 // Banner Rotation
 const quotes = ['🏷️ Tag us on Instagram for 10% OFF!', '🥟 Best Momos in Town!', '🛵 Delivery in 30-45 Mins!'];
