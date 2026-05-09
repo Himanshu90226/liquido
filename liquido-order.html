@@ -102,18 +102,6 @@
 
   .cheese-note { text-align:center; font-size:0.73rem; color:var(--purple); font-weight:600; padding:6px; background:#fffde7; border-radius:8px; margin:6px 0; }
 
-  /* SPLASH SCREEN */
-  .splash{position:fixed;inset:0;background:#6B21A8;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.5s}
-  .splash.hide{opacity:0;pointer-events:none}
-  .splash h1{font-size:3rem;font-weight:900;color:#FFD600;letter-spacing:3px;animation:splashPop 0.6s ease}
-  .splash p{color:#e0c8ff;font-size:0.8rem;letter-spacing:3px;text-transform:uppercase;margin-top:6px}
-  .splash-dots{display:flex;gap:8px;margin-top:24px}
-  .splash-dot{width:8px;height:8px;border-radius:50%;background:#FFD600;animation:dotBounce 0.8s infinite}
-  .splash-dot:nth-child(2){animation-delay:0.15s}
-  .splash-dot:nth-child(3){animation-delay:0.3s}
-  @keyframes splashPop{0%{transform:scale(0.5);opacity:0}100%{transform:scale(1);opacity:1}}
-  @keyframes dotBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-
   /* SEARCH BAR */
   .search-wrap{background:white;padding:10px 14px;border-bottom:1px solid #eee}
   .search-box{display:flex;align-items:center;gap:8px;background:#f5f0e8;border:2px solid #e0d0ff;border-radius:12px;padding:8px 13px}
