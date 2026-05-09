@@ -38,6 +38,7 @@
   .item-img { width:68px; height:68px; border-radius:10px; object-fit:cover; flex-shrink:0; background:#ede9f5; }
   .item-info { flex:1; min-width:0; }
   .item-name { font-weight:600; font-size:0.88rem; color:#1a1a1a; line-height:1.3; }
+  .item-price { color:var(--purple); font-weight:700; font-size:0.85rem; margin-top:3px; }
   .best-badge { display:inline-block; background:#fff0f0; color:#dc2626; font-size:0.6rem; font-weight:800; border-radius:5px; padding:2px 6px; margin-left:5px; vertical-align:middle; }
 
   /* BUTTONS */
@@ -60,7 +61,7 @@
   .flabel { font-size:0.78rem; font-weight:600; color:#555; margin-bottom:4px; display:block; margin-top:10px; }
   .finput { width:100%; padding:10px 13px; border:2px solid #e0d0ff; border-radius:10px; font-family:'Poppins',sans-serif; font-size:0.85rem; outline:none; margin-bottom:5px; }
   .pay-opts { display:flex; gap:8px; margin:10px 0; }
-  .pay-opt { flex:1; padding:9px 6px; border:2px solid #e0d0ff; border-radius:10px; text-align:center; cursor:pointer; font-size:0.78rem; font-weight:600; color:#666; }
+  .pay-opt { flex:1; padding:9px 6px; border:2px solid #e0d0ff; border-radius:10px; text-align:center; cursor:pointer; font-size:0.78rem; font-weight:600; }
   .pay-opt.sel { border-color:var(--purple); background:#f5eeff; color:var(--purple); }
   
   /* CART ITEMS */
@@ -143,7 +144,6 @@ const menuData = [
     { name:'Veg Steam Momos', img:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Momos_on_a_plate.jpg/400px-Momos_on_a_plate.jpg', sizes:[{l:'Half (5pc)',p:50},{l:'Full (10pc)',p:80}] },
     { name:'Deep Fried Momos', img:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Momos_on_a_plate.jpg/400px-Momos_on_a_plate.jpg', sizes:[{l:'Half (5pc)',p:50},{l:'Full (10pc)',p:90}] },
     { name:'Kurkure Veg Momos', img:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Momos_on_a_plate.jpg/400px-Momos_on_a_plate.jpg', sizes:[{l:'Half (5pc)',p:89},{l:'Full (10pc)',p:129}] },
-    { name:'Schezwan Momos', img:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Momos_on_a_plate.jpg/400px-Momos_on_a_plate.jpg', sizes:[{l:'Half (5pc)',p:119},{l:'Full (10pc)',p:149}] }
   ]},
   { cat:'Sandwich', items:[
     { name:'Grilled Sandwich', img:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Grilled_cheese_on_white_with_tomato_soup.jpg/400px-Grilled_cheese_on_white_with_tomato_soup.jpg', price:79 },
@@ -165,7 +165,7 @@ const menuData = [
 
 let cart = [], payMethod = 'upi', locText = '';
 
-// Tabs setup
+// Initialize Tabs
 const tabsEl = document.getElementById('tabs');
 menuData.forEach((cat, i) => {
   const b = document.createElement('button');
@@ -174,12 +174,12 @@ menuData.forEach((cat, i) => {
   b.onclick = () => {
     document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
     b.classList.add('active');
-    document.getElementById('c'+ci).scrollIntoView({behavior:'smooth'});
+    document.getElementById('c'+i).scrollIntoView({behavior:'smooth'});
   };
   tabsEl.appendChild(b);
 });
 
-// Menu Setup
+// Initialize Menu
 const menuEl = document.getElementById('menuSection');
 menuData.forEach((cat, ci) => {
   const sec = document.createElement('div');
@@ -254,30 +254,30 @@ function renderCart() {
     </div>`).join('') + `<div style="display:flex;justify-content:space-between;padding:15px 0;font-weight:800;font-size:1.1rem;color:var(--purple)"><span>Total</span><span>₹${total}</span></div>`;
 
   footer.innerHTML = `
-    <label class="flabel">👤 Aapka Naam</label>
+    <label class="flabel">👤 Your Name</label>
     <input class="finput" id="cName" placeholder="Enter Name">
-    <label class="flabel">📍 Address</label>
-    <input class="finput" id="cAddr" placeholder="House no, Area, Landmark">
-    <button class="size-btn" style="width:100%;margin-bottom:10px" onclick="getLocation()">📍 Detect Location</button>
+    <label class="flabel">📍 Delivery Address</label>
+    <input class="finput" id="cAddr" placeholder="House no, Street, Area">
+    <button class="size-btn" style="width:100%;margin-bottom:10px" onclick="getLocation()">📍 Detect My Location</button>
     <div id="locRes"></div>
     <div class="pay-opts">
-      <div class="pay-opt ${payMethod==='upi'?'sel':''}" onclick="setPay('upi')">UPI / QR</div>
-      <div class="pay-opt ${payMethod==='cod'?'sel':''}" onclick="setPay('cod')">Cash (COD)</div>
+      <div class="pay-opt ${payMethod==='upi'?'sel':''}" onclick="selPay('upi')">UPI / QR</div>
+      <div class="pay-opt ${payMethod==='cod'?'sel':''}" onclick="selPay('cod')">Cash</div>
     </div>
     <div id="payBox"></div>
-    <button class="order-btn" onclick="placeOrder()">💬 WhatsApp Order</button>`;
-  renderPaymentDetails(total);
+    <button class="order-btn" onclick="placeOrder()">💬 Order via WhatsApp</button>`;
+  renderPay(total);
 }
 
-function setPay(m) { payMethod = m; renderCart(); }
+function selPay(m) { payMethod = m; renderCart(); }
 
-function renderPaymentDetails(total) {
+function renderPay(total) {
   const pb = document.getElementById('payBox');
   if (payMethod === 'upi') {
     const link = `upi://pay?pa=${UPI}&pn=${encodeURIComponent(UNAME)}&am=${total}&cu=INR`;
     pb.innerHTML = `<div class="upi-box"><small>UPI ID: ${UPI}</small><br><strong>₹${total}</strong><a href="${link}" class="upi-link">Pay with UPI App</a></div>`;
   } else {
-    pb.innerHTML = `<div style="background:#fff8e1;padding:10px;border-radius:8px;font-size:0.8rem;margin-top:10px;color:#7a5c00">💵 Pay cash at delivery.</div>`;
+    pb.innerHTML = `<div style="background:#fff8e1;padding:10px;border-radius:8px;font-size:0.8rem;margin-top:10px">💵 Pay cash at the time of delivery.</div>`;
   }
 }
 
@@ -285,7 +285,7 @@ function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(p => {
       locText = `https://www.google.com/maps?q=${p.coords.latitude},${p.coords.longitude}`;
-      document.getElementById('locRes').innerHTML = '✅ Location Detected!';
+      document.getElementById('locRes').innerHTML = '✅ Location Saved!';
     });
   }
 }
@@ -293,11 +293,11 @@ function getLocation() {
 function placeOrder() {
   const name = document.getElementById('cName').value;
   const addr = document.getElementById('cAddr').value;
-  if (!name || !addr) { alert('Aapka naam aur address zaroori hai'); return; }
+  if (!name || !addr) { alert('Please fill Name and Address'); return; }
   
   const total = cart.reduce((s,i)=>s+i.price*i.qty,0);
-  const itemsStr = cart.map(i=>`• ${i.name} x ${i.qty} = ₹${i.price*i.qty}`).join('\n');
-  let msg = `*LIQUIDO ORDER*\n\n👤 Name: ${name}\n📍 Addr: ${addr}\n${locText?'🗺️ Map: '+locText:''}\n\n📦 *Items:*\n${itemsStr}\n\n💰 *Total: ₹${total}*\n💳 Payment: ${payMethod.toUpperCase()}`;
+  const items = cart.map(i=>`• ${i.name} x ${i.qty} = ₹${i.price*i.qty}`).join('\n');
+  let msg = `*LIQUIDO ORDER*\n\n👤 Name: ${name}\n📍 Addr: ${addr}\n${locText?'🗺️ Map: '+locText:''}\n\n📦 *Items:*\n${items}\n\n💰 *Total: ₹${total}*\n💳 Payment: ${payMethod.toUpperCase()}`;
   window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`);
 }
 
@@ -324,6 +324,7 @@ setInterval(() => {
   qIdx = (qIdx + 1) % quotes.length;
   document.getElementById('bannerText').textContent = quotes[qIdx];
 }, 4000);
+
 </script>
 </body>
 </html>
