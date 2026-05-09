@@ -82,11 +82,6 @@
   .dark .finput { background:#1a1a1a; color:white; border-color:#333; }
   .dark .item-name { color:white; }
 
-  /* SPLASH */
-  .splash{position:fixed;inset:0;background:#6B21A8;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.5s}
-  .splash.hide{opacity:0;pointer-events:none}
-  .splash h1{font-size:3rem;font-weight:900;color:#FFD600;letter-spacing:3px;}
-
   .toast { position:fixed; bottom:88px; left:50%; transform:translateX(-50%); background:#1a1a1a; color:white; padding:9px 20px; border-radius:50px; font-size:0.8rem; z-index:500; opacity:0; transition:opacity 0.3s; pointer-events:none; }
   .toast.show { opacity:1; }
   
@@ -95,7 +90,6 @@
 </head>
 <body>
 
-<div class="splash" id="splash" style="pointer-events:none">
   <h1>LIQUIDO</h1>
   <p style="color:#e0c8ff">Fresh • Fast • Flavourful</p>
 </div>
@@ -312,12 +306,6 @@ function toggleDark() {
   const btn = document.getElementById('darkBtn');
   btn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
 }
-
-setTimeout(()=>{
-  const s = document.getElementById('splash');
-  if(s){ s.style.opacity='0'; setTimeout(()=>s.style.display='none', 400); }
-}, 800);
-function dummy_load() {
 
 // Banner Rotation
 const quotes = ['🏷️ Tag us on Instagram for 10% OFF!', '🥟 Best Momos in Town!', '🛵 Delivery in 30-45 Mins!'];
