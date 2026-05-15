@@ -6,326 +6,204 @@
 <title>Liquido - Order Online</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--yellow:#FFD600;--purple:#6B21A8;--dark:#1a1a1a}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:var(--dark)}
+  :root { --yellow:#FFD600; --purple:#6B21A8; --dark:#1a1a1a; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Poppins',sans-serif; background:#f5f0e8; color:var(--dark); }
 
-/* HEADER */
-.header{background:var(--purple);padding:0;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(107,33,168,0.4)}
-.header-row{display:flex;align-items:center;justify-content:space-between;padding:11px 14px}
-.header-center{text-align:center;flex:1}
-.header-center h1{font-family:'Poppins',sans-serif;font-size:1.9rem;font-weight:900;color:var(--yellow);letter-spacing:2px;line-height:1}
-.header-center p{color:#e0c8ff;font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;margin-top:2px}
-.hbtn{background:rgba(255,255,255,0.15);border:1.5px solid rgba(255,255,255,0.3);color:#fff;border-radius:9px;padding:6px 10px;font-family:'Poppins',sans-serif;font-size:0.7rem;font-weight:600;cursor:pointer;text-decoration:none;display:flex;align-items:center}
+  /* HEADER */
+  .header { background:var(--purple); padding:14px 20px; text-align:center; position:sticky; top:0; z-index:100; box-shadow:0 4px 20px rgba(107,33,168,0.4); }
+  .header h1 { font-family:'Poppins',sans-serif; font-size:1.9rem; font-weight:900; color:var(--yellow); letter-spacing:2px; line-height:1; }
+  .header p { color:#e0c8ff; font-size:0.72rem; letter-spacing:2px; text-transform:uppercase; margin-top:2px; }
 
-/* BANNER */
-.banner{background:var(--yellow);text-align:center;padding:7px 10px;font-size:0.75rem;font-weight:700;color:var(--purple);transition:opacity 0.3s}
+  /* BANNER */
+  .banner { background:var(--yellow); text-align:center; padding:7px 10px; font-size:0.75rem; font-weight:700; color:var(--purple); }
 
-/* SEARCH */
-.search-wrap{background:white;padding:10px 14px;border-bottom:1px solid #eee}
-.search-box{display:flex;align-items:center;gap:8px;background:#f5f0e8;border:2px solid #e0d0ff;border-radius:12px;padding:8px 13px}
-.search-box input{flex:1;border:none;background:transparent;font-family:'Poppins',sans-serif;font-size:0.84rem;outline:none;color:#1a1a1a}
-.search-box input::placeholder{color:#aaa}
-.search-clear{cursor:pointer;color:#aaa;font-size:1.1rem;display:none}
+  /* TABS */
+  .tabs-wrap { background:white; border-bottom:2px solid #eee; position:sticky; top:82px; z-index:99; }
+  .tabs { display:flex; overflow-x:auto; gap:4px; padding:9px 12px; scrollbar-width:none; }
+  .tabs::-webkit-scrollbar { display:none; }
+  .tab { flex-shrink:0; background:#f0e6ff; color:var(--purple); border:none; border-radius:20px; padding:5px 13px; font-size:0.73rem; font-weight:600; cursor:pointer; font-family:'Poppins',sans-serif; white-space:nowrap; }
+  .tab.active, .tab:hover { background:var(--purple); color:white; }
 
-/* DELIVERY BAR */
-.del-bar{background:white;padding:7px 14px;display:flex;align-items:center;gap:6px;border-bottom:1px solid #eee;font-size:0.72rem;color:#666;overflow-x:auto;scrollbar-width:none}
-.del-bar::-webkit-scrollbar{display:none}
-.del-tag{display:flex;align-items:center;gap:3px;font-weight:600;white-space:nowrap}
-.del-tag.green{color:#16a34a}
-.del-sep{color:#ddd;flex-shrink:0}
+  /* MENU */
+  .menu-section { padding:0 12px 110px; }
+  .category { margin-top:22px; }
+  .cat-title { font-family:'Poppins',sans-serif; font-size:1.1rem; font-weight:800; color:var(--purple); border-left:5px solid var(--yellow); padding-left:11px; margin-bottom:11px; letter-spacing:0.5px; }
+  .items-grid { display:flex; flex-direction:column; gap:9px; }
 
-/* TABS */
-.tabs-wrap{background:white;border-bottom:2px solid #eee;position:sticky;top:76px;z-index:99}
-.tabs{display:flex;overflow-x:auto;gap:4px;padding:9px 12px;scrollbar-width:none}
-.tabs::-webkit-scrollbar{display:none}
-.tab{flex-shrink:0;background:#f0e6ff;color:var(--purple);border:none;border-radius:20px;padding:5px 13px;font-size:0.73rem;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif;white-space:nowrap}
-.tab.active,.tab:hover{background:var(--purple);color:white}
+  /* ITEM CARD */
+  .item-card { background:white; border-radius:13px; padding:11px 13px; display:flex; align-items:center; gap:11px; box-shadow:0 2px 8px rgba(0,0,0,0.07); }
+  .item-img { width:68px; height:68px; border-radius:10px; object-fit:cover; flex-shrink:0; background:#ede9f5; }
+  .item-info { flex:1; min-width:0; }
+  .item-name { font-weight:600; font-size:0.88rem; color:#1a1a1a; line-height:1.3; }
+  .item-price { color:var(--purple); font-weight:700; font-size:0.85rem; margin-top:3px; }
+  .item-note { font-size:0.7rem; color:#999; margin-top:2px; }
 
-/* COMBO CSS */
-.combos-section{padding:18px 0 8px}
-.combos-header{display:flex;align-items:center;justify-content:space-between;padding:0 16px;margin-bottom:12px}
-.combos-title{font-size:1rem;font-weight:800;color:#1a1a1a}
-.combos-title span{color:var(--purple)}
-.save-tag{background:var(--yellow);color:var(--purple);font-size:0.68rem;font-weight:800;padding:4px 10px;border-radius:20px}
-.combos-track-wrap{overflow:hidden;width:100%;position:relative}
-.combos-track-wrap::before,.combos-track-wrap::after{content:'';position:absolute;top:0;bottom:0;width:36px;z-index:2;pointer-events:none}
-.combos-track-wrap::before{left:0;background:linear-gradient(to right,#f5f0e8,transparent)}
-.combos-track-wrap::after{right:0;background:linear-gradient(to left,#f5f0e8,transparent)}
-.combos-track{display:flex;gap:12px;padding:6px 16px 10px;animation:scrollC 26s linear infinite;width:max-content}
-.combos-track:hover{animation-play-state:paused}
-@keyframes scrollC{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.combo-card{background:white;border-radius:14px;width:185px;flex-shrink:0;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,0.09);cursor:pointer;position:relative}
-.combo-badge{position:absolute;top:8px;left:8px;background:var(--purple);color:white;font-size:0.6rem;font-weight:800;padding:3px 7px;border-radius:7px;z-index:1}
-.combo-badge.hot{background:#dc2626}.combo-badge.new{background:#16a34a}.combo-badge.save{background:#ea580c}
-.combo-img{width:100%;height:115px;object-fit:cover;display:block;background:#f0e6ff}
-.combo-body{padding:10px 11px 12px}
-.combo-name{font-size:0.81rem;font-weight:700;color:#1a1a1a;margin-bottom:3px;line-height:1.3}
-.combo-sub{font-size:0.67rem;color:#888;margin-bottom:7px;line-height:1.4}
-.combo-footer{display:flex;align-items:center;justify-content:space-between}
-.combo-price{font-size:0.92rem;font-weight:800;color:var(--purple)}
-.combo-add{background:var(--yellow);color:var(--purple);border:none;border-radius:7px;padding:5px 10px;font-family:'Poppins',sans-serif;font-size:0.74rem;font-weight:800;cursor:pointer}
+  /* SIZE BTNS */
+  .size-btns { display:flex; gap:5px; margin-top:7px; flex-wrap:wrap; }
+  .size-btn { background:#f0e6ff; color:var(--purple); border:1.5px solid #d8b4fe; border-radius:8px; padding:4px 10px; font-size:0.71rem; font-weight:600; cursor:pointer; font-family:'Poppins',sans-serif; }
+  .size-btn:hover { background:var(--purple); color:white; }
 
-/* MENU */
-.menu-section{padding:0 12px 110px}
-.category{margin-top:22px}
-.cat-title{font-family:'Poppins',sans-serif;font-size:1.1rem;font-weight:800;color:var(--purple);border-left:5px solid var(--yellow);padding-left:11px;margin-bottom:11px;letter-spacing:0.5px}
-.items-grid{display:flex;flex-direction:column;gap:9px}
-.item-card{background:white;border-radius:13px;padding:11px 13px;display:flex;align-items:center;gap:11px;box-shadow:0 2px 8px rgba(0,0,0,0.07)}
-.item-img{width:68px;height:68px;border-radius:10px;object-fit:cover;flex-shrink:0;background:#ede9f5}
-.item-info{flex:1;min-width:0}
-.item-name{font-weight:600;font-size:0.88rem;color:#1a1a1a;line-height:1.3}
-.item-price{color:var(--purple);font-weight:700;font-size:0.85rem;margin-top:3px}
-.item-note{font-size:0.7rem;color:#999;margin-top:2px}
-.best-badge{display:inline-block;background:#fff0f0;color:#dc2626;font-size:0.6rem;font-weight:800;border-radius:5px;padding:2px 6px;margin-left:5px;vertical-align:middle}
-.size-btns{display:flex;gap:5px;margin-top:7px;flex-wrap:wrap}
-.size-btn{background:#f0e6ff;color:var(--purple);border:1.5px solid #d8b4fe;border-radius:8px;padding:4px 10px;font-size:0.71rem;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif}
-.size-btn:hover{background:var(--purple);color:white}
-.add-btn{background:var(--yellow);color:var(--purple);border:none;border-radius:8px;padding:7px 13px;font-weight:700;font-size:0.8rem;cursor:pointer;font-family:'Poppins',sans-serif;white-space:nowrap;flex-shrink:0}
-.add-btn:hover{background:var(--purple);color:white}
+  /* QTY */
+  .qty-wrap { display:flex; align-items:center; gap:2px; flex-shrink:0; }
+  .qty-btn { width:28px; height:28px; background:var(--purple); color:white; border:none; border-radius:7px; font-size:1rem; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; font-family:'Poppins',sans-serif; }
+  .qty-btn.minus { background:#e0d0ff; color:var(--purple); }
+  .qty-num { min-width:26px; text-align:center; font-weight:700; font-size:0.9rem; }
+  .add-btn { background:var(--yellow); color:var(--purple); border:none; border-radius:8px; padding:7px 13px; font-weight:700; font-size:0.8rem; cursor:pointer; font-family:'Poppins',sans-serif; white-space:nowrap; flex-shrink:0; }
+  .add-btn:hover { background:var(--purple); color:white; }
 
-/* REVIEWS CSS */
-.rev-section{padding:18px 0 10px}
-.rev-header{display:flex;align-items:center;justify-content:space-between;padding:0 16px;margin-bottom:10px}
-.rev-title{font-size:1rem;font-weight:800;color:#1a1a1a}
-.rev-title span{color:var(--purple)}
-.google-rev-btn{display:flex;align-items:center;gap:5px;background:white;border:2px solid #e0d0ff;border-radius:10px;padding:6px 11px;font-family:'Poppins',sans-serif;font-size:0.7rem;font-weight:700;color:var(--purple);cursor:pointer;text-decoration:none}
-.rating-bar{background:white;border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:14px;box-shadow:0 2px 8px rgba(0,0,0,0.06);margin:0 16px 12px}
-.rating-num{font-size:2.6rem;font-weight:900;color:var(--purple);line-height:1;text-align:center}
-.rating-stars{font-size:0.85rem;margin-top:2px}
-.rating-count{font-size:0.65rem;color:#aaa}
-.bars{flex:1}
-.brow{display:flex;align-items:center;gap:5px;margin-bottom:4px}
-.blbl{font-size:0.66rem;color:#888;font-weight:600;width:7px}
-.bwrap{flex:1;background:#f0e6ff;border-radius:50px;height:5px;overflow:hidden}
-.bfill{height:100%;border-radius:50px;background:linear-gradient(90deg,var(--purple),#9333ea)}
-.bcount{font-size:0.63rem;color:#aaa;width:16px;text-align:right}
-.rev-track-wrap{overflow:hidden;width:100%;position:relative}
-.rev-track-wrap::before,.rev-track-wrap::after{content:'';position:absolute;top:0;bottom:0;width:30px;z-index:2;pointer-events:none}
-.rev-track-wrap::before{left:0;background:linear-gradient(to right,#f5f0e8,transparent)}
-.rev-track-wrap::after{right:0;background:linear-gradient(to left,#f5f0e8,transparent)}
-.rev-track{display:flex;gap:12px;padding:6px 16px 10px;animation:scrollR 32s linear infinite;width:max-content}
-.rev-track:hover{animation-play-state:paused}
-@keyframes scrollR{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.rev-card{background:white;border-radius:14px;padding:13px 13px 11px;width:210px;flex-shrink:0;box-shadow:0 3px 10px rgba(0,0,0,0.08)}
-.rev-top-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
-.rev-avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.9rem;font-weight:800;color:white;flex-shrink:0}
-.rev-name{font-size:0.78rem;font-weight:700;color:#1a1a1a}
-.rev-date{font-size:0.63rem;color:#aaa;margin-top:1px}
-.rev-stars{font-size:0.75rem;margin-bottom:5px}
-.rev-text{font-size:0.74rem;color:#555;line-height:1.5}
-.rev-tag{display:inline-block;margin-top:7px;background:#f0e6ff;color:var(--purple);font-size:0.6rem;font-weight:700;padding:3px 7px;border-radius:20px}
-.write-rev{background:linear-gradient(135deg,var(--purple),#9333ea);border-radius:14px;padding:16px;margin:12px 16px 0;text-align:center;color:white}
-.write-rev-title{font-size:0.95rem;font-weight:800;margin-bottom:4px}
-.write-rev-sub{font-size:0.73rem;opacity:0.85;margin-bottom:14px;line-height:1.5}
-.write-rev-btns{display:flex;gap:8px}
-.btn-google{flex:1;background:white;color:var(--purple);border:none;border-radius:10px;padding:11px;font-family:'Poppins',sans-serif;font-size:0.8rem;font-weight:800;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:5px}
-.btn-wa{flex:1;background:#25D366;color:white;border:none;border-radius:10px;padding:11px;font-family:'Poppins',sans-serif;font-size:0.8rem;font-weight:800;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:5px}
+  /* CART BUTTON */
+  .cart-btn { position:fixed; bottom:16px; left:50%; transform:translateX(-50%); background:var(--purple); color:white; border:none; border-radius:50px; padding:13px 26px; font-size:0.95rem; font-weight:700; cursor:pointer; font-family:'Poppins',sans-serif; box-shadow:0 6px 24px rgba(107,33,168,0.5); display:flex; align-items:center; gap:10px; z-index:200; min-width:230px; justify-content:space-between; }
+  .cart-badge { background:var(--yellow); color:var(--purple); border-radius:50%; width:27px; height:27px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.82rem; }
 
-/* CART */
-.cart-btn{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--purple);color:white;border:none;border-radius:50px;padding:13px 26px;font-size:0.95rem;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;box-shadow:0 6px 24px rgba(107,33,168,0.5);display:flex;align-items:center;gap:10px;z-index:200;min-width:230px;justify-content:space-between}
-.cart-badge{background:var(--yellow);color:var(--purple);border-radius:50%;width:27px;height:27px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.82rem}
-.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:300}
-.overlay.show{display:flex;align-items:flex-end}
-.drawer{background:white;width:100%;border-radius:22px 22px 0 0;padding:18px 16px 32px;max-height:88vh;overflow-y:auto}
-.drawer-handle{width:38px;height:4px;background:#ddd;border-radius:4px;margin:0 auto 14px}
-.drawer-title{font-family:'Poppins',sans-serif;font-size:1.2rem;font-weight:800;color:var(--purple);margin-bottom:14px}
-.c-item{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid #f0f0f0;gap:8px}
-.c-name{font-size:0.85rem;font-weight:600;flex:1}
-.c-price{color:var(--purple);font-weight:700;font-size:0.85rem}
-.qty-wrap{display:flex;align-items:center;gap:2px}
-.qty-btn{width:28px;height:28px;background:var(--purple);color:white;border:none;border-radius:7px;font-size:1rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif}
-.qty-btn.minus{background:#e0d0ff;color:var(--purple)}
-.qty-num{min-width:26px;text-align:center;font-weight:700;font-size:0.9rem}
-.empty{text-align:center;padding:28px 0;color:#bbb;font-size:0.9rem}
-.cheese-note{text-align:center;font-size:0.73rem;color:var(--purple);font-weight:600;padding:6px;background:#fffde7;border-radius:8px;margin:6px 0}
-.del-time-bar{background:#f0fdf4;border:1.5px solid #bbf7d0;border-radius:10px;padding:8px 12px;display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.78rem;color:#166534;font-weight:600}
+  /* OVERLAY */
+  .overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:300; }
+  .overlay.show { display:flex; align-items:flex-end; }
 
-/* COUPON */
-.coupon-wrap{display:flex;gap:6px;margin:10px 0}
-.coupon-inp{flex:1;padding:9px 12px;border:2px solid #e0d0ff;border-radius:10px;font-family:'Poppins',sans-serif;font-size:0.82rem;outline:none}
-.coupon-inp:focus{border-color:var(--purple)}
-.apply-btn{background:var(--purple);color:white;border:none;border-radius:10px;padding:9px 14px;font-family:'Poppins',sans-serif;font-size:0.8rem;font-weight:700;cursor:pointer}
-.coupon-ok{font-size:0.73rem;color:#16a34a;background:#f0fdf4;border-radius:8px;padding:6px 10px;margin-top:4px;font-weight:600}
-.coupon-err{font-size:0.73rem;color:#dc2626;background:#fef2f2;border-radius:8px;padding:6px 10px;margin-top:4px}
-.disc-row{display:flex;justify-content:space-between;font-size:0.82rem;color:#16a34a;font-weight:600;padding:4px 0}
-.total-row{display:flex;justify-content:space-between;padding:10px 0 6px;font-weight:700;font-size:1rem;border-top:1px solid #eee;margin-top:4px}
-.total-row span:last-child{color:var(--purple);font-size:1.1rem}
+  /* DRAWER */
+  .drawer { background:white; width:100%; border-radius:22px 22px 0 0; padding:18px 16px 32px; max-height:88vh; overflow-y:auto; }
+  .drawer-handle { width:38px; height:4px; background:#ddd; border-radius:4px; margin:0 auto 14px; }
+  .drawer-title { font-family:'Poppins',sans-serif; font-size:1.2rem; font-weight:800; color:var(--purple); margin-bottom:14px; }
 
-/* FORM */
-.flabel{font-size:0.78rem;font-weight:600;color:#555;margin-bottom:4px;display:block;margin-top:10px}
-.finput{width:100%;padding:10px 13px;border:2px solid #e0d0ff;border-radius:10px;font-family:'Poppins',sans-serif;font-size:0.85rem;outline:none}
-.finput:focus{border-color:var(--purple)}
-.loc-btn{width:100%;background:#f0e6ff;color:var(--purple);border:2px dashed #d8b4fe;border-radius:10px;padding:10px;font-family:'Poppins',sans-serif;font-size:0.82rem;font-weight:600;cursor:pointer;margin-top:10px}
-.loc-ok{font-size:0.73rem;color:green;background:#e8ffe8;border-radius:8px;padding:6px 10px;margin-top:6px}
+  /* CART ITEMS */
+  .c-item { display:flex; justify-content:space-between; align-items:center; padding:9px 0; border-bottom:1px solid #f0f0f0; gap:8px; }
+  .c-name { font-size:0.85rem; font-weight:600; flex:1; }
+  .c-price { color:var(--purple); font-weight:700; font-size:0.85rem; }
+  .c-total { display:flex; justify-content:space-between; padding:13px 0 6px; font-weight:700; font-size:1rem; }
+  .c-total span:last-child { color:var(--purple); font-size:1.1rem; }
+  .empty { text-align:center; padding:28px 0; color:#bbb; font-size:0.9rem; }
 
-/* PAYMENT */
-.pay-opts{display:flex;gap:8px;margin:10px 0}
-.pay-opt{flex:1;padding:9px 6px;border:2px solid #e0d0ff;border-radius:10px;text-align:center;cursor:pointer;font-size:0.78rem;font-weight:600;color:#666}
-.pay-opt.sel{border-color:var(--purple);background:#f5eeff;color:var(--purple)}
-.pay-opt .icon{font-size:1.3rem;display:block;margin-bottom:3px}
-.upi-box{background:#fdf9ff;border:2px solid #e0d0ff;border-radius:13px;padding:14px;text-align:center;margin-bottom:10px}
-.upi-id{font-size:0.78rem;color:#555}
-.upi-id b{color:var(--purple)}
-.upi-amt{font-size:1.25rem;font-weight:800;margin:7px 0}
-.upi-link{display:block;width:100%;background:#00b247;color:white;border:none;border-radius:9px;padding:11px;font-family:'Poppins',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;margin-top:8px;text-decoration:none}
-.cod-box{background:#fff8e1;border-radius:10px;padding:11px;font-size:0.8rem;color:#7a5c00;margin-bottom:10px}
-.order-btn{width:100%;background:#25D366;color:white;border:none;border-radius:13px;padding:14px;font-family:'Poppins',sans-serif;font-size:0.95rem;font-weight:700;cursor:pointer;margin-top:8px;display:flex;align-items:center;justify-content:center;gap:7px}
+  /* FORM */
+  .flabel { font-size:0.78rem; font-weight:600; color:#555; margin-bottom:4px; display:block; margin-top:10px; }
+  .finput { width:100%; padding:10px 13px; border:2px solid #e0d0ff; border-radius:10px; font-family:'Poppins',sans-serif; font-size:0.85rem; outline:none; }
+  .finput:focus { border-color:var(--purple); }
+  .loc-btn { width:100%; background:#f0e6ff; color:var(--purple); border:2px dashed #d8b4fe; border-radius:10px; padding:10px; font-family:'Poppins',sans-serif; font-size:0.82rem; font-weight:600; cursor:pointer; margin-top:10px; }
+  .loc-ok { font-size:0.73rem; color:green; background:#e8ffe8; border-radius:8px; padding:6px 10px; margin-top:6px; }
 
-/* FLOAT BUTTONS */
-.float-rev{position:fixed;bottom:80px;right:14px;background:var(--purple);color:white;border:none;border-radius:50px;padding:9px 14px;font-family:'Poppins',sans-serif;font-size:0.72rem;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(107,33,168,0.5);z-index:150;text-decoration:none;display:flex;align-items:center;gap:5px}
-.wa-float{position:fixed;bottom:80px;left:14px;background:#25D366;color:white;border:none;border-radius:50px;padding:9px 14px;font-family:'Poppins',sans-serif;font-size:0.72rem;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(37,211,102,0.5);z-index:150;text-decoration:none;display:flex;align-items:center;gap:5px}
+  /* PAYMENT */
+  .pay-opts { display:flex; gap:8px; margin:10px 0; }
+  .pay-opt { flex:1; padding:9px 6px; border:2px solid #e0d0ff; border-radius:10px; text-align:center; cursor:pointer; font-size:0.78rem; font-weight:600; color:#666; }
+  .pay-opt.sel { border-color:var(--purple); background:#f5eeff; color:var(--purple); }
+  .pay-opt .icon { font-size:1.3rem; display:block; margin-bottom:3px; }
+  .upi-box { background:#fdf9ff; border:2px solid #e0d0ff; border-radius:13px; padding:14px; text-align:center; margin-bottom:10px; }
+  .upi-id { font-size:0.78rem; color:#555; }
+  .upi-id b { color:var(--purple); }
+  .upi-amt { font-size:1.25rem; font-weight:800; margin:7px 0; }
+  .upi-link { display:block; width:100%; background:#00b247; color:white; border:none; border-radius:9px; padding:11px; font-family:'Poppins',sans-serif; font-size:0.88rem; font-weight:700; cursor:pointer; margin-top:8px; text-decoration:none; }
+  .cod-box { background:#fff8e1; border-radius:10px; padding:11px; font-size:0.8rem; color:#7a5c00; margin-bottom:10px; }
 
-/* DARK MODE */
-.dark body,.dark{background:#0f0f0f!important;color:#f0f0f0!important}
-.dark .item-card,.dark .drawer,.dark .combo-card,.dark .rev-card,.dark .rating-bar{background:#1a1a1a!important}
-.dark .tabs-wrap,.dark .search-wrap,.dark .del-bar{background:#111!important}
-.dark .tab{background:#1e1228!important;color:#d8b4fe!important}
-.dark .search-box{background:#1a1a1a!important;border-color:#333!important}
-.dark .search-box input{color:#f0f0f0!important}
-.dark .item-name,.dark .combo-name,.dark .rev-name,.dark .c-name,.dark .qnum{color:#f0f0f0!important}
-.dark .finput,.dark .coupon-inp{background:#1a1a1a!important;color:#f0f0f0!important;border-color:#333!important}
-.dark .rev-text{color:#ccc!important}
+  /* ORDER BTN */
+  .order-btn { width:100%; background:var(--purple); color:white; border:none; border-radius:13px; padding:14px; font-family:'Poppins',sans-serif; font-size:0.95rem; font-weight:700; cursor:pointer; margin-top:8px; display:flex; align-items:center; justify-content:center; gap:7px; }
+  .order-btn:hover { background:#7e22ce; }
 
-/* TOAST */
-.toast{position:fixed;bottom:88px;left:50%;transform:translateX(-50%);background:#1a1a1a;color:white;padding:9px 20px;border-radius:50px;font-size:0.8rem;font-weight:600;z-index:500;opacity:0;transition:opacity 0.3s;white-space:nowrap;pointer-events:none}
-.toast.show{opacity:1}
+  /* TOAST */
+  .toast { position:fixed; bottom:88px; left:50%; transform:translateX(-50%); background:#1a1a1a; color:white; padding:9px 20px; border-radius:50px; font-size:0.8rem; font-weight:600; z-index:500; opacity:0; transition:opacity 0.3s; white-space:nowrap; pointer-events:none; }
+  .toast.show { opacity:1; }
+
+  .cheese-note { text-align:center; font-size:0.73rem; color:var(--purple); font-weight:600; padding:6px; background:#fffde7; border-radius:8px; margin:6px 0; }
+
+/* CUSTOMIZATION POPUP - Swiggy Style */
+.custom-popup{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:450;align-items:flex-end}
+.custom-popup.show{display:flex}
+.custom-box{background:#f5f5f5;width:100%;border-radius:22px 22px 0 0;max-height:88vh;overflow-y:auto}
+.custom-header{background:white;padding:14px 16px;border-radius:22px 22px 0 0;display:flex;align-items:center;gap:10px;border-bottom:1px solid #eee}
+.custom-header img{width:44px;height:44px;border-radius:8px;object-fit:cover}
+.custom-header-name{font-size:0.88rem;font-weight:700;color:#1a1a1a}
+.custom-close{margin-left:auto;width:30px;height:30px;background:#f0f0f0;border:none;border-radius:50%;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.custom-section{background:white;margin:8px 0;padding:14px 16px}
+.custom-section-title{font-size:0.88rem;font-weight:800;color:#1a1a1a;margin-bottom:2px}
+.custom-section-sub{font-size:0.72rem;color:#888;margin-bottom:10px}
+.custom-option{display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid #f5f5f5}
+.custom-option:last-child{border-bottom:none}
+.custom-opt-left{display:flex;align-items:center;gap:10px}
+.custom-radio{width:20px;height:20px;border:2px solid #3d9e56;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.custom-radio.checked{background:#3d9e56}
+.custom-radio.checked::after{content:'';width:8px;height:8px;background:white;border-radius:50%;display:block}
+.custom-opt-name{font-size:0.84rem;font-weight:500;color:#1a1a1a}
+.custom-opt-price{font-size:0.84rem;font-weight:600;color:#888}
+.custom-footer{position:sticky;bottom:0;background:white;padding:12px 16px;border-top:1px solid #eee;display:flex;align-items:center;gap:12px}
+.custom-qty{display:flex;align-items:center;gap:8px;border:1.5px solid #e0d0ff;border-radius:20px;padding:4px 12px}
+.custom-qty-btn{width:24px;height:24px;background:transparent;border:none;font-size:1.1rem;font-weight:700;cursor:pointer;color:var(--purple);display:flex;align-items:center;justify-content:center}
+.custom-qty-num{font-size:0.9rem;font-weight:700;min-width:20px;text-align:center}
+.custom-add-btn{flex:1;background:#3d9e56;color:white;border:none;border-radius:12px;padding:13px;font-family:'Poppins',sans-serif;font-size:0.9rem;font-weight:800;cursor:pointer}
+
+/* STOCK SOLD OUT */
+.sold-out-badge{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,0.75);display:flex;align-items:center;justify-content:center;z-index:2;border-radius:16px}
+.sold-out-text{background:#dc2626;color:white;font-size:0.72rem;font-weight:800;padding:4px 12px;border-radius:20px}
+.item-card.sold-out{opacity:0.7;pointer-events:none}
+
+/* TODAY'S SPECIAL */
+.special-section{margin:16px 12px 0;background:linear-gradient(135deg,#FFD600,#ff9500);border-radius:16px;padding:14px 16px;position:relative;overflow:hidden}
+.special-section::before{content:'⚡';position:absolute;right:-10px;top:-10px;font-size:5rem;opacity:0.15}
+.special-title{font-size:0.88rem;font-weight:800;color:#1a1a1a;margin-bottom:2px}
+.special-sub{font-size:0.72rem;color:#333;margin-bottom:10px}
+.special-items{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+.special-items::-webkit-scrollbar{display:none}
+.special-item{background:white;border-radius:12px;padding:10px 12px;flex-shrink:0;min-width:130px;cursor:pointer}
+.special-item-name{font-size:0.78rem;font-weight:700;color:#1a1a1a;margin-bottom:4px}
+.special-item-price{font-size:0.82rem;font-weight:800;color:var(--purple)}
+.special-item-old{font-size:0.68rem;color:#aaa;text-decoration:line-through;margin-left:4px}
+.special-timer{display:inline-flex;align-items:center;gap:4px;background:rgba(0,0,0,0.12);border-radius:20px;padding:3px 10px;font-size:0.7rem;font-weight:700;color:#1a1a1a;margin-bottom:8px}
+
+/* REFER A FRIEND */
+.refer-section{margin:16px 12px 0;background:var(--purple);border-radius:16px;padding:14px 16px;color:white}
+.refer-title{font-size:0.88rem;font-weight:800;margin-bottom:4px}
+.refer-sub{font-size:0.72rem;opacity:0.85;margin-bottom:10px}
+.refer-btn{background:var(--yellow);color:var(--purple);border:none;border-radius:10px;padding:9px 16px;font-family:'Poppins',sans-serif;font-size:0.8rem;font-weight:800;cursor:pointer}
+
+/* FIRST ORDER POPUP */
+.first-popup{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:700;align-items:center;justify-content:center;padding:20px}
+.first-popup.show{display:flex}
+.first-box{background:white;border-radius:20px;padding:24px 20px;text-align:center;width:100%;max-width:340px;position:relative}
+.first-close{position:absolute;top:12px;right:12px;background:#f0f0f0;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:1rem}
+.first-icon{font-size:3rem;margin-bottom:10px}
+.first-title{font-size:1.1rem;font-weight:900;color:#1a1a1a;margin-bottom:6px}
+.first-sub{font-size:0.8rem;color:#666;margin-bottom:14px;line-height:1.5}
+.first-coupon{background:#f0e6ff;color:var(--purple);border-radius:10px;padding:10px;font-size:1rem;font-weight:900;letter-spacing:2px;margin-bottom:14px}
+.first-btn{width:100%;background:var(--purple);color:white;border:none;border-radius:12px;padding:13px;font-family:'Poppins',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer}
+
+/* DELIVERY ZONE CHECKER in cart */
+.zone-check{background:#f9f6ff;border:1.5px solid #e0d0ff;border-radius:10px;padding:10px 12px;margin-top:8px;font-size:0.76rem}
+.zone-ok{color:#16a34a;font-weight:600}
+.zone-err{color:#dc2626;font-weight:600}
+
+/* SAVED ADDRESS */
+.saved-addr-btn{background:#f0e6ff;color:var(--purple);border:1.5px solid #d8b4fe;border-radius:8px;padding:6px 12px;font-family:'Poppins',sans-serif;font-size:0.75rem;font-weight:600;cursor:pointer;margin-top:6px;display:inline-flex;align-items:center;gap:5px}
+
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="header">
-  <div class="header-row">
-    <button class="hbtn" onclick="toggleDark()" id="darkBtn">🌙</button>
-    <div class="header-center">
-      <h1>LIQUIDO</h1>
-      <p>Fresh • Fast • Flavourful</p>
-    </div>
-    <a class="hbtn" href="https://wa.me/917014809238" target="_blank">💬</a>
-  </div>
+  <h1>LIQUIDO</h1>
+  <p>Fresh • Fast • Flavourful</p>
+</div>
+<div class="banner">🏷️ Tag us on Social Media & Google Review → Get 10% OFF! &nbsp;|&nbsp; Extra Cheese ₹20</div>
+
+<!-- TODAY'S SPECIAL -->
+<div class="special-section" id="specialSection">
+  <div class="special-timer">⚡ Aaj ka Special — Limited Time!</div>
+  <div class="special-title">🌟 Today's Special Deals</div>
+  <div class="special-sub">Har roz naya special — aaj ke liye!</div>
+  <div class="special-items" id="specialItems"></div>
 </div>
 
-<!-- ROTATING BANNER -->
-<div class="banner" id="bannerText">🏷️ Tag us on Social Media & Google Review → Get 10% OFF! | Extra Cheese ₹20</div>
-
-<!-- SEARCH -->
-<div class="search-wrap">
-  <div class="search-box">
-    <span>🔍</span>
-    <input type="text" id="searchInp" placeholder="Search karo... momos, maggi, shake" oninput="doSearch(this.value)">
-    <span class="search-clear" id="searchClear" onclick="clearSearch()">✕</span>
-  </div>
-</div>
-
-<!-- DELIVERY INFO -->
-<div class="del-bar">
-  <span class="del-tag green">🟢 Open Now</span>
-  <span class="del-sep">•</span>
-  <span class="del-tag">🕐 30–45 min</span>
-  <span class="del-sep">•</span>
-  <span class="del-tag">🛵 Min ₹99</span>
-  <span class="del-sep">•</span>
-  <span class="del-tag">🧀 Extra Cheese ₹20</span>
-</div>
-
-<!-- COMBOS -->
-<div class="combos-section">
-  <div class="combos-header">
-    <div class="combos-title">🔥 <span>Combo</span> Deals</div>
-    <div class="save-tag">💰 Save More!</div>
-  </div>
-  <div class="combos-track-wrap">
-    <div class="combos-track" id="comboRow">
-      <div class="combo-card" onclick="addItem('Cheesy Crunch Combo',189)">
-        <div class="combo-badge hot">🔥 HOT</div>
-        <img class="combo-img" src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=300&q=80" onerror="this.style.background='#f0e6ff'" alt="">
-        <div class="combo-body"><div class="combo-name">Cheesy Crunch Combo</div><div class="combo-sub">Grilled Cheese Sandwich + Plain Salted Fries + Soft Drink</div><div class="combo-footer"><span class="combo-price">₹189</span><button class="combo-add">Add</button></div></div>
-      </div>
-      <div class="combo-card" onclick="addItem('Maggi Chill Combo',99)">
-        <div class="combo-badge new">⭐ NEW</div>
-        <img class="combo-img" src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=300&q=80" onerror="this.style.background='#f0e6ff'" alt="">
-        <div class="combo-body"><div class="combo-name">Maggi Chill Combo</div><div class="combo-sub">Peri Peri Fries + Soft Drink (Glass)</div><div class="combo-footer"><span class="combo-price">₹99</span><button class="combo-add">Add</button></div></div>
-      </div>
-      <div class="combo-card" onclick="addItem('Crunch & Chill Combo',139)">
-        <div class="combo-badge save">💰 SAVE</div>
-        <img class="combo-img" src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=300&q=80" onerror="this.style.background='#f0e6ff'" alt="">
-        <div class="combo-body"><div class="combo-name">Crunch & Chill Combo</div><div class="combo-sub">Kurkure Momos (Full) + Soft Drink (Glass)</div><div class="combo-footer"><span class="combo-price">₹139</span><button class="combo-add">Add</button></div></div>
-      </div>
-      <div class="combo-card" onclick="addItem('Paneer Power Combo',149)">
-        <div class="combo-badge hot">🔥 HOT</div>
-        <img class="combo-img" src="https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=300&q=80" onerror="this.style.background='#f0e6ff'" alt="">
-        <div class="combo-body"><div class="combo-name">Paneer Power Combo</div><div class="combo-sub">Paneer Wrap + Soft Drink (Glass)</div><div class="combo-footer"><span class="combo-price">₹149</span><button class="combo-add">Add</button></div></div>
-      </div>
-      <div class="combo-card" onclick="addItem('Paneer Crunch Combo',199)">
-        <div class="combo-badge save">💰 SAVE</div>
-        <img class="combo-img" src="https://images.unsplash.com/photo-1509722747041-616f39b57569?w=300&q=80" onerror="this.style.background='#f0e6ff'" alt="">
-        <div class="combo-body"><div class="combo-name">Paneer Crunch Combo</div><div class="combo-sub">Paneer Cheese Sandwich + Plain Salted Fries</div><div class="combo-footer"><span class="combo-price">₹199</span><button class="combo-add">Add</button></div></div>
-      </div>
-      <div class="combo-card" onclick="addItem('Momo Duo Combo',159)">
-        <div class="combo-badge new">⭐ DUO</div>
-        <img class="combo-img" src="https://images.unsplash.com/photo-1626804475297-41608ea09aeb?w=300&q=80" onerror="this.style.background='#f0e6ff'" alt="">
-        <div class="combo-body"><div class="combo-name">Momo Duo Combo</div><div class="combo-sub">2 Plates Steam Momos (Full) + Soft Drink</div><div class="combo-footer"><span class="combo-price">₹159</span><button class="combo-add">Add</button></div></div>
-      </div>
-    </div>
-  </div>
+<!-- REFER A FRIEND -->
+<div class="refer-section">
+  <div class="refer-title">🎁 Dost ko Refer Karo!</div>
+  <div class="refer-sub">Dost order kare toh aapko ₹30 off — unhe bhi ₹30 off!</div>
+  <button class="refer-btn" onclick="shareRefer()">📤 Refer Link Share Karo</button>
 </div>
 
 <div class="tabs-wrap"><div class="tabs" id="tabs"></div></div>
 <div class="menu-section" id="menuSection"></div>
 
-<!-- REVIEWS -->
-<div class="rev-section">
-  <div class="rev-header">
-    <div class="rev-title">⭐ Customer <span>Reviews</span></div>
-    <a class="google-rev-btn" href="https://g.page/r/CQk7fsXPf0tTEBE/review" target="_blank">🌟 Review Karo</a>
-  </div>
-  <div class="rating-bar">
-    <div style="text-align:center">
-      <div class="rating-num">4.8</div>
-      <div class="rating-stars">⭐⭐⭐⭐⭐</div>
-      <div class="rating-count">48 reviews</div>
-    </div>
-    <div class="bars">
-      <div class="brow"><span class="blbl">5</span><div class="bwrap"><div class="bfill" style="width:82%"></div></div><span class="bcount">39</span></div>
-      <div class="brow"><span class="blbl">4</span><div class="bwrap"><div class="bfill" style="width:12%"></div></div><span class="bcount">6</span></div>
-      <div class="brow"><span class="blbl">3</span><div class="bwrap"><div class="bfill" style="width:4%"></div></div><span class="bcount">2</span></div>
-      <div class="brow"><span class="blbl">2</span><div class="bwrap"><div class="bfill" style="width:2%"></div></div><span class="bcount">1</span></div>
-      <div class="brow"><span class="blbl">1</span><div class="bwrap"><div class="bfill" style="width:0%"></div></div><span class="bcount">0</span></div>
-    </div>
-  </div>
-  <div class="rev-track-wrap">
-    <div class="rev-track" id="revRow">
-      <div class="rev-card"><div class="rev-top-row"><div class="rev-avatar" style="background:#6B21A8">P</div><div><div class="rev-name">Priya Sharma</div><div class="rev-date">2 days ago</div></div></div><div class="rev-stars">⭐⭐⭐⭐⭐</div><div class="rev-text">Momos bahut tasty the! Schezwan sauce perfect tha. Jaldi delivery bhi hui!</div><div class="rev-tag">🥟 Momos</div></div>
-      <div class="rev-card"><div class="rev-top-row"><div class="rev-avatar" style="background:#dc2626">R</div><div><div class="rev-name">Rahul Verma</div><div class="rev-date">1 week ago</div></div></div><div class="rev-stars">⭐⭐⭐⭐⭐</div><div class="rev-text">Cold coffee aur Oreo Shake dono amazing! Price bhi affordable. Best cafe!</div><div class="rev-tag">☕ Cold Coffee</div></div>
-      <div class="rev-card"><div class="rev-top-row"><div class="rev-avatar" style="background:#16a34a">A</div><div><div class="rev-name">Anjali Singh</div><div class="rev-date">3 days ago</div></div></div><div class="rev-stars">⭐⭐⭐⭐⭐</div><div class="rev-text">Maggi ekdum ghar jaisi! Butter Cheese Maggi try ki — bahut achi thi!</div><div class="rev-tag">🍜 Maggi</div></div>
-      <div class="rev-card"><div class="rev-top-row"><div class="rev-avatar" style="background:#ea580c">V</div><div><div class="rev-name">Vikas Meena</div><div class="rev-date">5 days ago</div></div></div><div class="rev-stars">⭐⭐⭐⭐⭐</div><div class="rev-text">Paneer sandwich aur cold coffee combo — perfect! Quality mast thi. 10/10!</div><div class="rev-tag">🥪 Sandwich</div></div>
-      <div class="rev-card"><div class="rev-top-row"><div class="rev-avatar" style="background:#0891b2">S</div><div><div class="rev-name">Sneha Joshi</div><div class="rev-date">1 week ago</div></div></div><div class="rev-stars">⭐⭐⭐⭐⭐</div><div class="rev-text">Peri Peri fries try karo zaroor! Crispy aur spicy — maza aa gaya!</div><div class="rev-tag">🍟 Fries</div></div>
-      <div class="rev-card"><div class="rev-top-row"><div class="rev-avatar" style="background:#7c3aed">M</div><div><div class="rev-name">Mohit Kumar</div><div class="rev-date">2 weeks ago</div></div></div><div class="rev-stars">⭐⭐⭐⭐⭐</div><div class="rev-text">Gym ke baad Tofu Wrap + Water — healthy aur tasty! Liquido best hai!</div><div class="rev-tag">🌯 Wrap</div></div>
-      <div class="rev-card"><div class="rev-top-row"><div class="rev-avatar" style="background:#be185d">N</div><div><div class="rev-name">Neha Gupta</div><div class="rev-date">3 days ago</div></div></div><div class="rev-stars">⭐⭐⭐⭐⭐</div><div class="rev-text">Fire Tossed Momos — ekdum fire jaisi! Spicy but loved it!</div><div class="rev-tag">🔥 Fire Momos</div></div>
-      <div class="rev-card"><div class="rev-top-row"><div class="rev-avatar" style="background:#059669">K</div><div><div class="rev-name">Kartik Agarwal</div><div class="rev-date">4 days ago</div></div></div><div class="rev-stars">⭐⭐⭐⭐⭐</div><div class="rev-text">Kitkat Oreo Shake piya — woh toh best tha! Thick aur creamy!</div><div class="rev-tag">🥤 Shake</div></div>
-    </div>
-  </div>
-  <div class="write-rev">
-    <div class="write-rev-title">⭐ Aapka Experience Kaisa Tha?</div>
-    <div class="write-rev-sub">Google pe review do → 10% discount pao agle order pe!</div>
-    <div class="write-rev-btns">
-      <a class="btn-google" href="https://g.page/r/CQk7fsXPf0tTEBE/review" target="_blank">🌟 Google Review</a>
-      <a class="btn-wa" href="https://wa.me/917014809238?text=Hi%20Liquido!%20Maine%20aapka%20khana%20try%20kiya%20aur%20bahut%20pasand%20aaya!" target="_blank">💬 WhatsApp</a>
-    </div>
-  </div>
-</div>
-
-<!-- FLOAT BUTTONS -->
-<a class="wa-float" href="https://wa.me/917014809238" target="_blank">💬 Chat</a>
-<a class="float-rev" href="https://g.page/r/CQk7fsXPf0tTEBE/review" target="_blank">⭐ Review</a>
-
-<!-- CART BUTTON -->
 <button class="cart-btn" id="cartBtn" style="display:none" onclick="openCart()">
   <span>🛒 View Cart</span>
   <span id="cartSummary" style="font-size:0.78rem;opacity:0.85"></span>
   <span class="cart-badge" id="cartCount">0</span>
 </button>
+
 <div class="toast" id="toast"></div>
 
 <div class="overlay" id="overlay" onclick="closeCart()">
@@ -338,85 +216,96 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:var(--dark)}
 </div>
 
 <script>
-const WA='917014809238';
-const UPI='BHARATPE.8P0M0U9N8Z03820@fbpe';
-const UNAME='Liquido';
-const SHEET_URL='https://script.google.com/macros/s/AKfycbxe4hQF2NpzkQuFIqL-m9TK1mmAqf-0rRADTJWRMw6ztshrkY5obZHGc33DOV-CV87e/exec';
-const COUPONS={'LIQUIDO10':{disc:10,type:'pct',label:'10% off'},'FLAT50':{disc:50,type:'flat',label:'₹50 off'},'NEWUSER':{disc:15,type:'pct',label:'15% off'},'MOMOS20':{disc:20,type:'pct',label:'20% off'}};
-const BESTSELLERS=['Veg Steam Momos','Schezwan Momos','Masala Maggi','Oreo Cold Coffee','Oreo Shake','Veg Cheesy Burger','Kurkure Veg Momos'];
-let cart=[],locText='',locCoords='',payMethod='upi',darkMode=false,discount=0,discLabel='';
+const WA = '917014809238';
+const UPI = 'BHARATPE.8P0M0U9N8Z03820@fbpe';
+const UNAME = 'Liquido';
 
-const menuData=[
-  {cat:'Momos',items:[
-    {name:'Veg Steam Momos',img:'https://images.unsplash.com/photo-1626804475297-41608ea09aeb?w=200&q=80',sizes:[{l:'Half (5pc)',p:50},{l:'Full (10pc)',p:80}]},
-    {name:'Deep Fried Momos',img:'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=200&q=80',sizes:[{l:'Half (5pc)',p:50},{l:'Full (10pc)',p:90}]},
-    {name:'Pan Fried Momos',img:'https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=200&q=80',sizes:[{l:'Half (5pc)',p:50},{l:'Full (10pc)',p:90}]},
-    {name:'Fire Tossed Momos',img:'https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=200&q=80',sizes:[{l:'Half (5pc)',p:70},{l:'Full (10pc)',p:99}]},
-    {name:'Kurkure Veg Momos',img:'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=200&q=80',sizes:[{l:'Half (5pc)',p:89},{l:'Full (10pc)',p:129}]},
-    {name:'Schezwan Momos',img:'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=200&q=80',sizes:[{l:'Half (5pc)',p:119},{l:'Full (10pc)',p:149}]},
-    {name:'Peri Peri Momos',img:'https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=200&q=80',sizes:[{l:'Half (5pc)',p:119},{l:'Full (10pc)',p:149}]},
+// Food images - reliable sources
+const I = {
+  momos: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Momos_on_a_plate.jpg/400px-Momos_on_a_plate.jpg',
+  sandwich: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Grilled_cheese_on_white_with_tomato_soup.jpg/400px-Grilled_cheese_on_white_with_tomato_soup.jpg',
+  maggi: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Masala_Maggi.jpg/400px-Masala_Maggi.jpg',
+  wrap: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Burrito_-_Gusta_Me_%285765119734%29.jpg/400px-Burrito_-_Gusta_Me_%285765119734%29.jpg',
+  coffee: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/400px-A_small_cup_of_coffee.JPG',
+  shake: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Oreo_Shake.jpg/400px-Oreo_Shake.jpg',
+  burger: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PNG_transparency_demonstration_1.png/400px-PNG_transparency_demonstration_1.png',
+  fries: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Potato-Chips.jpg/400px-Potato-Chips.jpg',
+  drink: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/2006_09_06_-_Iced_Tea.jpg/400px-2006_09_06_-_Iced_Tea.jpg',
+};
+
+const menuData = [
+  { cat:'Momos', items:[
+    { name:'Veg Steam Momos', img:I.momos, sizes:[{l:'Half (5pc)',p:50},{l:'Full (10pc)',p:80}] },
+    { name:'Deep Fried Momos', img:I.momos, sizes:[{l:'Half (5pc)',p:50},{l:'Full (10pc)',p:90}] },
+    { name:'Pan Fried Momos', img:I.momos, sizes:[{l:'Half (5pc)',p:50},{l:'Full (10pc)',p:90}] },
+    { name:'Fire Tossed Momos', img:I.momos, sizes:[{l:'Half (5pc)',p:70},{l:'Full (10pc)',p:99}] },
+    { name:'Kurkure Veg Momos', img:I.momos, sizes:[{l:'Half (5pc)',p:89},{l:'Full (10pc)',p:129}] },
+    { name:'Schezwan Momos', img:I.momos, sizes:[{l:'Half (5pc)',p:119},{l:'Full (10pc)',p:149}] },
+    { name:'Peri Peri Momos', img:I.momos, sizes:[{l:'Half (5pc)',p:119},{l:'Full (10pc)',p:149}] },
   ]},
-  {cat:'Sandwich',items:[
-    {name:'Grilled Sandwich',img:'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=200&q=80',price:79},
-    {name:'Grilled Cheese Sandwich',img:'https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=200&q=80',price:99},
-    {name:'Cheese Corn Sandwich',img:'https://images.unsplash.com/photo-1553909489-cd47e0907980?w=200&q=80',price:99},
-    {name:'Paneer Sandwich',img:'https://images.unsplash.com/photo-1559054663-e8d23213f55c?w=200&q=80',price:119},
-    {name:'Paneer Cheese Sandwich',img:'https://images.unsplash.com/photo-1509722747041-616f39b57569?w=200&q=80',price:139},
-    {name:'Cheese Sandwich',img:'https://images.unsplash.com/photo-1528736235302-52922df5c122?w=200&q=80',price:139},
+  { cat:'Sandwich', items:[
+    { name:'Grilled Sandwich', img:I.sandwich, price:79 },
+    { name:'Grilled Cheese Sandwich', img:I.sandwich, price:99 },
+    { name:'Cheese Corn Sandwich', img:I.sandwich, price:99 },
+    { name:'Paneer Sandwich', img:I.sandwich, price:119 },
+    { name:'Paneer Cheese Sandwich', img:I.sandwich, price:139 },
+    { name:'Cheese Sandwich', img:I.sandwich, price:139 },
   ]},
-  {cat:'Maggi',items:[
-    {name:'Masala Maggi',img:'https://images.unsplash.com/photo-1585032226651-759b368d7246?w=200&q=80',price:40},
-    {name:'Vegetable Maggi',img:'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=200&q=80',price:50},
-    {name:'Vegetable Cheese Maggi',img:'https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?w=200&q=80',price:80},
-    {name:'Butter Maggi',img:'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=200&q=80',price:60},
-    {name:'Butter Cheese Maggi',img:'https://images.unsplash.com/photo-1548943487-a2e4e43b4853?w=200&q=80',price:80},
-    {name:'Schezwan Masala Maggi',img:'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=200&q=80',price:70},
-    {name:'Schezwan Cheese Maggi',img:'https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=200&q=80',price:80},
-    {name:'Peri Peri Cheese Maggi',img:'https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=200&q=80',price:80},
+  { cat:'Maggi', items:[
+    { name:'Masala Maggi', img:I.maggi, price:40 },
+    { name:'Vegetable Maggi', img:I.maggi, price:50 },
+    { name:'Vegetable Cheese Maggi', img:I.maggi, price:80 },
+    { name:'Butter Maggi', img:I.maggi, price:60 },
+    { name:'Butter Cheese Maggi', img:I.maggi, price:80 },
+    { name:'Schezwan Masala Maggi', img:I.maggi, price:70 },
+    { name:'Schezwan Cheese Maggi', img:I.maggi, price:80 },
+    { name:'Peri Peri Cheese Maggi', img:I.maggi, price:80 },
   ]},
-  {cat:'Wrap',items:[
-    {name:'Classic Veggie Delight Wrap',img:'https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=200&q=80',price:89},
-    {name:'Tandoori Paneer Power Wrap',img:'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=200&q=80',price:129},
-    {name:'Tofu Wrap (Gym Special)',img:'https://images.unsplash.com/photo-1551248429-40975aa4de74?w=200&q=80',price:139},
+  { cat:'Wrap', items:[
+    { name:'Classic Veggie Delight Wrap', img:I.wrap, price:89 },
+    { name:'Tandoori Paneer Power Wrap', img:I.wrap, price:129 },
+    { name:'Tofu Wrap (Gym Special)', img:I.wrap, price:139 },
   ]},
-  {cat:'Cold Coffee',items:[
-    {name:'Classic Cold Coffee',img:'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=200&q=80',price:59},
-    {name:'Java Chip Cold Coffee',img:'https://images.unsplash.com/photo-1583579192608-b6a8c4a84b51?w=200&q=80',price:79},
-    {name:'Double Chocolate CC',img:'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?w=200&q=80',price:99},
-    {name:'Oreo Cold Coffee',img:'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=200&q=80',price:99},
+  { cat:'Cold Coffee', items:[
+    { name:'Classic Cold Coffee', img:I.coffee, price:59 },
+    { name:'Java Chip Cold Coffee', img:I.coffee, price:79 },
+    { name:'Double Chocolate CC', img:I.coffee, price:99 },
+    { name:'Oreo Cold Coffee', img:I.coffee, price:99 },
   ]},
-  {cat:'Shake',items:[
-    {name:'Oreo Shake',img:'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=200&q=80',price:79},
-    {name:'Mango Shake',img:'https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=200&q=80',price:79},
-    {name:'Strawberry Shake',img:'https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=200&q=80',price:79},
-    {name:'Blueberry Shake',img:'https://images.unsplash.com/photo-1505252585461-04db1eb84625?w=200&q=80',price:79},
-    {name:'Bubblegum Shake',img:'https://images.unsplash.com/photo-1582192730841-2a682d7375f9?w=200&q=80',price:99},
-    {name:'Kitkat Shake',img:'https://images.unsplash.com/photo-1541658016709-82835a93c14f?w=200&q=80',price:99},
-    {name:'Kitkat Oreo Shake',img:'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=200&q=80',price:99},
+  { cat:'Shake', items:[
+    { name:'Oreo Shake', img:I.shake, price:79 },
+    { name:'Mango Shake', img:I.shake, price:79 },
+    { name:'Strawberry Shake', img:I.shake, price:79 },
+    { name:'Blueberry Shake', img:I.shake, price:79 },
+    { name:'Bubblegum Shake', img:I.shake, price:99 },
+    { name:'Kitkat Shake', img:I.shake, price:99 },
+    { name:'Kitkat Oreo Shake', img:I.shake, price:99 },
   ]},
-  {cat:'Burger',items:[
-    {name:'Aloo Tikki Burger',img:'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=200&q=80',price:49},
-    {name:'Veg Cheesy Burger',img:'https://images.unsplash.com/photo-1550547660-d9450f859349?w=200&q=80',price:59},
-    {name:'Veg Paneer Burger',img:'https://images.unsplash.com/photo-1596956470007-2bf6095e7e16?w=200&q=80',price:89},
+  { cat:'Burger', items:[
+    { name:'Aloo Tikki Burger', img:I.burger, price:49 },
+    { name:'Veg Cheesy Burger', img:I.burger, price:59 },
+    { name:'Veg Paneer Burger', img:I.burger, price:89 },
   ]},
-  {cat:'Fries',items:[
-    {name:'Plain Salted Fries',img:'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=200&q=80',price:69},
-    {name:'Peri Peri Masala Fries',img:'https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=200&q=80',price:99},
-    {name:'Crispy Garlic Butter Fries',img:'https://images.unsplash.com/photo-1576107232684-1279f390859f?w=200&q=80',price:129},
+  { cat:'Fries', items:[
+    { name:'Plain Salted Fries', img:I.fries, price:69 },
+    { name:'Peri Peri Masala Fries', img:I.fries, price:99 },
+    { name:'Crispy Garlic Butter Fries', img:I.fries, price:129 },
   ]},
-  {cat:'Drinks',items:[
-    {name:'Water Bottle',img:'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=200&q=80',price:20},
-    {name:'Soft Drinks',img:'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=200&q=80',price:null},
+  { cat:'Drinks', items:[
+    { name:'Water Bottle', img:I.drink, price:20 },
+    { name:'Soft Drinks', img:I.drink, price:null },
   ]},
 ];
 
+let cart = [], locText = '', locCoords = '', payMethod = 'upi';
+
 // TABS
-const tabsEl=document.getElementById('tabs');
-menuData.forEach((cat,i)=>{
-  const b=document.createElement('button');
-  b.className='tab'+(i===0?' active':'');
-  b.textContent=cat.cat;
-  b.onclick=()=>{
+const tabsEl = document.getElementById('tabs');
+menuData.forEach((cat, i) => {
+  const b = document.createElement('button');
+  b.className = 'tab' + (i===0?' active':'');
+  b.textContent = cat.cat;
+  b.onclick = () => {
     document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
     b.classList.add('active');
     document.getElementById('c'+i).scrollIntoView({behavior:'smooth',block:'start'});
@@ -425,62 +314,65 @@ menuData.forEach((cat,i)=>{
 });
 
 // MENU
-const menuEl=document.getElementById('menuSection');
-menuData.forEach((cat,ci)=>{
-  const sec=document.createElement('div');
-  sec.className='category';sec.id='c'+ci;
-  sec.innerHTML=`<div class="cat-title">${cat.cat}</div><div class="items-grid" id="g${ci}"></div>`;
+const menuEl = document.getElementById('menuSection');
+menuData.forEach((cat, ci) => {
+  const sec = document.createElement('div');
+  sec.className = 'category';
+  sec.id = 'c'+ci;
+  sec.innerHTML = `<div class="cat-title">${cat.cat}</div><div class="items-grid" id="g${ci}"></div>`;
   menuEl.appendChild(sec);
-  const grid=document.getElementById('g'+ci);
-  cat.items.forEach(item=>{
-    const card=document.createElement('div');
-    card.className='item-card';
-    card.dataset.name=item.name.toLowerCase();
-    const isBest=BESTSELLERS.includes(item.name);
-    const badge=isBest?'<span class="best-badge">🔥 Best</span>':'';
-    const img=`<img class="item-img" src="${item.img}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/68x68/f0e6ff/6B21A8?text=🍽️'">`;
-    if(item.sizes){
-      card.innerHTML=`${img}<div class="item-info"><div class="item-name">${item.name}${badge}</div><div class="size-btns">${item.sizes.map(s=>`<button class="size-btn" onclick="addItem('${item.name} - ${s.l}',${s.p})">${s.l} ₹${s.p}</button>`).join('')}</div></div>`;
-    } else if(!item.price){
-      card.innerHTML=`${img}<div class="item-info"><div class="item-name">${item.name}${badge}</div><div class="item-note">Price at MRP</div></div><button class="add-btn" onclick="addItem('${item.name}',0)">Add</button>`;
+
+  const grid = document.getElementById('g'+ci);
+  cat.items.forEach((item) => {
+    const card = document.createElement('div');
+    card.className = 'item-card';
+    const imgTag = item.img ? `<img class="item-img" src="${item.img}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/68x68/f0e6ff/6B21A8?text=🍽️'">` : '';
+
+    if (item.sizes) {
+      card.innerHTML = `${imgTag}<div class="item-info"><div class="item-name">${item.name}</div><div class="size-btns">${item.sizes.map(s=>`<button class="size-btn" onclick="addItem('${item.name} - ${s.l}',${s.p})">${s.l} ₹${s.p}</button>`).join('')}</div></div>`;
+    } else if (!item.price) {
+      card.innerHTML = `${imgTag}<div class="item-info"><div class="item-name">${item.name}</div><div class="item-note">Price at MRP</div></div><button class="add-btn" onclick="addItem('${item.name}',0)">Add</button>`;
     } else {
-      card.innerHTML=`${img}<div class="item-info"><div class="item-name">${item.name}${badge}</div><div class="item-price">₹${item.price}</div></div><button class="add-btn" onclick="addItem('${item.name}',${item.price})">Add</button>`;
+      card.innerHTML = `${imgTag}<div class="item-info"><div class="item-name">${item.name}</div><div class="item-price">₹${item.price}</div></div><button class="add-btn" onclick="addItem('${item.name}',${item.price})">Add</button>`;
     }
     grid.appendChild(card);
   });
 });
 
-function addItem(name,price){
-  const ex=cart.find(i=>i.name===name);
-  if(ex)ex.qty++;else cart.push({name,price,qty:1});
+function addItem(name, price) {
+  const ex = cart.find(i=>i.name===name);
+  if (ex) ex.qty++; else cart.push({name,price,qty:1});
   updateCartBtn();
-  showToast('✅ '+name.split(' - ')[0]+' added!');
+  showToast('✅ ' + name.split(' - ')[0] + ' added!');
 }
-function removeItem(name){
-  const idx=cart.findIndex(i=>i.name===name);
-  if(idx>-1){cart[idx].qty--;if(cart[idx].qty<=0)cart.splice(idx,1);}
-  updateCartBtn();renderCart();
+function removeItem(name) {
+  const idx = cart.findIndex(i=>i.name===name);
+  if (idx>-1) { cart[idx].qty--; if(cart[idx].qty<=0) cart.splice(idx,1); }
+  updateCartBtn(); renderCart();
 }
-function updateCartBtn(){
-  const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
-  const count=cart.reduce((s,i)=>s+i.qty,0);
-  const btn=document.getElementById('cartBtn');
-  if(!count){btn.style.display='none';return;}
-  btn.style.display='flex';
-  document.getElementById('cartCount').textContent=count;
-  document.getElementById('cartSummary').textContent='₹'+total;
-}
-function openCart(){document.getElementById('overlay').classList.add('show');renderCart();}
-function closeCart(){document.getElementById('overlay').classList.remove('show');}
 
-function renderCart(){
-  const el=document.getElementById('cartItems');
-  const footer=document.getElementById('cartFooter');
-  if(!cart.length){el.innerHTML='<div class="empty">🛒 Cart is empty<br>Add items to order</div>';footer.innerHTML='';return;}
-  const subtotal=cart.reduce((s,i)=>s+i.price*i.qty,0);
-  const discAmt=discLabel?(discount>1?discount:Math.round(subtotal*discount/100)):0;
-  const finalTotal=Math.max(0,subtotal-discAmt);
-  el.innerHTML=cart.map(item=>`
+function updateCartBtn() {
+  const total = cart.reduce((s,i)=>s+i.price*i.qty,0);
+  const count = cart.reduce((s,i)=>s+i.qty,0);
+  const btn = document.getElementById('cartBtn');
+  if (!count) { btn.style.display='none'; return; }
+  btn.style.display='flex';
+  document.getElementById('cartCount').textContent = count;
+  document.getElementById('cartSummary').textContent = '₹'+total;
+}
+
+function openCart() { document.getElementById('overlay').classList.add('show'); renderCart(); }
+function closeCart() { document.getElementById('overlay').classList.remove('show'); }
+
+function renderCart() {
+  const el = document.getElementById('cartItems');
+  const footer = document.getElementById('cartFooter');
+  if (!cart.length) {
+    el.innerHTML = '<div class="empty">🛒 Cart is empty<br>Add items to order</div>';
+    footer.innerHTML=''; return;
+  }
+  const total = cart.reduce((s,i)=>s+i.price*i.qty,0);
+  el.innerHTML = cart.map(item=>`
     <div class="c-item">
       <div class="c-name">${item.name} × ${item.qty}</div>
       <div style="display:flex;align-items:center;gap:6px">
@@ -491,25 +383,17 @@ function renderCart(){
           <button class="qty-btn" onclick="addItem('${item.name}',${item.price})">+</button>
         </div>
       </div>
-    </div>`).join('')+
+    </div>`).join('') +
     `<div class="cheese-note">🧀 Extra Cheese sirf ₹20 — instructions mein likho!</div>
-    ${discAmt?`<div class="disc-row"><span>🎉 Discount (${discLabel})</span><span>−₹${discAmt}</span></div>`:''}
-    <div class="total-row"><span>Total</span><span>₹${finalTotal}</span></div>`;
+    <div class="c-total"><span>Total</span><span>₹${total}</span></div>`;
 
-  footer.innerHTML=`
-    <div class="del-time-bar">🕐 Estimated Delivery: 30–45 minutes</div>
-    <div style="font-weight:700;font-size:0.86rem;margin-bottom:6px;">🎟️ Coupon Code</div>
-    <div class="coupon-wrap">
-      <input class="coupon-inp" id="couponInp" placeholder="LIQUIDO10, NEWUSER, FLAT50...">
-      <button class="apply-btn" onclick="applyCoupon()">Apply</button>
-    </div>
-    <div id="couponMsg"></div>
+  footer.innerHTML = `
     <label class="flabel">👤 Aapka Naam *</label>
     <input class="finput" id="cName" placeholder="Naam likhein">
     <label class="flabel">📞 Phone Number *</label>
     <input class="finput" id="cPhone" placeholder="WhatsApp number" type="tel">
     <label class="flabel">📍 Delivery Address *</label>
-    <input class="finput" id="cAddr" placeholder="Ghar/dukaan no., gali, area">
+    <input class="finput" id="cAddr" placeholder="Ghar/dukaan no., gali, area" id="cAddr">
     <button class="loc-btn" id="locBtn" onclick="getLocation()">📍 GPS se Location Detect Karo</button>
     <div id="locRes"></div>
     <label class="flabel">📝 Special Instructions (optional)</label>
@@ -521,168 +405,123 @@ function renderCart(){
     </div>
     <div id="payBox"></div>
     <button class="order-btn" onclick="placeOrder()">💬 WhatsApp pe Order Bhejo</button>`;
-  renderPay(finalTotal);
+  renderPay(total);
 }
 
-function applyCoupon(){
-  const code=document.getElementById('couponInp')?.value.trim().toUpperCase();
-  const msg=document.getElementById('couponMsg');
-  if(!code){if(msg)msg.innerHTML='<div class="coupon-err">❗ Code likho</div>';return;}
-  if(COUPONS[code]){
-    const c=COUPONS[code];discount=c.disc;discLabel=c.label;
-    if(msg)msg.innerHTML=`<div class="coupon-ok">✅ "${code}" apply ho gaya! ${c.label}</div>`;
-    setTimeout(()=>renderCart(),400);
-  } else {
-    discount=0;discLabel='';
-    if(msg)msg.innerHTML='<div class="coupon-err">❌ Invalid coupon code</div>';
-  }
+function selPay(m) {
+  payMethod = m;
+  document.getElementById('pUPI').classList.toggle('sel', m==='upi');
+  document.getElementById('pCOD').classList.toggle('sel', m==='cod');
+  const total = cart.reduce((s,i)=>s+i.price*i.qty,0);
+  renderPay(total);
 }
 
-function selPay(m){
-  payMethod=m;
-  document.getElementById('pUPI').classList.toggle('sel',m==='upi');
-  document.getElementById('pCOD').classList.toggle('sel',m==='cod');
-  const subtotal=cart.reduce((s,i)=>s+i.price*i.qty,0);
-  const discAmt=discLabel?(discount>1?discount:Math.round(subtotal*discount/100)):0;
-  renderPay(Math.max(0,subtotal-discAmt));
-}
-
-function renderPay(total){
-  const el=document.getElementById('payBox');if(!el)return;
-  if(payMethod==='upi'){
-    const link=`upi://pay?pa=${encodeURIComponent(UPI)}&pn=${encodeURIComponent(UNAME)}&am=${total}&cu=INR&tn=Liquido+Order`;
-    el.innerHTML=`<div class="upi-box">
+function renderPay(total) {
+  const el = document.getElementById('payBox');
+  if (!el) return;
+  if (payMethod==='upi') {
+    const link = `upi://pay?pa=${encodeURIComponent(UPI)}&pn=${encodeURIComponent(UNAME)}&am=${total}&cu=INR&tn=Liquido+Order`;
+    el.innerHTML = `<div class="upi-box">
       <div class="upi-id">UPI ID: <b>${UPI}</b></div>
       <div class="upi-id" style="margin-top:3px">Name: <b>${UNAME}</b></div>
       <div class="upi-amt">₹${total}</div>
-      <div style="font-size:0.7rem;color:#888;">PhonePe • GPay • Paytm • BharatPe</div>
+      <div style="font-size:0.7rem;color:#888;">PhonePe • GPay • Paytm • BharatPe se pay karein</div>
       <a class="upi-link" href="${link}">🔗 UPI App Kholo aur Pay Karo</a>
     </div>`;
   } else {
-    el.innerHTML=`<div class="cod-box">💵 Delivery ke time cash payment karein.</div>`;
+    el.innerHTML = `<div class="cod-box">💵 Delivery ke time cash payment karein. Hamare delivery partner amount collect karenge.</div>`;
   }
 }
 
-function getLocation(){
-  const btn=document.getElementById('locBtn');
-  const res=document.getElementById('locRes');
-  if(!navigator.geolocation){res.innerHTML='<div class="loc-ok" style="background:#ffe8e8;color:red;">❌ Location support nahi</div>';return;}
-  btn.textContent='⏳ Detect ho raha hai...';btn.disabled=true;
+function getLocation() {
+  const btn = document.getElementById('locBtn');
+  const res = document.getElementById('locRes');
+  if (!navigator.geolocation) {
+    res.innerHTML = '<div class="loc-ok" style="background:#ffe8e8;color:red;">❌ Aapka browser location support nahi karta</div>'; return;
+  }
+  btn.textContent = '⏳ Detect ho raha hai...';
+  btn.disabled = true;
   navigator.geolocation.getCurrentPosition(
-    pos=>{
-      const lat=pos.coords.latitude.toFixed(5),lng=pos.coords.longitude.toFixed(5);
-      locCoords=`${lat},${lng}`;locText=`https://maps.google.com/?q=${lat},${lng}`;
-      res.innerHTML=`<div class="loc-ok">✅ Location detect ho gayi! (${lat}, ${lng})<br><a href="${locText}" target="_blank" style="color:green;font-size:0.72rem;">Map pe dekho</a></div>`;
-      btn.textContent='✅ Location Detect Ho Gayi';
+    pos => {
+      const lat = pos.coords.latitude.toFixed(5);
+      const lng = pos.coords.longitude.toFixed(5);
+      locCoords = `${lat},${lng}`;
+      locText = `https://maps.google.com/?q=${lat},${lng}`;
+      res.innerHTML = `<div class="loc-ok">✅ Location detect ho gayi! (${lat}, ${lng})<br><a href="${locText}" target="_blank" style="color:green;font-size:0.72rem;">Map pe dekho</a></div>`;
+      btn.textContent = '✅ Location Detect Ho Gayi';
     },
-    err=>{
-      let msg='❌ ';
-      if(err.code===1)msg+='Permission denied — browser settings mein allow karein.';
-      else if(err.code===2)msg+='GPS signal nahi mila.';
-      else msg+='Dobara try karein.';
-      res.innerHTML=`<div class="loc-ok" style="background:#ffe8e8;color:red;">${msg}</div>`;
-      btn.textContent='📍 GPS se Location Detect Karo';btn.disabled=false;
+    err => {
+      let msg = '❌ Location nahi mili. ';
+      if (err.code===1) msg += 'Permission denied — browser settings mein allow karein.';
+      else if (err.code===2) msg += 'GPS signal nahi mila.';
+      else msg += 'Dobara try karein.';
+      res.innerHTML = `<div class="loc-ok" style="background:#ffe8e8;color:red;">${msg}</div>`;
+      btn.textContent = '📍 GPS se Location Detect Karo';
+      btn.disabled = false;
     },
-    {enableHighAccuracy:true,timeout:10000,maximumAge:0}
+    { enableHighAccuracy:true, timeout:10000, maximumAge:0 }
   );
 }
 
-function placeOrder(){
-  const name=document.getElementById('cName')?.value.trim();
-  const phone=document.getElementById('cPhone')?.value.trim();
-  const addr=document.getElementById('cAddr')?.value.trim();
-  const note=document.getElementById('cNote')?.value.trim();
-  if(!name){showToast('❗ Naam likhein');return;}
-  if(!phone){showToast('❗ Phone number likhein');return;}
-  if(!addr&&!locText){showToast('❗ Address ya location dein');return;}
-  const subtotal=cart.reduce((s,i)=>s+i.price*i.qty,0);
-  const discAmt=discLabel?(discount>1?discount:Math.round(subtotal*discount/100)):0;
-  const total=Math.max(0,subtotal-discAmt);
-  const items=cart.map(i=>`• ${i.name} × ${i.qty} = ₹${i.price*i.qty}`).join('\n');
-  const now=new Date();
-  const date=now.toLocaleDateString('en-IN');
-  const time=now.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
-  const orderId='LQ-'+Math.floor(1000+Math.random()*9000);
-
-  // Save to Google Sheet
-  fetch(SHEET_URL,{
-    method:'POST',mode:'no-cors',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({date,time,name,phone,address:addr||'GPS',items:cart.map(i=>`${i.name} x${i.qty}`).join(', '),total,payment:payMethod==='upi'?'UPI / Online':'Cash on Delivery',location:locText||'',orderId,coupon:discLabel||'None',discount:discAmt})
-  }).catch(()=>{});
-
-  let msg=`🛒 *Order from Liquido*\n`;
-  msg+=`🆔 *Order ID: ${orderId}*\n\n`;
-  msg+=`🍽️ *Items:*\n${items}\n\n`;
-  if(discAmt)msg+=`🎟️ *Coupon (${discLabel}):* −₹${discAmt}\n`;
-  msg+=`💰 *Total: ₹${total}*\n`;
-  msg+=`💳 *Payment:* ${payMethod==='upi'?'UPI / Online':'Cash on Delivery'}\n\n`;
-  msg+=`👤 *Naam:* ${name}\n📞 *Phone:* ${phone}\n`;
-  if(addr)msg+=`🏠 *Address:* ${addr}\n`;
-  if(locText)msg+=`📍 *Live Location:* ${locText}\n`;
-  if(note)msg+=`📝 *Instructions:* ${note}\n`;
-  msg+=`\nPlease confirm my order. Thank you! 🙏`;
-
-  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,'_blank');
-  showToast('✅ Order bhej diya! ID: '+orderId);
-  discount=0;discLabel='';
+function placeOrder() {
+  const name = document.getElementById('cName')?.value.trim();
+  const phone = document.getElementById('cPhone')?.value.trim();
+  const addr = document.getElementById('cAddr')?.value.trim();
+  const note = document.getElementById('cNote')?.value.trim();
+  if (!name) { showToast('❗ Naam likhein'); return; }
+  if (!phone) { showToast('❗ Phone number likhein'); return; }
+  if (!addr && !locText) { showToast('❗ Address ya location dein'); return; }
+  const total = cart.reduce((s,i)=>s+i.price*i.qty,0);
+  const items = cart.map(i=>`• ${i.name} × ${i.qty} = ₹${i.price*i.qty}`).join('\n');
+  let msg = `🍽️ *LIQUIDO — Naya Order*\n\n`;
+  msg += `👤 *Naam:* ${name}\n📞 *Phone:* ${phone}\n\n`;
+  msg += `📦 *Order:*\n${items}\n\n`;
+  msg += `💰 *Total: ₹${total}*\n`;
+  msg += `💳 *Payment:* ${payMethod==='upi'?'UPI / Online':'Cash on Delivery'}\n\n`;
+  if (addr) msg += `📍 *Address:* ${addr}\n`;
+  if (locText) msg += `🗺️ *Live Location:* ${locText}\n`;
+  if (note) msg += `📝 *Instructions:* ${note}`;
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
-function showToast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg;t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2000);
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2000);
 }
-
-// DARK MODE
-function toggleDark(){
-  darkMode=!darkMode;
-  document.documentElement.classList.toggle('dark',darkMode);
-  document.body.style.background=darkMode?'#0f0f0f':'#f5f0e8';
-  document.getElementById('darkBtn').textContent=darkMode?'☀️':'🌙';
-}
-
-// SEARCH
-function doSearch(q){
-  const query=q.trim().toLowerCase();
-  document.getElementById('searchClear').style.display=query?'block':'none';
-  document.querySelectorAll('.category').forEach(cat=>{
-    const cards=cat.querySelectorAll('.item-card');
-    let any=false;
-    cards.forEach(card=>{
-      const match=!query||(card.dataset.name&&card.dataset.name.includes(query));
-      card.style.display=match?'':'none';
-      if(match)any=true;
-    });
-    cat.style.display=any?'':'none';
-  });
-}
-function clearSearch(){
-  document.getElementById('searchInp').value='';
-  doSearch('');
-}
-
-// ROTATING BANNER
-const banners=[
-  '🏷️ Social Media tag karo + Google Review do → 10% OFF!',
-  '🎟️ Coupon: NEWUSER — 15% off pehle order pe!',
-  '🥟 Momos + Cold Coffee Combo = ₹99 — Order karo!',
-  '⭐ Bestseller: Schezwan Momos — Try karo!',
-  '🧀 Extra Cheese sirf ₹20 — Instructions mein likho!',
-  '🛵 30–45 min mein delivery — Order karo abhi!',
-];
-let bannerIdx=0;
-setInterval(()=>{
-  bannerIdx=(bannerIdx+1)%banners.length;
-  const el=document.getElementById('bannerText');
-  if(el){el.style.opacity='0';setTimeout(()=>{el.textContent=banners[bannerIdx];el.style.opacity='1';},300);}
-},4000);
-
-// INFINITE SCROLL
-['comboRow','revRow'].forEach(id=>{
-  const t=document.getElementById(id);
-  if(t)t.innerHTML+=t.innerHTML;
-});
 </script>
+
+<!-- CUSTOMIZATION POPUP -->
+<div class="custom-popup" id="customPopup" onclick="closeCustom()">
+  <div class="custom-box" onclick="event.stopPropagation()">
+    <div class="custom-header">
+      <img id="customImg" src="" alt="">
+      <div class="custom-header-name" id="customName"></div>
+      <button class="custom-close" onclick="closeCustom()">✕</button>
+    </div>
+    <div id="customSections"></div>
+    <div class="custom-footer">
+      <div class="custom-qty">
+        <button class="custom-qty-btn" onclick="changeCustomQty(-1)">−</button>
+        <span class="custom-qty-num" id="customQtyNum">1</span>
+        <button class="custom-qty-btn" onclick="changeCustomQty(1)">+</button>
+      </div>
+      <button class="custom-add-btn" id="customAddBtn" onclick="addCustomToCart()">Add Item | ₹0</button>
+    </div>
+  </div>
+</div>
+
+<!-- FIRST ORDER POPUP -->
+<div class="first-popup" id="firstPopup">
+  <div class="first-box">
+    <button class="first-close" onclick="document.getElementById('firstPopup').classList.remove('show')">✕</button>
+    <div class="first-icon">🎉</div>
+    <div class="first-title">Pehla Order? Special Gift!</div>
+    <div class="first-sub">Aapke pehle order pe 15% off — coupon use karo checkout pe!</div>
+    <div class="first-coupon">NEWUSER</div>
+    <button class="first-btn" onclick="document.getElementById('firstPopup').classList.remove('show');openCart()">🛒 Order Karo Abhi!</button>
+  </div>
+</div>
+
 </body>
 </html>
