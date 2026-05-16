@@ -3,154 +3,144 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Liquido Admin Dashboard</title>
+<title>Liquido Admin Workspace Control Console</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:#1a1a1a}
-.header{background:#6B21A8;padding:14px 16px;display:flex;align-items:center;justify-content:space-between}
-.header h1{font-size:1.3rem;font-weight:900;color:#FFD600}
-.header p{font-size:0.68rem;color:#e0c8ff;margin-top:2px}
+body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:#1a1a1a;transition:background 0.2s}
+.header{background:#6B21A8;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 4px 12px rgba(107,33,168,0.25)}
+.header h1{font-size:1.3rem;font-weight:900;color:#FFD600;letter-spacing:1px}
+.header p{font-size:0.68rem;color:#e0c8ff;margin-top:2px;font-weight:500}
 .hright{text-align:right}
-.page{padding:16px}
+.page{padding:16px;max-width:768px;margin:0 auto}
 
 /* STATS */
 .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
-.stat-card{background:white;border-radius:14px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,0.07)}
+.stat-card{background:white;border-radius:14px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,0.05);border-bottom:3px solid #e0d0ff}
 .stat-icon{font-size:1.4rem;margin-bottom:6px}
-.stat-val{font-size:1.6rem;font-weight:900;color:#6B21A8;line-height:1}
-.stat-label{font-size:0.68rem;color:#888;margin-top:3px;font-weight:600}
-.stat-card.green .stat-val{color:#16a34a}
-.stat-card.orange .stat-val{color:#ea580c}
+.stat-val{font-size:1.5rem;font-weight:900;color:#6B21A8;line-height:1}
+.stat-label{font-size:0.68rem;color:#888;margin-top:4px;font-weight:700;text-transform:uppercase}
+.stat-card.green{border-color:#16a34a}.stat-card.green .stat-val{color:#16a34a}
+.stat-card.orange{border-color:#ea580c}.stat-card.orange .stat-val{color:#ea580c}
 
-/* MONTHLY */
-.month-card{background:white;border-radius:14px;padding:16px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,0.07)}
-.section-title{font-size:0.92rem;font-weight:800;color:#1a1a1a;margin-bottom:12px}
-.month-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f5f5f5}
-.month-row:last-child{border-bottom:none}
-.month-name{font-size:0.82rem;font-weight:600;color:#444}
-.month-orders{font-size:0.72rem;color:#888}
-.month-amount{font-size:0.9rem;font-weight:800;color:#6B21A8}
+/* SYSTEM INTERACTIVE ACTION TARGETS */
+.tab-row{display:flex;gap:6px;margin-bottom:16px;overflow-x:auto;scrollbar-width:none}
+.tab-row::-webkit-scrollbar{display:none}
+.dtab{flex:1;background:#f0e6ff;color:#6B21A8;border:none;border-radius:10px;padding:10px;font-family:'Poppins',sans-serif;font-size:0.75rem;font-weight:700;cursor:pointer;white-space:nowrap;transition:all 0.2s}
+.dtab.active{background:#6B21A8;color:white;box-shadow:0 4px 8px rgba(107,33,168,0.2)}
 
-/* OFFER SECTION */
-.offer-card{background:linear-gradient(135deg,#6B21A8,#9333ea);border-radius:14px;padding:16px;margin-bottom:16px;color:white}
-.offer-title{font-size:0.95rem;font-weight:800;margin-bottom:12px}
-.offer-inp{width:100%;padding:10px 12px;border:none;border-radius:10px;font-family:'Poppins',sans-serif;font-size:0.84rem;outline:none;margin-bottom:8px}
-.offer-inp::placeholder{color:#aaa}
-.send-btn{width:100%;background:#FFD600;color:#6B21A8;border:none;border-radius:10px;padding:12px;font-family:'Poppins',sans-serif;font-size:0.88rem;font-weight:800;cursor:pointer}
-.send-btn:hover{background:#ffc800}
-.offer-count{font-size:0.72rem;opacity:0.85;margin-top:8px;text-align:center}
+/* CONTAINERS */
+.orders-card, .customers-card, .month-card, .offer-card{background:white;border-radius:16px;padding:16px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.section-title{font-size:0.95rem;font-weight:800;color:#1a1a1a;margin-bottom:14px;border-left:4px solid #6B21A8;padding-left:8px}
 
-/* CUSTOMERS */
-.customers-card{background:white;border-radius:14px;padding:16px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,0.07)}
-.search-inp{width:100%;padding:9px 12px;border:2px solid #e0d0ff;border-radius:10px;font-family:'Poppins',sans-serif;font-size:0.82rem;outline:none;margin-bottom:12px}
-.search-inp:focus{border-color:#6B21A8}
-.customer-item{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f5f5f5;gap:8px}
-.customer-item:last-child{border-bottom:none}
-.cust-avatar{width:36px;height:36px;border-radius:50%;background:#6B21A8;color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0}
-.cust-info{flex:1;min-width:0}
-.cust-name{font-size:0.84rem;font-weight:700;color:#1a1a1a}
-.cust-phone{font-size:0.71rem;color:#888;margin-top:1px}
-.cust-orders{font-size:0.68rem;color:#6B21A8;font-weight:600;margin-top:2px}
-.wa-btn{background:#25D366;color:white;border:none;border-radius:8px;padding:6px 10px;font-family:'Poppins',sans-serif;font-size:0.7rem;font-weight:700;cursor:pointer;white-space:nowrap}
+/* LIVE PIPELINE ITEM ROW FACTORY */
+.order-item{background:#f9f6ff;border-radius:12px;padding:14px;margin-bottom:12px;border-left:5px solid #6B21A8;position:relative}
+.order-item.status-Preparing{border-left-color:#3b82f6;background:#f0f6ff}
+.order-item.status-Dispatch{border-left-color:#f59e0b;background:#fffbeb}
+.order-item.status-Delivered{border-left-color:#10b981;background:#f0fdf4;opacity:0.85}
+.order-item.status-Cancelled{border-left-color:#ef4444;background:#fef2f2;opacity:0.6}
 
-/* ORDERS */
-.orders-card{background:white;border-radius:14px;padding:16px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,0.07)}
-.order-item{background:#f9f6ff;border-radius:10px;padding:12px;margin-bottom:8px;border-left:4px solid #6B21A8}
-.order-item:last-child{margin-bottom:0}
-.order-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px}
-.order-name{font-size:0.84rem;font-weight:700;color:#1a1a1a}
-.order-amount{font-size:0.9rem;font-weight:800;color:#6B21A8}
-.order-items{font-size:0.72rem;color:#666;margin-bottom:4px;line-height:1.4}
-.order-meta{display:flex;gap:8px;flex-wrap:wrap}
-.order-tag{font-size:0.65rem;background:#e0d0ff;color:#6B21A8;padding:2px 7px;border-radius:20px;font-weight:600}
+.order-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.order-name{font-size:0.88rem;font-weight:700;color:#1a1a1a}
+.order-amount{font-size:0.95rem;font-weight:900;color:#6B21A8}
+.order-items{font-size:0.78rem;color:#444;margin-bottom:8px;line-height:1.5;background:white;padding:8px;border-radius:8px;border:1px dashed #e0d0ff}
+.order-meta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.order-tag{font-size:0.65rem;background:#e0d0ff;color:#6B21A8;padding:3px 8px;border-radius:20px;font-weight:600}
 .order-tag.green{background:#dcfce7;color:#16a34a}
 .order-tag.orange{background:#fff7ed;color:#ea580c}
+.order-tag.blue{background:#dbeafe;color:#1d4ed8}
 
-/* LOADING */
+/* INTERACTIVE DROPDOWN SYSTEM CONTROLS */
+.status-select-console{padding:6px 10px;border-radius:8px;font-family:'Poppins',sans-serif;font-size:0.72rem;font-weight:700;outline:none;background:white;border:2px solid #6B21A8;cursor:pointer;color:#6B21A8;width:100%;margin-top:6px}
+
+/* GENERIC ACTION LAUNCH LINKS BUTTONS */
+.action-grid-flex{display:flex;gap:6px;margin-top:8px}
+.action-btn-node{flex:1;padding:8px;border-radius:8px;border:none;font-family:'Poppins',sans-serif;font-size:0.7rem;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:4px}
+.action-btn-node.wa-node{background:#25D366;color:white}
+.action-btn-node.map-node{background:#3b82f6;color:white}
+
+/* BROADCAST CONSOLES */
+.offer-card{background:linear-gradient(135deg,#6B21A8,#9333ea);color:white}
+.offer-inp{width:100%;padding:10px 12px;border:none;border-radius:10px;font-family:'Poppins',sans-serif;font-size:0.84rem;outline:none;margin-bottom:8px}
+.send-btn{width:100%;background:#FFD600;color:#6621A8;border:none;border-radius:10px;padding:12px;font-family:'Poppins',sans-serif;font-size:0.88rem;font-weight:800;cursor:pointer;box-shadow:0 4px 10px rgba(255,214,0,0.3)}
+.offer-count{font-size:0.72rem;opacity:0.9;margin-top:8px;text-align:center;font-weight:600}
+
+.search-inp{width:100%;padding:10px 14px;border:2px solid #e0d0ff;border-radius:10px;font-family:'Poppins',sans-serif;font-size:0.85rem;outline:none;margin-bottom:12px}
+.customer-item{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid #f5f5f5}
+.cust-avatar{width:36px;height:36px;border-radius:50%;background:#6B21A8;color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem}
+
+.month-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f5f5f5}
+.month-amount{font-size:0.9rem;font-weight:800;color:#6B21A8}
+
 .loading{text-align:center;padding:30px;color:#aaa;font-size:0.85rem}
 .spinner{font-size:1.5rem;animation:spin 1s linear infinite;display:block;margin-bottom:8px}
 @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
-
-/* TABS */
-.tab-row{display:flex;gap:6px;margin-bottom:16px}
-.dtab{flex:1;background:#f0e6ff;color:#6B21A8;border:none;border-radius:10px;padding:8px;font-family:'Poppins',sans-serif;font-size:0.75rem;font-weight:700;cursor:pointer}
-.dtab.active{background:#6B21A8;color:white}
-
-.empty-state{text-align:center;padding:24px;color:#bbb;font-size:0.82rem}
+.empty-state{text-align:center;padding:32px 16px;color:#bbb;font-size:0.85rem;font-weight:500}
 </style>
 </head>
 <body>
 
 <div class="header">
   <div>
-    <h1>🍜 Liquido Admin</h1>
-    <p>Business Dashboard</p>
+    <h1>🍜 Liquido Command Center</h1>
+    <p>Real-Time Operations Management Console</p>
   </div>
   <div class="hright">
-    <div style="font-size:0.7rem;color:#e0c8ff" id="lastUpdate">Loading...</div>
-    <div style="font-size:0.65rem;color:#c4b5fd;margin-top:2px">Auto refresh: 5 min</div>
+    <div style="font-size:0.72rem;color:#e0c8ff;font-weight:600" id="lastUpdate">Syncing Engine...</div>
+    <div style="font-size:0.6rem;color:#c4b5fd;margin-top:2px;font-weight:600;letter-spacing:0.5px">Real-Time Sync Active</div>
   </div>
 </div>
 
 <div class="page">
-
-  <!-- STATS -->
   <div class="stats" id="statsGrid">
-    <div class="stat-card"><div class="stat-icon">📦</div><div class="stat-val" id="totalOrders">--</div><div class="stat-label">Total Orders</div></div>
-    <div class="stat-card green"><div class="stat-icon">💰</div><div class="stat-val" id="totalRevenue">--</div><div class="stat-label">Total Revenue</div></div>
-    <div class="stat-card orange"><div class="stat-icon">📅</div><div class="stat-val" id="todayOrders">--</div><div class="stat-label">Today Orders</div></div>
-    <div class="stat-card"><div class="stat-icon">👥</div><div class="stat-val" id="totalCustomers">--</div><div class="stat-label">Customers</div></div>
+    <div class="stat-card"><div class="stat-icon">📦</div><div class="stat-val" id="totalOrders">--</div><div class="stat-label">Total Volume</div></div>
+    <div class="stat-card green"><div class="stat-icon">💰</div><div class="stat-val" id="totalRevenue">--</div><div class="stat-label">Gross Revenue</div></div>
+    <div class="stat-card orange"><div class="stat-icon">🔥</div><div class="stat-val" id="todayOrders">--</div><div class="stat-label">Today's Load</div></div>
+    <div class="stat-card"><div class="stat-icon">👥</div><div class="stat-val" id="totalCustomers">--</div><div class="stat-label">Total Base</div></div>
   </div>
 
-  <!-- TABS -->
   <div class="tab-row">
-    <button class="dtab active" onclick="showTab('orders')">📦 Orders</button>
-    <button class="dtab" onclick="showTab('customers')">👥 Customers</button>
-    <button class="dtab" onclick="showTab('monthly')">📊 Monthly</button>
-    <button class="dtab" onclick="showTab('offer')">📢 Offer</button>
+    <button class="dtab active" onclick="showTab('orders')">📦 Active Orders</button>
+    <button class="dtab" onclick="showTab('customers')">👥 Customer Base</button>
+    <button class="dtab" onclick="showTab('monthly')">📊 Analytics Reports</button>
+    <button class="dtab" onclick="showTab('offer')">📢 Broadcast Broadcast</button>
   </div>
 
-  <!-- ORDERS TAB -->
   <div id="tab-orders">
     <div class="orders-card">
-      <div class="section-title">🕐 Recent Orders</div>
-      <div id="ordersList"><div class="loading"><span class="spinner">⏳</span>Orders load ho rahe hain...</div></div>
+      <div class="section-title">🕐 Real-Time Operational Pipeline Queue</div>
+      <div id="ordersList"><div class="loading"><span class="spinner">⏳</span>Syncing row pipelines...</div></div>
     </div>
   </div>
 
-  <!-- CUSTOMERS TAB -->
   <div id="tab-customers" style="display:none">
     <div class="customers-card">
-      <div class="section-title">👥 All Customers</div>
-      <input class="search-inp" placeholder="🔍 Customer dhundho..." oninput="filterCustomers(this.value)" id="custSearch">
-      <div id="customersList"><div class="loading"><span class="spinner">⏳</span>Customers load ho rahe hain...</div></div>
+      <div class="section-title">👥 Customer Lifetime Registry Directory</div>
+      <input class="search-inp" placeholder="🔍 Enter name or phone to filter record matrices..." oninput="filterCustomers(this.value)" id="custSearch">
+      <div id="customersList"><div class="loading"><span class="spinner">⏳</span>Parsing directories...</div></div>
     </div>
   </div>
 
-  <!-- MONTHLY TAB -->
   <div id="tab-monthly" style="display:none">
     <div class="month-card">
-      <div class="section-title">📊 Monthly Report</div>
-      <div id="monthlyReport"><div class="loading"><span class="spinner">⏳</span>Report load ho rahi hai...</div></div>
+      <div class="section-title">📊 Gross Accounting Matrix Cycles</div>
+      <div id="monthlyReport"><div class="loading"><span class="spinner">⏳</span>Compiling aggregations...</div></div>
     </div>
   </div>
 
-  <!-- OFFER TAB -->
   <div id="tab-offer" style="display:none">
     <div class="offer-card">
-      <div class="offer-title">📢 Weekly Offer Bhejo</div>
-      <input class="offer-inp" id="offerText" placeholder="Offer likho... e.g. 🔥 Friday Special! Momos + Shake sirf ₹99 aaj ke liye!">
-      <input class="offer-inp" id="offerLink" placeholder="Link (optional): himanshu90226.github.io/...">
-      <button class="send-btn" onclick="sendOfferToAll()">🚀 Sabko WhatsApp Bhejo</button>
-      <div class="offer-count" id="offerCount">Loading customers...</div>
+      <div class="offer-title">📢 Automated WhatsApp Push Broadcast Engine</div>
+      <input class="offer-inp" id="offerText" placeholder="Enter promotion statement detail here...">
+      <input class="offer-inp" id="offerLink" placeholder="Alternative URL handle (Optional)">
+      <button class="send-btn" onclick="sendOfferToAll()">🚀 Launch Blast Sequence Sequence</button>
+      <div class="offer-count" id="offerCount">Analyzing base matrices...</div>
     </div>
     <div class="customers-card">
-      <div class="section-title">📋 Jinhe offer jayega</div>
-      <div id="offerCustomerList"><div class="loading">Loading...</div></div>
+      <div class="section-title">📋 Direct Target Execution Queue</div>
+      <div id="offerCustomerList"><div class="loading">Parsing targeted vectors...</div></div>
     </div>
   </div>
-
 </div>
 
 <script>
@@ -159,28 +149,45 @@ const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxe4hQF2NpzkQuFIqL-m9
 let allOrders = [];
 let allCustomers = [];
 let currentTab = 'orders';
+let absoluteOrderCountCached = 0;
 
-// Load data on start
+// Dynamic Native Notification Audio Vector Generation Module
+const alertSoundContext = new (window.AudioContext || window.webkitAudioContext)();
+function playSystemAlertPingNotification() {
+  try {
+    const osc = alertSoundContext.createOscillator();
+    const gain = alertSoundContext.createGain();
+    osc.connect(gain);
+    gain.connect(alertSoundContext.destination);
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(587.33, alertSoundContext.currentTime); // D5 high tone anchor note
+    gain.gain.setValueAtTime(0.15, alertSoundContext.currentTime);
+    osc.start();
+    osc.stop(alertSoundContext.currentTime + 0.12);
+  } catch(e){}
+}
+
 loadData();
-setInterval(loadData, 5 * 60 * 1000); // refresh every 5 min
+setInterval(loadData, 20000); // Poll sheet rows database record frames systematically every 20 seconds
 
 async function loadData() {
   try {
     const res = await fetch(SHEET_URL + '?action=get');
     const data = await res.json();
     allOrders = data.orders || [];
+    
+    if(allOrders.length > absoluteOrderCountCached && absoluteOrderCountCached !== 0) {
+      playSystemAlertPingNotification();
+    }
+    absoluteOrderCountCached = allOrders.length;
     processData();
-    document.getElementById('lastUpdate').textContent = 'Updated: ' + new Date().toLocaleTimeString('en-IN');
+    document.getElementById('lastUpdate').textContent = 'Sync: ' + new Date().toLocaleTimeString('en-IN');
   } catch(e) {
-    // If sheet has no data yet, show empty state
-    allOrders = [];
-    processData();
-    document.getElementById('lastUpdate').textContent = 'No data yet';
+    document.getElementById('lastUpdate').textContent = 'Connection Retry Active';
   }
 }
 
 function processData() {
-  // Extract unique customers
   const custMap = {};
   allOrders.forEach(order => {
     const phone = order.phone;
@@ -189,18 +196,13 @@ function processData() {
     }
     custMap[phone].orders++;
     custMap[phone].total += parseFloat(order.total) || 0;
-    if (order.date > custMap[phone].lastOrder) custMap[phone].lastOrder = order.date;
   });
   allCustomers = Object.values(custMap);
 
-  // Today orders
   const today = new Date().toLocaleDateString('en-IN');
   const todayOrders = allOrders.filter(o => o.date === today);
-
-  // Total revenue
   const totalRev = allOrders.reduce((s, o) => s + (parseFloat(o.total) || 0), 0);
 
-  // Update stats
   document.getElementById('totalOrders').textContent = allOrders.length;
   document.getElementById('totalRevenue').textContent = '₹' + totalRev.toLocaleString('en-IN');
   document.getElementById('todayOrders').textContent = todayOrders.length;
@@ -220,37 +222,87 @@ function showTab(tab) {
   renderCurrentTab();
 }
 
-function renderCurrentTab() {
-  if (currentTab === 'orders') renderOrders();
-  else if (currentTab === 'customers') renderCustomers();
-  else if (currentTab === 'monthly') renderMonthly();
-  else if (currentTab === 'offer') renderOffer();
+async function modifyOrderStateRemote(orderId, selectElement) {
+  const targetNewStateValue = selectElement.value;
+  selectElement.style.opacity = "0.5";
+  try {
+    const targetQueryUrl = `${SHEET_URL}?action=updateStatus&orderId=${encodeURIComponent(orderId)}&status=${encodeURIComponent(targetNewStateValue)}`;
+    const resultPromiseFetch = await fetch(targetQueryUrl);
+    const parsedResolutionJson = await resultPromiseFetch.json();
+    if(parsedResolutionJson.status === 'success') {
+      // Dynamic internal array status tracking updates updates
+      const targetedMemoryFrame = allOrders.find(o => o.orderId.toString() === orderId.toString());
+      if(targetedMemoryFrame) targetedMemoryFrame.status = targetNewStateValue;
+      processData();
+    } else {
+      alert("Database Row State Synchronization Failed.");
+    }
+  } catch(e) {
+    alert("Connection timeout while modification.");
+  }
+  selectElement.style.opacity = "1";
+}
+
+function generateWhatsAppStatusNotificationMessage(name, orderId, status) {
+  let blueprintString = "";
+  if(status === 'Preparing') {
+    blueprintString = `Hi ${name}! 🥟 Aapka Liquido Order *#${orderId}* kitchen mein prepare ho raha hai! Hum jald hi fresh aur hot dispatch karenge. Stay ready! 🔥`;
+  } else if(status === 'Dispatch') {
+    blueprintString = `Hi ${name}! 🛵 Aapka Liquido Order *#${orderId}* kitchen se nikal chuka hai! Hamara delivery boy jald hi aapke pata par call karega. 😊`;
+  } else if(status === 'Delivered') {
+    blueprintString = `Hi ${name}! 🎉 Aapka Liquido Order *#${orderId}* successfully deliver ho gaya hai! Khana kaisa laga? Google par review dekar 10% discount paayein agle order par: https://g.page/r/CQk7fsXPf0tTEBE/review 🙏`;
+  } else {
+    blueprintString = `Hi ${name}! Pata karne ke liye dhanyawaad. Liquido Order *#${orderId}* current status sequence is: *${status}*. 🌟`;
+  }
+  return blueprintString;
+}
+
+function launchWhatsAppStateTrigger(phone, name, orderId, status) {
+  const finalCompiledString = generateWhatsAppStatusNotificationMessage(name, orderId, status);
+  window.open(`https://wa.me/91${phone.replace(/\D/g,'')}?text=${encodeURIComponent(finalCompiledString)}`, '_blank');
 }
 
 function renderOrders() {
   const el = document.getElementById('ordersList');
   if (!allOrders.length) {
-    el.innerHTML = '<div class="empty-state">📦 Abhi koi order nahi aaya<br><small>Jab customer order karega tab yahan dikhega</small></div>';
+    el.innerHTML = '<div class="empty-state">📦 Operational Queue is Clear.<br><small>Incoming row additions from data sheet stream will reflect here automatically.</small></div>';
     return;
   }
-  const sorted = [...allOrders].reverse().slice(0, 50);
-  el.innerHTML = sorted.map(order => `
-    <div class="order-item">
+  const sorted = [...allOrders].reverse().slice(0, 60);
+  el.innerHTML = sorted.map(order => {
+    const currentActiveState = order.status || 'Placed';
+    return `
+    <div class="order-item status-${currentActiveState}">
       <div class="order-top">
         <div>
           <div class="order-name">👤 ${order.name}</div>
-          <div style="font-size:0.7rem;color:#888">📞 ${order.phone}</div>
+          <div style="font-size:0.75rem;color:#555; font-weight:600; margin-top:2px;">🆔 ID: #${order.orderId} • 📞 ${order.phone}</div>
         </div>
         <div class="order-amount">₹${order.total}</div>
       </div>
-      <div class="order-items">🍽️ ${order.items}</div>
+      <div class="order-items">${order.items}</div>
       <div class="order-meta">
         <span class="order-tag">📅 ${order.date}</span>
         <span class="order-tag">🕐 ${order.time}</span>
-        <span class="order-tag ${order.payment === 'UPI / Online' ? 'green' : 'orange'}">${order.payment === 'UPI / Online' ? '💳 UPI' : '💵 COD'}</span>
-        ${order.address ? `<span class="order-tag">📍 ${order.address.substring(0,20)}...</span>` : ''}
+        <span class="order-tag ${order.payment === 'UPI / Online App' || order.payment === 'UPI / Online' ? 'green' : 'orange'}">
+          ${order.payment === 'UPI / Online App' || order.payment === 'UPI / Online' ? '💳 UPI Pay' : '💵 COD Cash'}
+        </span>
       </div>
-    </div>`).join('');
+      
+      <select class="status-select-console" onchange="modifyOrderStateRemote('${order.orderId}', this)">
+        <option value="Placed" ${currentActiveState === 'Placed' ? 'selected' : ''}>📥 Order Placed (New)</option>
+        <option value="Preparing" ${currentActiveState === 'Preparing' ? 'selected' : ''}>👨‍🍳 Kitchen Preparing</option>
+        <option value="Dispatch" ${currentActiveState === 'Dispatch' ? 'selected' : ''}>🛵 Out for Delivery (Dispatch)</option>
+        <option value="Delivered" ${currentActiveState === 'Delivered' ? 'selected' : ''}>✅ Delivered successfully</option>
+        <option value="Cancelled" ${currentActiveState === 'Cancelled' ? 'selected' : ''}>❌ Cancelled Order</option>
+      </select>
+      
+      <div class="action-grid-flex">
+        <button class="action-btn-node wa-node" onclick="launchWhatsAppStateTrigger('${order.phone}','${order.name}','${order.orderId}','${currentActiveState}')">💬 Notify Status</button>
+        ${order.location ? `<a class="action-btn-node map-node" href="${order.location}" target="_blank">📍 View Tracking Route</a>` : ''}
+      </div>
+    </div>`;
+  }).join('');
 }
 
 function renderCustomers(filter = '') {
@@ -258,83 +310,64 @@ function renderCustomers(filter = '') {
   let list = allCustomers;
   if (filter) list = list.filter(c => c.name.toLowerCase().includes(filter.toLowerCase()) || c.phone.includes(filter));
   if (!list.length) {
-    el.innerHTML = '<div class="empty-state">👥 Abhi koi customer nahi<br><small>Orders aane ke baad yahan dikhenge</small></div>';
+    el.innerHTML = '<div class="empty-state">👥 Reference Index Empty.</div>';
     return;
   }
   el.innerHTML = list.map(c => `
     <div class="customer-item">
       <div class="cust-avatar">${c.name.charAt(0).toUpperCase()}</div>
-      <div class="cust-info">
+      <div style="flex:1; margin-left:12px;">
         <div class="cust-name">${c.name}</div>
-        <div class="cust-phone">📞 ${c.phone}</div>
-        <div class="cust-orders">📦 ${c.orders} orders • ₹${c.total.toLocaleString('en-IN')} total</div>
+        <div class="cust-phone">📞 Contact: ${c.phone}</div>
+        <div class="cust-orders" style="font-size:0.72rem; color:#6B21A8; font-weight:700; margin-top:2px;">📊 Base metrics: ${c.orders} Orders Total • Value Spend: ₹${c.total.toLocaleString('en-IN')}</div>
       </div>
-      <button class="wa-btn" onclick="waMsg('${c.phone}','${c.name}')">💬 WA</button>
+      <button class="wa-btn" style="background:#25D366; color:white; padding:6px 12px; border:none; border-radius:8px; font-family:'Poppins'; font-size:0.7rem; font-weight:700; cursor:pointer;" onclick="waMsg('${c.phone}','${c.name}')">💬 Ping</button>
     </div>`).join('');
 }
 
-function filterCustomers(val) {
-  renderCustomers(val);
-}
+function filterCustomers(val) { renderCustomers(val); }
 
 function renderMonthly() {
   const el = document.getElementById('monthlyReport');
   if (!allOrders.length) {
-    el.innerHTML = '<div class="empty-state">📊 Abhi koi data nahi<br><small>Orders aane ke baad monthly report dikhegi</small></div>';
+    el.innerHTML = '<div class="empty-state">📊 Dynamic Accounting Pipeline Empty.</div>';
     return;
   }
-
-  // Group by month
   const monthMap = {};
   allOrders.forEach(order => {
     if (!order.date) return;
     const parts = order.date.split('/');
     if (parts.length < 3) return;
-    const key = parts[1] + '/' + parts[2]; // MM/YYYY
+    const key = parts[1] + '/' + parts[2];
     const months = ['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     const label = months[parseInt(parts[1])] + ' ' + parts[2];
     if (!monthMap[key]) monthMap[key] = { label, orders: 0, revenue: 0 };
     monthMap[key].orders++;
     monthMap[key].revenue += parseFloat(order.total) || 0;
   });
-
   const sorted = Object.values(monthMap).reverse();
-  const totalRev = sorted.reduce((s, m) => s + m.revenue, 0);
-
-  el.innerHTML = `
-    <div style="background:#f0e6ff;border-radius:10px;padding:12px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center">
+  el.innerHTML = sorted.map(m => `
+    <div class="month-row">
       <div>
-        <div style="font-size:0.72rem;color:#888;font-weight:600">TOTAL REVENUE</div>
-        <div style="font-size:1.4rem;font-weight:900;color:#6B21A8">₹${totalRev.toLocaleString('en-IN')}</div>
+        <div class="month-name" style="font-weight:700; font-size:0.85rem;">📅 ${m.label}</div>
+        <div style="font-size:0.7rem; color:#666; font-weight:600; margin-top:2px;">${m.orders} Completed Invoices</div>
       </div>
-      <div style="text-align:right">
-        <div style="font-size:0.72rem;color:#888;font-weight:600">TOTAL ORDERS</div>
-        <div style="font-size:1.4rem;font-weight:900;color:#6B21A8">${allOrders.length}</div>
-      </div>
-    </div>
-    ${sorted.map(m => `
-      <div class="month-row">
-        <div>
-          <div class="month-name">📅 ${m.label}</div>
-          <div class="month-orders">${m.orders} orders</div>
-        </div>
-        <div class="month-amount">₹${m.revenue.toLocaleString('en-IN')}</div>
-      </div>`).join('')}`;
+      <div class="month-amount">₹${m.revenue.toLocaleString('en-IN')}</div>
+    </div>`).join('');
 }
 
 function renderOffer() {
   const count = allCustomers.length;
-  document.getElementById('offerCount').textContent = count + ' customers ko message jayega';
-  
+  document.getElementById('offerCount').textContent = count + ' verified targeted destination profiles synced';
   const el = document.getElementById('offerCustomerList');
   if (!allCustomers.length) {
-    el.innerHTML = '<div class="empty-state">Abhi koi customer nahi</div>';
+    el.innerHTML = '<div class="empty-state">No contacts matched.</div>';
     return;
   }
   el.innerHTML = allCustomers.map(c => `
     <div class="customer-item">
       <div class="cust-avatar">${c.name.charAt(0).toUpperCase()}</div>
-      <div class="cust-info">
+      <div style="flex:1; margin-left:12px;">
         <div class="cust-name">${c.name}</div>
         <div class="cust-phone">${c.phone}</div>
       </div>
@@ -354,20 +387,12 @@ function sendOfferToAll() {
   
   const msg = `🍜 *Liquido Special Offer*\n\n${offer}${link ? '\n\n🔗 Order karo: ' + link : '\n\n🔗 Order karo: himanshu90226.github.io/liquido/liquido-order.html'}\n\n_Liquido — Fresh • Fast • Flavourful_ 🌟`;
   
-  // Open WhatsApp for first customer, rest copy to clipboard
-  if (allCustomers.length === 1) {
-    window.open('https://wa.me/91' + allCustomers[0].phone.replace(/\D/g,'') + '?text=' + encodeURIComponent(msg), '_blank');
-  } else {
-    // Copy message and show instructions
-    navigator.clipboard.writeText(msg).then(() => {
-      alert(`✅ Message copy ho gaya!\n\nAb ${allCustomers.length} customers ko manually WhatsApp pe paste karo.\n\nYa ek ek customer ke WA button se bhejo.`);
-    });
-    // Open first customer
-    window.open('https://wa.me/91' + allCustomers[0].phone.replace(/\D/g,'') + '?text=' + encodeURIComponent(msg), '_blank');
-  }
+  navigator.clipboard.writeText(msg).then(() => {
+    alert(`✅ Campaign Payload Copied To Clipboard!\n\nAb sequence launch hoga. First customer window pop-up execute kijiye, baaki customers ke liye manually clipboard content text field par right-click paste karein.`);
+  });
+  window.open('https://wa.me/91' + allCustomers[0].phone.replace(/\D/g,'') + '?text=' + encodeURIComponent(msg), '_blank');
 }
 
-// Initial render for empty state
 renderCurrentTab();
 </script>
 </body>
