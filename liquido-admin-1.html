@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:#1a1a1a;transition:background 0.2s}
+body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:#1a1a1a}
 .header{background:#6B21A8;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 4px 12px rgba(107,33,168,0.25)}
 .header h1{font-size:1.3rem;font-weight:900;color:#FFD600;letter-spacing:1px}
 .header p{font-size:0.68rem;color:#e0c8ff;margin-top:2px;font-weight:500}
@@ -23,55 +23,56 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:#1a1a1a;transitio
 .stat-card.green{border-color:#16a34a}.stat-card.green .stat-val{color:#16a34a}
 .stat-card.orange{border-color:#ea580c}.stat-card.orange .stat-val{color:#ea580c}
 
-/* SYSTEM INTERACTIVE ACTION TARGETS */
-.tab-row{display:flex;gap:6px;margin-bottom:16px;overflow-x:auto;scrollbar-width:none}
+/* SYSTEM INTERACTIVE NAVIGATION TABS */
+.tab-row{display:flex;gap:4px;margin-bottom:16px;overflow-x:auto;scrollbar-width:none}
 .tab-row::-webkit-scrollbar{display:none}
-.dtab{flex:1;background:#f0e6ff;color:#6B21A8;border:none;border-radius:10px;padding:10px;font-family:'Poppins',sans-serif;font-size:0.75rem;font-weight:700;cursor:pointer;white-space:nowrap;transition:all 0.2s}
+.dtab{flex:1;background:#f0e6ff;color:#6B21A8;border:none;border-radius:10px;padding:10px 8px;font-family:'Poppins',sans-serif;font-size:0.7rem;font-weight:700;cursor:pointer;white-space:nowrap;transition:all 0.2s}
 .dtab.active{background:#6B21A8;color:white;box-shadow:0 4px 8px rgba(107,33,168,0.2)}
 
 /* CONTAINERS */
-.orders-card, .customers-card, .month-card, .offer-card{background:white;border-radius:16px;padding:16px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.orders-card, .customers-card, .month-card, .offer-card, .control-card{background:white;border-radius:16px;padding:16px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
 .section-title{font-size:0.95rem;font-weight:800;color:#1a1a1a;margin-bottom:14px;border-left:4px solid #6B21A8;padding-left:8px}
 
-/* LIVE PIPELINE ITEM ROW FACTORY */
-.order-item{background:#f9f6ff;border-radius:12px;padding:14px;margin-bottom:12px;border-left:5px solid #6B21A8;position:relative}
+/* INVENTORY ITEM CONTROL LISTS */
+.inventory-row{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:#f9f6ff;border-radius:12px;margin-bottom:8px;border:1px solid #e0d0ff}
+.inventory-name{font-size:0.82rem;font-weight:700;color:#1a1a1a}
+.stock-toggle-btn{padding:6px 12px;border:none;border-radius:8px;font-family:'Poppins';font-size:0.7rem;font-weight:800;cursor:pointer;transition:all 0.15s}
+.stock-toggle-btn.in-stock{background:#dcfce7;color:#16a34a;border:1px solid #16a34a}
+.stock-toggle-btn.sold-out{background:#fef2f2;color:#dc2626;border:1px solid #dc2626}
+
+/* MANUAL OUTLET OVERRIDE CONSOLE STYLE */
+.override-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
+.override-btn{padding:12px 8px;border-radius:10px;font-family:'Poppins';font-weight:700;font-size:0.75rem;cursor:pointer;text-align:center;border:2px solid #e0d0ff;background:#f9f6ff;color:#6B21A8;transition:all 0.2s}
+.override-btn.active-Open{background:#10b981;color:white;border-color:#10b981;box-shadow:0 4px 10px rgba(16,185,129,0.3)}
+.override-btn.active-Closed{background:#ef4444;color:white;border-color:#ef4444;box-shadow:0 4px 10px rgba(239,68,68,0.3)}
+.override-btn.active-Auto{background:#6B21A8;color:white;border-color:#6B21A8;box-shadow:0 4px 10px rgba(107,33,168,0.3)}
+
+/* OPERATIONAL QUEUE LIST ENGINE */
+.order-item{background:#f9f6ff;border-radius:12px;padding:14px;margin-bottom:12px;border-left:5px solid #6B21A8}
 .order-item.status-Preparing{border-left-color:#3b82f6;background:#f0f6ff}
 .order-item.status-Dispatch{border-left-color:#f59e0b;background:#fffbeb}
 .order-item.status-Delivered{border-left-color:#10b981;background:#f0fdf4;opacity:0.85}
 .order-item.status-Cancelled{border-left-color:#ef4444;background:#fef2f2;opacity:0.6}
-
 .order-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
 .order-name{font-size:0.88rem;font-weight:700;color:#1a1a1a}
 .order-amount{font-size:0.95rem;font-weight:900;color:#6B21A8}
 .order-items{font-size:0.78rem;color:#444;margin-bottom:8px;line-height:1.5;background:white;padding:8px;border-radius:8px;border:1px dashed #e0d0ff}
 .order-meta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
 .order-tag{font-size:0.65rem;background:#e0d0ff;color:#6B21A8;padding:3px 8px;border-radius:20px;font-weight:600}
-.order-tag.green{background:#dcfce7;color:#16a34a}
-.order-tag.orange{background:#fff7ed;color:#ea580c}
-.order-tag.blue{background:#dbeafe;color:#1d4ed8}
-
-/* INTERACTIVE DROPDOWN SYSTEM CONTROLS */
 .status-select-console{padding:6px 10px;border-radius:8px;font-family:'Poppins',sans-serif;font-size:0.72rem;font-weight:700;outline:none;background:white;border:2px solid #6B21A8;cursor:pointer;color:#6B21A8;width:100%;margin-top:6px}
-
-/* GENERIC ACTION LAUNCH LINKS BUTTONS */
 .action-grid-flex{display:flex;gap:6px;margin-top:8px}
 .action-btn-node{flex:1;padding:8px;border-radius:8px;border:none;font-family:'Poppins',sans-serif;font-size:0.7rem;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:4px}
 .action-btn-node.wa-node{background:#25D366;color:white}
 .action-btn-node.map-node{background:#3b82f6;color:white}
 
-/* BROADCAST CONSOLES */
 .offer-card{background:linear-gradient(135deg,#6B21A8,#9333ea);color:white}
 .offer-inp{width:100%;padding:10px 12px;border:none;border-radius:10px;font-family:'Poppins',sans-serif;font-size:0.84rem;outline:none;margin-bottom:8px}
-.send-btn{width:100%;background:#FFD600;color:#6621A8;border:none;border-radius:10px;padding:12px;font-family:'Poppins',sans-serif;font-size:0.88rem;font-weight:800;cursor:pointer;box-shadow:0 4px 10px rgba(255,214,0,0.3)}
-.offer-count{font-size:0.72rem;opacity:0.9;margin-top:8px;text-align:center;font-weight:600}
-
+.send-btn{width:100%;background:#FFD600;color:#6B21A8;border:none;border-radius:10px;padding:12px;font-family:'Poppins',sans-serif;font-size:0.88rem;font-weight:800;cursor:pointer}
 .search-inp{width:100%;padding:10px 14px;border:2px solid #e0d0ff;border-radius:10px;font-family:'Poppins',sans-serif;font-size:0.85rem;outline:none;margin-bottom:12px}
 .customer-item{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid #f5f5f5}
 .cust-avatar{width:36px;height:36px;border-radius:50%;background:#6B21A8;color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem}
-
 .month-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f5f5f5}
 .month-amount{font-size:0.9rem;font-weight:800;color:#6B21A8}
-
 .loading{text-align:center;padding:30px;color:#aaa;font-size:0.85rem}
 .spinner{font-size:1.5rem;animation:spin 1s linear infinite;display:block;margin-bottom:8px}
 @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
@@ -83,11 +84,10 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:#1a1a1a;transitio
 <div class="header">
   <div>
     <h1>🍜 Liquido Command Center</h1>
-    <p>Real-Time Operations Management Console</p>
+    <p>Admin Workspace Panel</p>
   </div>
   <div class="hright">
-    <div style="font-size:0.72rem;color:#e0c8ff;font-weight:600" id="lastUpdate">Syncing Engine...</div>
-    <div style="font-size:0.6rem;color:#c4b5fd;margin-top:2px;font-weight:600;letter-spacing:0.5px">Real-Time Sync Active</div>
+    <div style="font-size:0.72rem;color:#e0c8ff;font-weight:600" id="lastUpdate">Syncing Row Matrices...</div>
   </div>
 </div>
 
@@ -100,90 +100,104 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:#1a1a1a;transitio
   </div>
 
   <div class="tab-row">
-    <button class="dtab active" onclick="showTab('orders')">📦 Active Orders</button>
-    <button class="dtab" onclick="showTab('customers')">👥 Customer Base</button>
-    <button class="dtab" onclick="showTab('monthly')">📊 Analytics Reports</button>
-    <button class="dtab" onclick="showTab('offer')">📢 Broadcast Broadcast</button>
+    <button class="dtab active" onclick="showTab('orders')">📦 Queue</button>
+    <button class="dtab" onclick="showTab('control')">🎛️ Shop Control</button>
+    <button class="dtab" onclick="showTab('inventory')">🍳 Manage Inventory</button>
+    <button class="dtab" onclick="showTab('customers')">👥 Customers</button>
+    <button class="dtab" onclick="showTab('monthly')">📊 Analytics</button>
+    <button class="dtab" onclick="showTab('offer')">📢 Broadcast</button>
   </div>
 
   <div id="tab-orders">
     <div class="orders-card">
-      <div class="section-title">🕐 Real-Time Operational Pipeline Queue</div>
-      <div id="ordersList"><div class="loading"><span class="spinner">⏳</span>Syncing row pipelines...</div></div>
+      <div class="section-title">Incoming Food Invoices Order Streams</div>
+      <div id="ordersList"><div class="loading"><span class="spinner">⏳</span>Syncing live updates...</div></div>
+    </div>
+  </div>
+
+  <div id="tab-control" style="display:none">
+    <div class="control-card">
+      <div class="section-title">Manual Timing Override Dashboard</div>
+      <div style="font-size:0.75rem; color:#666; line-height:1.4; margin-bottom:12px;">
+        Yahan se aap system timings ko force override kar sakte hain. <b>Auto</b> par website shaam 4 se raat 11 baje hi open dikhayegi.
+      </div>
+      <div class="override-grid">
+        <button class="override-btn" id="ovBtn-Auto" onclick="triggerShopStatusOverride('Auto')">⚙️ Auto (Timer Based)</button>
+        <button class="override-btn" id="ovBtn-Manual_Open" onclick="triggerShopStatusOverride('Manual_Open')">🟢 Force OPEN Now</button>
+        <button class="override-btn" id="ovBtn-Manual_Closed" onclick="triggerShopStatusOverride('Manual_Closed')">🔴 Force CLOSED Now</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-inventory" style="display:none">
+    <div class="control-card">
+      <div class="section-title">Real-time Stock Stock-Out Management</div>
+      <div style="font-size:0.75rem; color:#666; margin-bottom:12px;">Kisi bhi item ko instant website se stock out karne ke liye switch karein.</div>
+      <div id="inventoryItemsManagerList"></div>
     </div>
   </div>
 
   <div id="tab-customers" style="display:none">
     <div class="customers-card">
-      <div class="section-title">👥 Customer Lifetime Registry Directory</div>
-      <input class="search-inp" placeholder="🔍 Enter name or phone to filter record matrices..." oninput="filterCustomers(this.value)" id="custSearch">
-      <div id="customersList"><div class="loading"><span class="spinner">⏳</span>Parsing directories...</div></div>
+      <div class="section-title">Customer Lifetime Logs Registry</div>
+      <input class="search-inp" placeholder="🔍 Enter customer phone or name to filter..." oninput="filterCustomers(this.value)" id="custSearch">
+      <div id="customersList"></div>
     </div>
   </div>
 
   <div id="tab-monthly" style="display:none">
     <div class="month-card">
-      <div class="section-title">📊 Gross Accounting Matrix Cycles</div>
-      <div id="monthlyReport"><div class="loading"><span class="spinner">⏳</span>Compiling aggregations...</div></div>
+      <div class="section-title">Gross Accounting Invoice Summaries</div>
+      <div id="monthlyReport"></div>
     </div>
   </div>
 
   <div id="tab-offer" style="display:none">
     <div class="offer-card">
-      <div class="offer-title">📢 Automated WhatsApp Push Broadcast Engine</div>
-      <input class="offer-inp" id="offerText" placeholder="Enter promotion statement detail here...">
-      <input class="offer-inp" id="offerLink" placeholder="Alternative URL handle (Optional)">
-      <button class="send-btn" onclick="sendOfferToAll()">🚀 Launch Blast Sequence Sequence</button>
-      <div class="offer-count" id="offerCount">Analyzing base matrices...</div>
-    </div>
-    <div class="customers-card">
-      <div class="section-title">📋 Direct Target Execution Queue</div>
-      <div id="offerCustomerList"><div class="loading">Parsing targeted vectors...</div></div>
+      <div class="offer-title">Automated WhatsApp Broadcast Trigger Channel</div>
+      <input class="offer-inp" id="offerText" placeholder="Offer details message...">
+      <input class="offer-inp" id="offerLink" placeholder="Tracking Redirect URL link...">
+      <button class="send-btn" onclick="sendOfferToAll()">🚀 Launch Blast Target Campaign</button>
+      <div class="offer-count" id="offerCount">Analyzing subscriber sets...</div>
     </div>
   </div>
 </div>
 
 <script>
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxe4hQF2NpzkQuFIqL-m9TK1mmAqf-0rRADTJWRMw6ztshrkY5obZHGc33DOV-CV87e/exec';
-
 let allOrders = [];
 let allCustomers = [];
 let currentTab = 'orders';
-let absoluteOrderCountCached = 0;
+let soldOutItemsBackendCache = [];
 
-// Dynamic Native Notification Audio Vector Generation Module
-const alertSoundContext = new (window.AudioContext || window.webkitAudioContext)();
-function playSystemAlertPingNotification() {
-  try {
-    const osc = alertSoundContext.createOscillator();
-    const gain = alertSoundContext.createGain();
-    osc.connect(gain);
-    gain.connect(alertSoundContext.destination);
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(587.33, alertSoundContext.currentTime); // D5 high tone anchor note
-    gain.gain.setValueAtTime(0.15, alertSoundContext.currentTime);
-    osc.start();
-    osc.stop(alertSoundContext.currentTime + 0.12);
-  } catch(e){}
-}
+// Base array structure matched directly from your main code database list parameters
+const MASTER_FOOD_INDEX = [
+  "Veg Steam Momos","Deep Fried Momos","Pan Fried Momos","Fire Tossed Momos","Kurkure Veg Momos","Schezwan Momos","Peri Peri Momos",
+  "Grilled Sandwich","Grilled Cheese Sandwich","Cheese Corn Sandwich","Paneer Sandwich","Paneer Cheese Sandwich","Cheese Sandwich",
+  "Masala Maggi","Vegetable Maggi","Vegetable Cheese Maggi","Butter Maggi","Butter Cheese Maggi","Schezwan Masala Maggi","Schezwan Cheese Maggi","Peri Peri Cheese Maggi",
+  "Classic Veggie Delight Wrap","Tandoori Paneer Power Wrap","Tofu Wrap (Gym Special)",
+  "Classic Cold Coffee","Java Chip Cold Coffee","Double Chocolate CC","Oreo Cold Coffee",
+  "Oreo Shake","Mango Shake","Strawberry Shake","Blueberry Shake","Bubblegum Shake","Kitkat Shake","Kitkat Oreo Shake",
+  "Aloo Tikki Burger","Veg Cheesy Burger","Veg Paneer Burger",
+  "Plain Salted Fries","Peri Peri Masala Fries","Crispy Garlic Butter Fries",
+  "Water Bottle","Soft Drinks"
+];
 
 loadData();
-setInterval(loadData, 20000); // Poll sheet rows database record frames systematically every 20 seconds
+setInterval(loadData, 15000); // Dynamic dynamic automatic poller loop execution sync points
 
 async function loadData() {
   try {
     const res = await fetch(SHEET_URL + '?action=get');
     const data = await res.json();
     allOrders = data.orders || [];
+    soldOutItemsBackendCache = data.soldOutItems || [];
     
-    if(allOrders.length > absoluteOrderCountCached && absoluteOrderCountCached !== 0) {
-      playSystemAlertPingNotification();
-    }
-    absoluteOrderCountCached = allOrders.length;
+    // Process override toggle highlights buttons styles contextually
+    highlightActiveOverrideButtons(data.shopOverrideStatus || 'Auto');
     processData();
     document.getElementById('lastUpdate').textContent = 'Sync: ' + new Date().toLocaleTimeString('en-IN');
   } catch(e) {
-    document.getElementById('lastUpdate').textContent = 'Connection Retry Active';
+    document.getElementById('lastUpdate').textContent = 'Retry Active';
   }
 }
 
@@ -192,7 +206,7 @@ function processData() {
   allOrders.forEach(order => {
     const phone = order.phone;
     if (!custMap[phone]) {
-      custMap[phone] = { name: order.name, phone, orders: 0, total: 0, lastOrder: order.date };
+      custMap[phone] = { name: order.name, phone, orders: 0, total: 0 };
     }
     custMap[phone].orders++;
     custMap[phone].total += parseFloat(order.total) || 0;
@@ -213,187 +227,158 @@ function processData() {
 
 function showTab(tab) {
   currentTab = tab;
-  ['orders','customers','monthly','offer'].forEach(t => {
+  ['orders','control','inventory','customers','monthly','offer'].forEach(t => {
     document.getElementById('tab-' + t).style.display = t === tab ? 'block' : 'none';
   });
   document.querySelectorAll('.dtab').forEach((btn, i) => {
-    btn.classList.toggle('active', ['orders','customers','monthly','offer'][i] === tab);
+    btn.classList.toggle('active', ['orders','control','inventory','customers','monthly','offer'][i] === tab);
   });
   renderCurrentTab();
 }
 
-async function modifyOrderStateRemote(orderId, selectElement) {
-  const targetNewStateValue = selectElement.value;
-  selectElement.style.opacity = "0.5";
-  try {
-    const targetQueryUrl = `${SHEET_URL}?action=updateStatus&orderId=${encodeURIComponent(orderId)}&status=${encodeURIComponent(targetNewStateValue)}`;
-    const resultPromiseFetch = await fetch(targetQueryUrl);
-    const parsedResolutionJson = await resultPromiseFetch.json();
-    if(parsedResolutionJson.status === 'success') {
-      // Dynamic internal array status tracking updates updates
-      const targetedMemoryFrame = allOrders.find(o => o.orderId.toString() === orderId.toString());
-      if(targetedMemoryFrame) targetedMemoryFrame.status = targetNewStateValue;
-      processData();
-    } else {
-      alert("Database Row State Synchronization Failed.");
+function renderCurrentTab() {
+  if (currentTab === 'orders') renderOrders();
+  else if (currentTab === 'inventory') renderInventoryManagerConsole();
+  else if (currentTab === 'customers') renderCustomers();
+  else if (currentTab === 'monthly') renderMonthly();
+  else if (currentTab === 'offer') renderOffer();
+}
+
+function highlightActiveOverrideButtons(activeStatus) {
+  ['Auto', 'Manual_Open', 'Manual_Closed'].forEach(st => {
+    const btn = document.getElementById('ovBtn-' + st);
+    if(btn) {
+      btn.className = `override-btn ${st === activeStatus ? 'active-' + (st==='Auto'?'Auto':st.split('_')[1]) : ''}`;
     }
-  } catch(e) {
-    alert("Connection timeout while modification.");
-  }
-  selectElement.style.opacity = "1";
+  });
 }
 
-function generateWhatsAppStatusNotificationMessage(name, orderId, status) {
-  let blueprintString = "";
-  if(status === 'Preparing') {
-    blueprintString = `Hi ${name}! 🥟 Aapka Liquido Order *#${orderId}* kitchen mein prepare ho raha hai! Hum jald hi fresh aur hot dispatch karenge. Stay ready! 🔥`;
-  } else if(status === 'Dispatch') {
-    blueprintString = `Hi ${name}! 🛵 Aapka Liquido Order *#${orderId}* kitchen se nikal chuka hai! Hamara delivery boy jald hi aapke pata par call karega. 😊`;
-  } else if(status === 'Delivered') {
-    blueprintString = `Hi ${name}! 🎉 Aapka Liquido Order *#${orderId}* successfully deliver ho gaya hai! Khana kaisa laga? Google par review dekar 10% discount paayein agle order par: https://g.page/r/CQk7fsXPf0tTEBE/review 🙏`;
-  } else {
-    blueprintString = `Hi ${name}! Pata karne ke liye dhanyawaad. Liquido Order *#${orderId}* current status sequence is: *${status}*. 🌟`;
-  }
-  return blueprintString;
+async function triggerShopStatusOverride(targetStateStr) {
+  try {
+    highlightActiveOverrideButtons(targetStateStr);
+    await fetch(`${SHEET_URL}?action=setShopStatus&status=${targetStateStr}`);
+    showToast(`✅ Shop timing set to: ${targetStateStr}`);
+  } catch(e) { alert("Failed to alter status."); }
 }
 
-function launchWhatsAppStateTrigger(phone, name, orderId, status) {
-  const finalCompiledString = generateWhatsAppStatusNotificationMessage(name, orderId, status);
-  window.open(`https://wa.me/91${phone.replace(/\D/g,'')}?text=${encodeURIComponent(finalCompiledString)}`, '_blank');
+function renderInventoryManagerConsole() {
+  const container = document.getElementById('inventoryItemsManagerList');
+  if(!container) return;
+  
+  container.innerHTML = MASTER_FOOD_INDEX.map(item => {
+    const isSoldOut = soldOutItemsBackendCache.includes(item);
+    const btnText = isSoldOut ? "🔴 SOLD OUT" : "🟢 IN STOCK";
+    const btnClass = isSoldOut ? "sold-out" : "in-stock";
+    return `
+      <div class="inventory-row">
+        <span class="inventory-name">${item}</span>
+        <button class="stock-toggle-btn ${btnClass}" onclick="toggleInventoryStockRemote('${item}', this)">${btnText}</button>
+      </div>
+    `;
+  }).join('');
+}
+
+async function toggleInventoryStockRemote(itemName, btnElement) {
+  btnElement.disabled = true;
+  btnElement.style.opacity = "0.4";
+  try {
+    const res = await fetch(`${SHEET_URL}?action=toggleStock&item=${encodeURIComponent(itemName)}`);
+    const data = await res.json();
+    if(data.status === 'success') {
+      soldOutItemsBackendCache = data.soldOut;
+      const isSoldOut = soldOutItemsBackendCache.includes(itemName);
+      btnElement.textContent = isSoldOut ? "🔴 SOLD OUT" : "🟢 IN STOCK";
+      btnElement.className = `stock-toggle-btn ${isSoldOut ? 'sold-out' : 'in-stock'}`;
+    }
+  } catch(e) { alert("Network operation error."); }
+  btnElement.disabled = false;
+  btnElement.style.opacity = "1";
 }
 
 function renderOrders() {
   const el = document.getElementById('ordersList');
-  if (!allOrders.length) {
-    el.innerHTML = '<div class="empty-state">📦 Operational Queue is Clear.<br><small>Incoming row additions from data sheet stream will reflect here automatically.</small></div>';
-    return;
-  }
-  const sorted = [...allOrders].reverse().slice(0, 60);
+  if (!allOrders.length) { el.innerHTML = '<div class="empty-state">Queue is currently clear.</div>'; return; }
+  const sorted = [...allOrders].reverse().slice(0, 40);
   el.innerHTML = sorted.map(order => {
-    const currentActiveState = order.status || 'Placed';
+    const state = order.status || 'Placed';
     return `
-    <div class="order-item status-${currentActiveState}">
+    <div class="order-item status-${state}">
       <div class="order-top">
-        <div>
-          <div class="order-name">👤 ${order.name}</div>
-          <div style="font-size:0.75rem;color:#555; font-weight:600; margin-top:2px;">🆔 ID: #${order.orderId} • 📞 ${order.phone}</div>
-        </div>
+        <div><div class="order-name">👤 ${order.name}</div><div style="font-size:0.72rem;color:#555;font-weight:600">🆔 ID: #${order.orderId} • 📞 ${order.phone}</div></div>
         <div class="order-amount">₹${order.total}</div>
       </div>
       <div class="order-items">${order.items}</div>
       <div class="order-meta">
-        <span class="order-tag">📅 ${order.date}</span>
-        <span class="order-tag">🕐 ${order.time}</span>
-        <span class="order-tag ${order.payment === 'UPI / Online App' || order.payment === 'UPI / Online' ? 'green' : 'orange'}">
-          ${order.payment === 'UPI / Online App' || order.payment === 'UPI / Online' ? '💳 UPI Pay' : '💵 COD Cash'}
-        </span>
+        <span class="order-tag">📅 ${order.date}</span><span class="order-tag">静 ${order.time}</span>
+        <span class="order-tag">${order.payment}</span>
+        ${order.address ? `<span class="order-tag">📍 Pata: ${order.address}</span>` : ''}
       </div>
-      
       <select class="status-select-console" onchange="modifyOrderStateRemote('${order.orderId}', this)">
-        <option value="Placed" ${currentActiveState === 'Placed' ? 'selected' : ''}>📥 Order Placed (New)</option>
-        <option value="Preparing" ${currentActiveState === 'Preparing' ? 'selected' : ''}>👨‍🍳 Kitchen Preparing</option>
-        <option value="Dispatch" ${currentActiveState === 'Dispatch' ? 'selected' : ''}>🛵 Out for Delivery (Dispatch)</option>
-        <option value="Delivered" ${currentActiveState === 'Delivered' ? 'selected' : ''}>✅ Delivered successfully</option>
-        <option value="Cancelled" ${currentActiveState === 'Cancelled' ? 'selected' : ''}>❌ Cancelled Order</option>
+        <option value="Placed" ${state === 'Placed' ? 'selected' : ''}>📥 Order Placed (New)</option>
+        <option value="Preparing" ${state === 'Preparing' ? 'selected' : ''}>👨‍🍳 Kitchen Preparing</option>
+        <option value="Dispatch" ${state === 'Dispatch' ? 'selected' : ''}>🛵 Out for Delivery (Dispatch)</option>
+        <option value="Delivered" ${state === 'Delivered' ? 'selected' : ''}>✅ Delivered successfully</option>
+        <option value="Cancelled" ${state === 'Cancelled' ? 'selected' : ''}>❌ Cancelled Order</option>
       </select>
-      
       <div class="action-grid-flex">
-        <button class="action-btn-node wa-node" onclick="launchWhatsAppStateTrigger('${order.phone}','${order.name}','${order.orderId}','${currentActiveState}')">💬 Notify Status</button>
-        ${order.location ? `<a class="action-btn-node map-node" href="${order.location}" target="_blank">📍 View Tracking Route</a>` : ''}
+        <button class="action-btn-node wa-node" onclick="launchWhatsAppStateTrigger('${order.phone}','${order.name}','${order.orderId}','${state}')">💬 Notify Status</button>
+        ${order.location ? `<a class="action-btn-node map-node" href="${order.location}" target="_blank">📍 Route Map</a>` : ''}
       </div>
     </div>`;
   }).join('');
+}
+
+async function modifyOrderStateRemote(orderId, selectElement) {
+  try {
+    await fetch(`${SHEET_URL}?action=updateStatus&orderId=${orderId}&status=${selectElement.value}`);
+    loadData();
+  } catch(e){ alert("Status update timed out."); }
+}
+
+function launchWhatsAppStateTrigger(phone, name, orderId, status) {
+  let msg = `Hi ${name}! Aapka Liquido Order *#${orderId}* update ho gaya hai: *${status}*. Thank you! 🙏`;
+  window.open(`https://wa.me/91${phone.replace(/\D/g,'')}?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
 function renderCustomers(filter = '') {
   const el = document.getElementById('customersList');
   let list = allCustomers;
   if (filter) list = list.filter(c => c.name.toLowerCase().includes(filter.toLowerCase()) || c.phone.includes(filter));
-  if (!list.length) {
-    el.innerHTML = '<div class="empty-state">👥 Reference Index Empty.</div>';
-    return;
-  }
   el.innerHTML = list.map(c => `
     <div class="customer-item">
       <div class="cust-avatar">${c.name.charAt(0).toUpperCase()}</div>
       <div style="flex:1; margin-left:12px;">
-        <div class="cust-name">${c.name}</div>
-        <div class="cust-phone">📞 Contact: ${c.phone}</div>
-        <div class="cust-orders" style="font-size:0.72rem; color:#6B21A8; font-weight:700; margin-top:2px;">📊 Base metrics: ${c.orders} Orders Total • Value Spend: ₹${c.total.toLocaleString('en-IN')}</div>
+        <div class="cust-name">${c.name}</div><div class="cust-phone">📞 ${c.phone}</div>
+        <div style="font-size:0.7rem; color:#6B21A8; font-weight:700;">📦 ${c.orders} orders • Total Spend: ₹${c.total}</div>
       </div>
-      <button class="wa-btn" style="background:#25D366; color:white; padding:6px 12px; border:none; border-radius:8px; font-family:'Poppins'; font-size:0.7rem; font-weight:700; cursor:pointer;" onclick="waMsg('${c.phone}','${c.name}')">💬 Ping</button>
     </div>`).join('');
 }
-
-function filterCustomers(val) { renderCustomers(val); }
 
 function renderMonthly() {
   const el = document.getElementById('monthlyReport');
-  if (!allOrders.length) {
-    el.innerHTML = '<div class="empty-state">📊 Dynamic Accounting Pipeline Empty.</div>';
-    return;
-  }
   const monthMap = {};
   allOrders.forEach(order => {
     if (!order.date) return;
-    const parts = order.date.split('/');
-    if (parts.length < 3) return;
+    const parts = order.date.split('/'); if (parts.length < 3) return;
     const key = parts[1] + '/' + parts[2];
-    const months = ['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    const label = months[parseInt(parts[1])] + ' ' + parts[2];
-    if (!monthMap[key]) monthMap[key] = { label, orders: 0, revenue: 0 };
-    monthMap[key].orders++;
-    monthMap[key].revenue += parseFloat(order.total) || 0;
+    if (!monthMap[key]) monthMap[key] = { label: parts[1]+'/'+parts[2], orders: 0, revenue: 0 };
+    monthMap[key].orders++; monthMap[key].revenue += parseFloat(order.total) || 0;
   });
-  const sorted = Object.values(monthMap).reverse();
-  el.innerHTML = sorted.map(m => `
+  el.innerHTML = Object.values(monthMap).reverse().map(m => `
     <div class="month-row">
-      <div>
-        <div class="month-name" style="font-weight:700; font-size:0.85rem;">📅 ${m.label}</div>
-        <div style="font-size:0.7rem; color:#666; font-weight:600; margin-top:2px;">${m.orders} Completed Invoices</div>
-      </div>
-      <div class="month-amount">₹${m.revenue.toLocaleString('en-IN')}</div>
+      <div><div class="month-name">📅 Month Matrix: ${m.label}</div><div style="font-size:0.7rem; color:#666;">${m.orders} invoices</div></div>
+      <div class="month-amount">₹${m.revenue}</div>
     </div>`).join('');
 }
 
-function renderOffer() {
-  const count = allCustomers.length;
-  document.getElementById('offerCount').textContent = count + ' verified targeted destination profiles synced';
-  const el = document.getElementById('offerCustomerList');
-  if (!allCustomers.length) {
-    el.innerHTML = '<div class="empty-state">No contacts matched.</div>';
-    return;
-  }
-  el.innerHTML = allCustomers.map(c => `
-    <div class="customer-item">
-      <div class="cust-avatar">${c.name.charAt(0).toUpperCase()}</div>
-      <div style="flex:1; margin-left:12px;">
-        <div class="cust-name">${c.name}</div>
-        <div class="cust-phone">${c.phone}</div>
-      </div>
-    </div>`).join('');
-}
-
-function waMsg(phone, name) {
-  const msg = `Hi ${name}! 🍜 Liquido ki taraf se special offer hai aapke liye! Hamara menu dekhein aur order karein. Hum jaldi deliver karenge! 😊`;
-  window.open('https://wa.me/91' + phone.replace(/\D/g,'') + '?text=' + encodeURIComponent(msg), '_blank');
-}
-
+function renderOffer() { document.getElementById('offerCount').textContent = allCustomers.length + ' targets loaded.'; }
 function sendOfferToAll() {
   const offer = document.getElementById('offerText').value.trim();
-  const link = document.getElementById('offerLink').value.trim();
-  if (!offer) { alert('Pehle offer message likho!'); return; }
-  if (!allCustomers.length) { alert('Abhi koi customer nahi hai!'); return; }
-  
-  const msg = `🍜 *Liquido Special Offer*\n\n${offer}${link ? '\n\n🔗 Order karo: ' + link : '\n\n🔗 Order karo: himanshu90226.github.io/liquido/liquido-order.html'}\n\n_Liquido — Fresh • Fast • Flavourful_ 🌟`;
-  
-  navigator.clipboard.writeText(msg).then(() => {
-    alert(`✅ Campaign Payload Copied To Clipboard!\n\nAb sequence launch hoga. First customer window pop-up execute kijiye, baaki customers ke liye manually clipboard content text field par right-click paste karein.`);
-  });
-  window.open('https://wa.me/91' + allCustomers[0].phone.replace(/\D/g,'') + '?text=' + encodeURIComponent(msg), '_blank');
+  if (!offer) { alert('Pehle message likho!'); return; }
+  const msg = `🥟 *Liquido Special Offer*\n\n${offer}\n\n🔗 Order Karo: https://himanshu90226.github.io/liquido/liquido-order.html`;
+  navigator.clipboard.writeText(msg).then(() => { alert("Campaign copied to clipboard!"); });
 }
-
-renderCurrentTab();
+function showToast(m){ alert(m); }
 </script>
 </body>
 </html>
