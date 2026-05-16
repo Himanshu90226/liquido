@@ -66,23 +66,35 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:var(--dark)}
 .combo-price{font-size:0.92rem;font-weight:800;color:var(--purple)}
 .combo-add{background:var(--yellow);color:var(--purple);border:none;border-radius:7px;padding:5px 10px;font-family:'Poppins',sans-serif;font-size:0.74rem;font-weight:800;cursor:pointer}
 
-/* MENU */
-.menu-section{padding:0 12px 110px}
-.category{margin-top:22px}
-.cat-title{font-family:'Poppins',sans-serif;font-size:1.1rem;font-weight:800;color:var(--purple);border-left:5px solid var(--yellow);padding-left:11px;margin-bottom:11px;letter-spacing:0.5px}
-.items-grid{display:flex;flex-direction:column;gap:9px}
-.item-card{background:white;border-radius:13px;padding:11px 13px;display:flex;align-items:center;gap:11px;box-shadow:0 2px 8px rgba(0,0,0,0.07)}
-.item-img{width:68px;height:68px;border-radius:10px;object-fit:cover;flex-shrink:0;background:#ede9f5}
-.item-info{flex:1;min-width:0}
-.item-name{font-weight:600;font-size:0.88rem;color:#1a1a1a;line-height:1.3}
-.item-price{color:var(--purple);font-weight:700;font-size:0.85rem;margin-top:3px}
-.item-note{font-size:0.7rem;color:#999;margin-top:2px}
-.best-badge{display:inline-block;background:#fff0f0;color:#dc2626;font-size:0.6rem;font-weight:800;border-radius:5px;padding:2px 6px;margin-left:5px;vertical-align:middle}
-.size-btns{display:flex;gap:5px;margin-top:7px;flex-wrap:wrap}
-.size-btn{background:#f0e6ff;color:var(--purple);border:1.5px solid #d8b4fe;border-radius:8px;padding:4px 10px;font-size:0.71rem;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif}
-.size-btn:hover{background:var(--purple);color:white}
-.add-btn{background:var(--yellow);color:var(--purple);border:none;border-radius:8px;padding:7px 13px;font-weight:700;font-size:0.8rem;cursor:pointer;font-family:'Poppins',sans-serif;white-space:nowrap;flex-shrink:0}
-.add-btn:hover{background:var(--purple);color:white}
+/* MENU - SWIGGY STYLE */
+.menu-section{padding:0 10px 130px}
+.category{margin-top:20px}
+.cat-title{font-size:1rem;font-weight:800;color:var(--purple);border-left:5px solid var(--yellow);padding-left:10px;margin-bottom:12px}
+.items-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.item-card{background:white;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.09);display:flex;flex-direction:column;cursor:pointer;transition:transform 0.15s}
+.item-card:active{transform:scale(0.97)}
+.item-img-wrap{position:relative;width:100%;height:130px}
+.item-img{width:100%;height:100%;object-fit:cover;display:block;background:#f0e6ff}
+.best-badge{position:absolute;top:0;left:0;background:#3d9e56;color:white;font-size:0.58rem;font-weight:800;padding:4px 8px;border-radius:0 0 10px 0}
+.item-body{padding:8px 10px 10px;display:flex;flex-direction:column;flex:1}
+.veg-row{display:flex;align-items:center;gap:4px;margin-bottom:3px}
+.veg-icon{width:13px;height:13px;border:2px solid #16a34a;border-radius:2px;display:inline-flex;align-items:center;justify-content:center;background:white;flex-shrink:0}
+.veg-dot{width:6px;height:6px;border-radius:50%;background:#16a34a;display:block}
+.item-name{font-weight:700;font-size:0.8rem;color:#1a1a1a;line-height:1.3;margin-bottom:5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.price-row{display:flex;align-items:center;gap:5px;margin-bottom:8px}
+.item-price{color:#1a1a1a;font-weight:800;font-size:0.88rem}
+.item-mrp{color:#aaa;font-size:0.7rem;text-decoration:line-through}
+.item-note{font-size:0.68rem;color:#888;margin-bottom:8px}
+.add-btn{background:white;color:#3d9e56;border:1.5px solid #3d9e56;border-radius:8px;padding:6px 0;font-weight:800;font-size:0.8rem;cursor:pointer;font-family:'Poppins',sans-serif;width:100%;text-align:center}
+.add-btn:active{background:#3d9e56;color:white}
+.size-card{background:white;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.09);grid-column:span 2;cursor:pointer}
+.size-card-inner{display:flex}
+.size-card-img{width:110px;height:100px;object-fit:cover;flex-shrink:0}
+.size-card-body{padding:10px 12px;flex:1}
+.size-card-name{font-weight:700;font-size:0.85rem;color:#1a1a1a;margin-bottom:6px}
+.size-btns{display:flex;gap:6px;flex-wrap:wrap}
+.size-btn{background:#f0e6ff;color:var(--purple);border:1.5px solid #d8b4fe;border-radius:8px;padding:5px 10px;font-size:0.7rem;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif}
+.size-btn:active{background:var(--purple);color:white}
 
 /* REVIEWS CSS */
 .rev-section{padding:18px 0 10px}
@@ -123,7 +135,7 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:var(--dark)}
 .btn-wa{flex:1;background:#25D366;color:white;border:none;border-radius:10px;padding:11px;font-family:'Poppins',sans-serif;font-size:0.8rem;font-weight:800;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:5px}
 
 /* CART */
-.cart-btn{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--purple);color:white;border:none;border-radius:50px;padding:13px 26px;font-size:0.95rem;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;box-shadow:0 6px 24px rgba(107,33,168,0.5);display:flex;align-items:center;gap:10px;z-index:200;min-width:230px;justify-content:space-between}
+.cart-btn{position:fixed;bottom:68px;left:50%;transform:translateX(-50%);background:var(--purple);color:white;border:none;border-radius:50px;padding:13px 26px;font-size:0.95rem;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;box-shadow:0 6px 24px rgba(107,33,168,0.5);display:flex;align-items:center;gap:10px;z-index:200;min-width:230px;justify-content:space-between}
 .cart-badge{background:var(--yellow);color:var(--purple);border-radius:50%;width:27px;height:27px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.82rem}
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:300}
 .overlay.show{display:flex;align-items:flex-end}
@@ -190,6 +202,68 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:var(--dark)}
 /* TOAST */
 .toast{position:fixed;bottom:88px;left:50%;transform:translateX(-50%);background:#1a1a1a;color:white;padding:9px 20px;border-radius:50px;font-size:0.8rem;font-weight:600;z-index:500;opacity:0;transition:opacity 0.3s;white-space:nowrap;pointer-events:none}
 .toast.show{opacity:1}
+
+/* HERO SLIDER */
+.hero-slider{position:relative;overflow:hidden;height:165px;background:#f0e6ff}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 0.6s}
+.hero-slide.active{opacity:1}
+.hero-slide img{width:100%;height:100%;object-fit:cover}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(107,33,168,0.78),transparent)}
+.hero-text{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:white}
+.hero-text h2{font-size:1.05rem;font-weight:900;line-height:1.3}
+.hero-text p{font-size:0.7rem;opacity:0.9;margin-top:3px}
+.hero-btn{display:inline-block;background:var(--yellow);color:var(--purple);border-radius:20px;padding:5px 14px;font-size:0.72rem;font-weight:800;margin-top:8px;cursor:pointer;border:none;font-family:'Poppins',sans-serif}
+.hero-dots{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);display:flex;gap:5px}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.5);cursor:pointer;transition:all 0.3s}
+.hero-dot.active{background:white;width:18px;border-radius:3px}
+
+/* BOTTOM NAV */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #eee;display:flex;z-index:250;box-shadow:0 -4px 16px rgba(0,0,0,0.08)}
+.bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 0 10px;cursor:pointer;position:relative;border:none;background:transparent;font-family:'Poppins',sans-serif}
+.bnav-icon{font-size:1.3rem;line-height:1}
+.bnav-label{font-size:0.6rem;font-weight:600;color:#888;margin-top:3px}
+.bnav-item.active .bnav-label{color:var(--purple)}
+.bnav-badge{position:absolute;top:4px;right:18%;background:#dc2626;color:white;border-radius:50%;width:16px;height:16px;font-size:0.55rem;font-weight:800;display:none;align-items:center;justify-content:center}
+.bnav-badge.show{display:flex}
+
+/* BACK TO TOP */
+.back-top{position:fixed;bottom:78px;right:14px;width:38px;height:38px;background:var(--purple);color:white;border:none;border-radius:50%;font-size:1.2rem;cursor:pointer;box-shadow:0 3px 12px rgba(107,33,168,0.4);z-index:149;display:none;align-items:center;justify-content:center}
+.back-top.show{display:flex}
+
+/* ITEM POPUP */
+.item-popup{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:400;align-items:flex-end}
+.item-popup.show{display:flex}
+.item-popup-box{background:white;width:100%;border-radius:22px 22px 0 0;max-height:85vh;overflow-y:auto;position:relative}
+.popup-img{width:100%;height:200px;object-fit:cover}
+.popup-close{position:absolute;top:12px;right:12px;width:32px;height:32px;background:rgba(0,0,0,0.45);border-radius:50%;border:none;color:white;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:1}
+.popup-body{padding:16px}
+.popup-veg{display:flex;align-items:center;gap:5px;margin-bottom:6px;font-size:0.75rem;color:#16a34a;font-weight:600}
+.popup-name{font-size:1.1rem;font-weight:800;color:#1a1a1a;margin-bottom:4px}
+.popup-price-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.popup-price{font-size:1.1rem;font-weight:800;color:var(--purple)}
+.popup-mrp{font-size:0.85rem;color:#aaa;text-decoration:line-through}
+.popup-save{background:#fff0f0;color:#dc2626;font-size:0.72rem;font-weight:700;padding:2px 8px;border-radius:5px}
+.popup-desc{font-size:0.8rem;color:#666;line-height:1.6;margin-bottom:16px;padding:10px;background:#f9f6ff;border-radius:10px}
+.popup-size-btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.popup-size-btn{background:#f0e6ff;color:var(--purple);border:2px solid #d8b4fe;border-radius:10px;padding:8px 14px;font-family:'Poppins',sans-serif;font-size:0.78rem;font-weight:700;cursor:pointer}
+.popup-size-btn:active{background:var(--purple);color:white}
+.popup-add-btn{width:100%;background:var(--purple);color:white;border:none;border-radius:14px;padding:14px;font-family:'Poppins',sans-serif;font-size:0.95rem;font-weight:700;cursor:pointer}
+
+/* ORDER CONFIRM */
+.confirm-screen{display:none;position:fixed;inset:0;background:white;z-index:600;flex-direction:column;align-items:center;justify-content:center;padding:30px 20px;text-align:center}
+.confirm-screen.show{display:flex}
+.confirm-icon{font-size:4rem;margin-bottom:16px;animation:popIn 0.5s ease}
+@keyframes popIn{0%{transform:scale(0)}70%{transform:scale(1.1)}100%{transform:scale(1)}}
+.confirm-title{font-size:1.4rem;font-weight:900;color:#1a1a1a;margin-bottom:8px}
+.confirm-sub{font-size:0.84rem;color:#666;line-height:1.6;margin-bottom:6px}
+.confirm-id{background:#f0e6ff;color:var(--purple);border-radius:10px;padding:10px 20px;font-weight:800;font-size:0.95rem;margin:12px 0;letter-spacing:1px}
+.confirm-info{font-size:0.78rem;color:#888;line-height:1.7;margin-bottom:16px}
+.confirm-back{width:100%;background:var(--purple);color:white;border:none;border-radius:14px;padding:14px;font-family:'Poppins',sans-serif;font-size:0.95rem;font-weight:700;cursor:pointer}
+
+/* FLOAT BUTTONS */
+.wa-float{position:fixed;bottom:78px;left:14px;background:#25D366;color:white;border:none;border-radius:50px;padding:9px 13px;font-family:'Poppins',sans-serif;font-size:0.72rem;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(37,211,102,0.5);z-index:148;text-decoration:none;display:flex;align-items:center;gap:5px}
+.float-rev{position:fixed;bottom:120px;right:14px;background:var(--purple);color:white;border:none;border-radius:50px;padding:9px 13px;font-family:'Poppins',sans-serif;font-size:0.72rem;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(107,33,168,0.5);z-index:148;text-decoration:none;display:flex;align-items:center;gap:5px}
+
 </style>
 </head>
 <body>
@@ -207,6 +281,31 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:var(--dark)}
 </div>
 
 <!-- ROTATING BANNER -->
+
+<!-- HERO SLIDER -->
+<div class="hero-slider">
+  <div class="hero-slide active">
+    <img src="https://images.unsplash.com/photo-1626804475297-41608ea09aeb?w=600&q=80" alt="Momos">
+    <div class="hero-overlay"></div>
+    <div class="hero-text"><h2>🥟 Fresh Momos<br>Har Style Mein!</h2><p>7 varieties • Half se sirf ₹50</p><button class="hero-btn" onclick="scrollToSec(0)">Order Now →</button></div>
+  </div>
+  <div class="hero-slide">
+    <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=600&q=80" alt="Shake">
+    <div class="hero-overlay"></div>
+    <div class="hero-text"><h2>🥤 Thick Shakes<br>Sirf ₹79 Se!</h2><p>7 flavours • Oreo • Kitkat • Mango</p><button class="hero-btn" onclick="scrollToSec(5)">Order Now →</button></div>
+  </div>
+  <div class="hero-slide">
+    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80" alt="Burger">
+    <div class="hero-overlay"></div>
+    <div class="hero-text"><h2>🍔 Veg Burgers<br>Sirf ₹49 Se!</h2><p>Aloo Tikki • Cheesy • Paneer</p><button class="hero-btn" onclick="scrollToSec(6)">Order Now →</button></div>
+  </div>
+  <div class="hero-dots">
+    <div class="hero-dot active" onclick="goSlide(0)"></div>
+    <div class="hero-dot" onclick="goSlide(1)"></div>
+    <div class="hero-dot" onclick="goSlide(2)"></div>
+  </div>
+</div>
+
 <div class="banner" id="bannerText">🏷️ Tag us on Social Media & Google Review → Get 10% OFF! | Extra Cheese ₹20</div>
 
 <!-- SEARCH -->
@@ -433,20 +532,37 @@ menuData.forEach((cat,ci)=>{
   menuEl.appendChild(sec);
   const grid=document.getElementById('g'+ci);
   cat.items.forEach(item=>{
-    const card=document.createElement('div');
-    card.className='item-card';
-    card.dataset.name=item.name.toLowerCase();
     const isBest=BESTSELLERS.includes(item.name);
-    const badge=isBest?'<span class="best-badge">🔥 Best</span>':'';
-    const img=`<img class="item-img" src="${item.img}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/68x68/f0e6ff/6B21A8?text=🍽️'">`;
+    const mrp=item.price?Math.round(item.price*1.18):0;
+    const veg='<span class="veg-icon"><span class="veg-dot"></span></span>';
     if(item.sizes){
-      card.innerHTML=`${img}<div class="item-info"><div class="item-name">${item.name}${badge}</div><div class="size-btns">${item.sizes.map(s=>`<button class="size-btn" onclick="addItem('${item.name} - ${s.l}',${s.p})">${s.l} ₹${s.p}</button>`).join('')}</div></div>`;
-    } else if(!item.price){
-      card.innerHTML=`${img}<div class="item-info"><div class="item-name">${item.name}${badge}</div><div class="item-note">Price at MRP</div></div><button class="add-btn" onclick="addItem('${item.name}',0)">Add</button>`;
+      const card=document.createElement('div');
+      card.className='size-card';
+      card.dataset.name=item.name.toLowerCase();
+      const bestB=isBest?'<span style="background:#3d9e56;color:white;font-size:0.58rem;font-weight:800;padding:2px 7px;border-radius:5px;margin-right:6px">⭐ Best</span>':'';
+      card.innerHTML=`<div class="size-card-inner">
+        <img class="size-card-img" src="${item.img}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/110x100/f0e6ff/6B21A8?text=🍽️'">
+        <div class="size-card-body">
+          <div style="margin-bottom:5px">${bestB}<span style="font-size:0.72rem;color:#888">${item.name.includes('Momos')?'🥟':'🍽️'} Veg</span></div>
+          <div class="size-card-name">${item.name}</div>
+          <div class="size-btns">${item.sizes.map(s=>`<button class="size-btn" onclick="event.stopPropagation();addItem('${item.name} (${s.l})',${s.p})">${s.l} ₹${s.p}</button>`).join('')}</div>
+        </div>
+      </div>`;
+      card.onclick=()=>openPopup(item.name,item.sizes[0].p,item.img,item.sizes);
+      grid.appendChild(card);
     } else {
-      card.innerHTML=`${img}<div class="item-info"><div class="item-name">${item.name}${badge}</div><div class="item-price">₹${item.price}</div></div><button class="add-btn" onclick="addItem('${item.name}',${item.price})">Add</button>`;
+      const card=document.createElement('div');
+      card.className='item-card';
+      card.dataset.name=item.name.toLowerCase();
+      card.onclick=()=>openPopup(item.name,item.price,item.img,null);
+      const bestB=isBest?'<div class="best-badge">⭐ Best</div>':'';
+      if(!item.price){
+        card.innerHTML=`<div class="item-img-wrap"><img class="item-img" src="${item.img}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/160x130/f0e6ff/6B21A8?text=🍽️'"></div><div class="item-body"><div class="veg-row">${veg}</div><div class="item-name">${item.name}</div><div class="item-note">MRP price</div><button class="add-btn" onclick="event.stopPropagation();addItem('${item.name}',0)">ADD</button></div>`;
+      } else {
+        card.innerHTML=`<div class="item-img-wrap"><img class="item-img" src="${item.img}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/160x130/f0e6ff/6B21A8?text=🍽️'">${bestB}</div><div class="item-body"><div class="veg-row">${veg}</div><div class="item-name">${item.name}</div><div class="price-row"><span class="item-price">₹${item.price}</span><span class="item-mrp">₹${mrp}</span></div><button class="add-btn" onclick="event.stopPropagation();addItem('${item.name}',${item.price})">ADD</button></div>`;
+      }
+      grid.appendChild(card);
     }
-    grid.appendChild(card);
   });
 });
 
@@ -624,8 +740,11 @@ function placeOrder(){
   msg+=`\nPlease confirm my order. Thank you! 🙏`;
 
   window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,'_blank');
-  showToast('✅ Order bhej diya! ID: '+orderId);
-  discount=0;discLabel='';
+  closeCart();
+  document.getElementById('confirmOrderId').textContent='Order ID: '+orderId;
+  document.getElementById('confirmScreen').classList.add('show');
+  cart=[];discount=0;discLabel='';locText='';
+  updateCartBtn();
 }
 
 function showToast(msg){
@@ -647,7 +766,7 @@ function doSearch(q){
   const query=q.trim().toLowerCase();
   document.getElementById('searchClear').style.display=query?'block':'none';
   document.querySelectorAll('.category').forEach(cat=>{
-    const cards=cat.querySelectorAll('.item-card');
+    const cards=cat.querySelectorAll('.item-card,.size-card');
     let any=false;
     cards.forEach(card=>{
       const match=!query||(card.dataset.name&&card.dataset.name.includes(query));
@@ -678,11 +797,116 @@ setInterval(()=>{
   if(el){el.style.opacity='0';setTimeout(()=>{el.textContent=banners[bannerIdx];el.style.opacity='1';},300);}
 },4000);
 
+
+// HERO SLIDER
+let slideIdx=0;
+const slides=document.querySelectorAll('.hero-slide');
+const dots=document.querySelectorAll('.hero-dot');
+function goSlide(n){
+  slides[slideIdx].classList.remove('active');dots[slideIdx].classList.remove('active');
+  slideIdx=n;slides[slideIdx].classList.add('active');dots[slideIdx].classList.add('active');
+}
+setInterval(()=>goSlide((slideIdx+1)%slides.length),3500);
+function scrollToSec(i){const el=document.getElementById('c'+i);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}
+
+// BOTTOM NAV
+function bnavClick(tab){
+  document.querySelectorAll('.bnav-item').forEach(b=>b.classList.remove('active'));
+  if(tab==='home'){document.getElementById('bnHome').classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+  else if(tab==='menu'){document.getElementById('bnMenu').classList.add('active');document.getElementById('menuSection').scrollIntoView({behavior:'smooth'});}
+  else if(tab==='offers'){document.getElementById('bnOffers').classList.add('active');openCart();}
+}
+
+// BACK TO TOP
+window.addEventListener('scroll',()=>{
+  const btn=document.getElementById('backTop');
+  if(btn)btn.classList.toggle('show',window.scrollY>400);
+});
+
+// ITEM POPUP
+const DESCS={'Veg Steam Momos':'Ghar jaisi recipe — soft cover, spicy filling. Mint chutney ke saath best!','Schezwan Momos':'Fiery Schezwan sauce mein toss — spice lovers must try!','Masala Maggi':'Special Liquido masala — bilkul ghar jaisa taste!','Oreo Cold Coffee':'Thick creamy cold coffee with crushed Oreos!','Oreo Shake':'Oreo + vanilla ice cream thick shake — yummy!','Veg Cheesy Burger':'Double cheese crispy burger — cheesy goodness!','Aloo Tikki Burger':'Classic Indian burger — street food ka dil!'};
+function openPopup(name,price,img,sizes){
+  const mrp=price?Math.round(price*1.18):0;
+  const save=price?Math.round(mrp-price):0;
+  document.getElementById('popupImg').src=img||'';
+  document.getElementById('popupName').textContent=name;
+  document.getElementById('popupPrice').textContent=price?'₹'+price:'MRP';
+  document.getElementById('popupMrp').textContent=price?'₹'+mrp:'';
+  document.getElementById('popupSave').textContent=save?'Save ₹'+save:'';
+  document.getElementById('popupDesc').textContent=DESCS[name]||'Fresh aur tasty '+name+' — Liquido ki special recipe!';
+  const sizesEl=document.getElementById('popupSizes');
+  if(sizes&&sizes.length){
+    sizesEl.innerHTML=`<div style="font-weight:700;font-size:0.82rem;margin-bottom:8px">Size choose karo:</div><div class="popup-size-btns">${sizes.map(s=>`<button class="popup-size-btn" onclick="addItem('${name} (${s.l})',${s.p});closePopup()">${s.l} — ₹${s.p}</button>`).join('')}</div>`;
+    document.getElementById('popupAddBtn').style.display='none';
+  }else{
+    sizesEl.innerHTML='';
+    document.getElementById('popupAddBtn').style.display='block';
+    document.getElementById('popupAddBtn').onclick=()=>{addItem(name,price);closePopup();};
+  }
+  document.getElementById('itemPopup').classList.add('show');
+}
+function closePopup(){document.getElementById('itemPopup').classList.remove('show');}
+
+// UPDATE CART BADGE IN BOTTOM NAV
+const _origUpdate=updateCartBtn;
+function updateCartBtn(){
+  _origUpdate();
+  const count=cart.reduce((s,i)=>s+i.qty,0);
+  const badge=document.getElementById('bnavBadge');
+  if(badge){badge.textContent=count;badge.classList.toggle('show',count>0);}
+}
+
 // INFINITE SCROLL
 ['comboRow','revRow'].forEach(id=>{
   const t=document.getElementById(id);
   if(t)t.innerHTML+=t.innerHTML;
 });
 </script>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <button class="bnav-item active" id="bnHome" onclick="bnavClick('home')"><span class="bnav-icon">🏠</span><span class="bnav-label">Home</span></button>
+  <button class="bnav-item" id="bnMenu" onclick="bnavClick('menu')"><span class="bnav-icon">🍽️</span><span class="bnav-label">Menu</span></button>
+  <button class="bnav-item" id="bnCart" onclick="openCart()"><span class="bnav-icon">🛒</span><span class="bnav-label">Cart</span><span class="bnav-badge" id="bnavBadge">0</span></button>
+  <button class="bnav-item" id="bnOffers" onclick="bnavClick('offers')"><span class="bnav-icon">🎟️</span><span class="bnav-label">Offers</span></button>
+</div>
+
+<!-- BACK TO TOP -->
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- FLOAT BUTTONS -->
+<a class="wa-float" href="https://wa.me/917014809238" target="_blank">💬 Chat</a>
+<a class="float-rev" href="https://g.page/r/CQk7fsXPf0tTEBE/review" target="_blank">⭐ Review</a>
+
+<!-- ITEM POPUP -->
+<div class="item-popup" id="itemPopup" onclick="closePopup()">
+  <div class="item-popup-box" onclick="event.stopPropagation()">
+    <button class="popup-close" onclick="closePopup()">✕</button>
+    <img class="popup-img" id="popupImg" src="" alt="">
+    <div class="popup-body">
+      <div class="popup-veg"><span class="veg-icon"><span class="veg-dot"></span></span> Pure Veg</div>
+      <div class="popup-name" id="popupName"></div>
+      <div class="popup-price-row">
+        <span class="popup-price" id="popupPrice"></span>
+        <span class="popup-mrp" id="popupMrp"></span>
+        <span class="popup-save" id="popupSave"></span>
+      </div>
+      <div class="popup-desc" id="popupDesc"></div>
+      <div id="popupSizes"></div>
+      <button class="popup-add-btn" id="popupAddBtn">+ Add to Cart</button>
+    </div>
+  </div>
+</div>
+
+<!-- ORDER CONFIRM SCREEN -->
+<div class="confirm-screen" id="confirmScreen">
+  <div class="confirm-icon">🎉</div>
+  <div class="confirm-title">Order Bhej Diya!</div>
+  <div class="confirm-sub">Aapka order WhatsApp pe bhej diya gaya hai.<br>Hum jald hi confirm karenge!</div>
+  <div class="confirm-id" id="confirmOrderId">LQ-0000</div>
+  <div class="confirm-info">🕐 Estimated: 30-45 minutes<br>📍 Delivery partner aapko call karega</div>
+  <button class="confirm-back" onclick="document.getElementById('confirmScreen').classList.remove('show')">🛒 Menu pe Wapis Jao</button>
+</div>
+
 </body>
 </html>
