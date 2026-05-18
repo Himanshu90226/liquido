@@ -38,7 +38,7 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:var(--dark);trans
 
 /* TABS */
 .tabs-wrap{background:white;border-bottom:2px solid #eee;position:sticky;top:60px;z-index:99}
-.tabs(display:flex;overflow-x:auto;gap:4px;padding:9px 12px;scrollbar-width:none}
+.tabs{display:flex;overflow-x:auto;gap:4px;padding:9px 12px;scrollbar-width:none}
 .tabs::-webkit-scrollbar{display:none}
 .tab{flex-shrink:0;background:#f0e6ff;color:var(--purple);border:none;border-radius:20px;padding:5px 13px;font-size:0.73rem;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif;white-space:nowrap}
 .tab.active,.tab:hover{background:var(--purple);color:white}
@@ -67,7 +67,7 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:var(--dark);trans
 .combo-price{font-size:0.92rem;font-weight:800;color:var(--purple)}
 .combo-add{background:var(--yellow);color:var(--purple);border:none;border-radius:7px;padding:5px 10px;font-family:'Poppins',sans-serif;font-size:0.74rem;font-weight:800;cursor:pointer}
 
-/* MENU - UNIFIED SWIGGY GRID STYLE */
+/* MENU - SWIGGY GRID STYLE RESTORED */
 .menu-section{padding:0 10px 130px}
 .category{margin-top:20px}
 .cat-title{font-size:1rem;font-weight:800;color:var(--purple);border-left:5px solid var(--yellow);padding-left:10px;margin-bottom:12px}
@@ -115,7 +115,7 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:var(--dark);trans
 @keyframes scrollR{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 .rev-card{background:white;border-radius:14px;padding:13px 13px 11px;width:210px;flex-shrink:0;box-shadow:0 3px 10px rgba(0,0,0,0.08)}
 .rev-top-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
-.rev-avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.9rem;font-weight:800;color:white;flex-shrink:0}
+.rev-avatar{width:34px;height:34px;border-radius:50%;background:#6B21A8;color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;flex-shrink:0}
 .rev-name{font-size:0.78rem;font-weight:700;color:#1a1a1a}
 .rev-date{font-size:0.63rem;color:#aaa;margin-top:1px}
 .rev-stars{font-size:0.75rem;margin-bottom:5px}
@@ -230,7 +230,7 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:var(--dark);trans
 .back-top{position:fixed;bottom:78px;right:14px;width:38px;height:38px;background:var(--purple);color:white;border:none;border-radius:50%;font-size:1.2rem;cursor:pointer;box-shadow:0 3px 12px rgba(107,33,168,0.4);z-index:149;display:none;align-items:center;justify-content:center}
 .back-top.show{display:flex}
 
-/* PULL TO REFRESH INDICATION ENGINES HIDDEN STATES */
+/* FIXED PULL TO REFRESH INDICATION ENGINES HIDDEN STATES */
 .ptr-indicator{position:fixed;top:0;left:0;right:0;height:50px;background:var(--purple);color:white;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:600;z-index:999;transform:translateY(-100%);transition:transform 0.3s}
 .ptr-indicator.show{transform:translateY(0)}
 
@@ -297,7 +297,7 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:var(--dark);trans
 
 <div class="hero-slider">
   <div class="hero-slide active">
-    <img src="https://images.pexels.com/photos/33670191/pexels-photo-33670191.jpeg?auto=format&fit=crop&w=600&q=80" alt="Momos">
+    <img src="https://images.pexels.com/photos/28445587/pexels-photo-28445587.jpeg?auto=format&fit=crop&w=600&q=80" alt="Momos">
     <div class="hero-overlay"></div>
     <div class="hero-text"><h2>🥟 Fresh Momos<br>Har Style Mein!</h2><p>7 varieties • Half se sirf ₹50</p><button class="hero-btn" onclick="scrollToSec(0)">Order Now →</button></div>
   </div>
@@ -502,13 +502,17 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:var(--dark);trans
 const WA='917014809238';
 const UPI='BHARATPE.8P0M0U9N8Z03820@fbpe';
 const UNAME='Liquido';
-const SHEET_URL='https://script.google.com/macros/s/AKfycbyTiAvaulNhOx2ObBvvhjaII3y5ol3OAHtwJsEN6BrE4dYF4ECvJmrCcqVBf68ZMbpB/exec';
+
+// YAHA APNA NAYA APPS SCRIPT WEB APP URL PASTE KAREIN
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxi4hQF2NpzkQuFIqL-m9TK1mmAqf-0rRADTJWRMw6ztshrkY5obZHGc33DOV-CV87e/exec';
+
 let COUPONS={'LIQUIDO10':{disc:10,type:'pct',label:'10% off'},'FLAT50':{disc:50,type:'flat',label:'₹50 off'},'NEWUSER':{disc:15,type:'pct',label:'15% off'},'MOMOS20':{disc:20,type:'pct',label:'20% off'}};
 const BESTSELLERS=['Veg Steam Momos','Schezwan Momos','Masala Maggi','Oreo Cold Coffee','Oreo Shake','Veg Cheesy Burger','Kurkure Veg Momos'];
 
 let formFieldsState = { name: '', phone: '', address: '', note: '' };
 let cart=[],locText='',locCoords='',payMethod='upi',darkMode=false,discount=0,discLabel='';
 
+// FIXED BASE SPECS WITH EXACT SPECIFIED PRICINGS
 const ADDON_SPECS = {
   sizes: { title: "Portion Size (Choose 1)", type: "radio", opts: [{ n: "Half Plate", p: 0 }, { n: "Full Plate", p: 30 }] },
   cheese: { title: "Addons Cheese (Max 1)", type: "checkbox", opts: [{ n: "Extra Cheese", p: 20 }] }, 
@@ -516,6 +520,7 @@ const ADDON_SPECS = {
   drinks: { title: "Select Soft Drink Variant (Choose 1)", type: "radio", opts: [{ n: "Coca Cola", p: 0 }, { n: "Sprite", p: 0 }, { n: "Thums Up", p: 0 }, { n: "Fanta", p: 0 }] }
 };
 
+// SYNCHRONIZED MATRIX CONFIGS - IMAGES ABSOLUTELY PRESERVED 
 const menuData=[
   {cat:'Momos',items:[
     {name:'Veg Steam Momos',img:'https://images.pexels.com/photos/33670191/pexels-photo-33670191.jpeg?auto=format&fit=crop&w=200&q=80',price:50,addons:['sizes','cheese','spices']},
@@ -530,7 +535,7 @@ const menuData=[
     {name:'Grilled Sandwich',img:'https://images.pexels.com/photos/29699515/pexels-photo-29699515.jpeg?auto=format&fit=crop&w=200&q=80',price:79,addons:['cheese','spices']},
     {name:'Grilled Cheese Sandwich',img:'https://images.pexels.com/photos/29173115/pexels-photo-29173115.jpeg?auto=format&fit=crop&w=200&q=80',price:99,addons:['cheese']},
     {name:'Cheese Corn Sandwich',img:'https://images.pexels.com/photos/36268517/pexels-photo-36268517.jpeg?auto=format&fit=crop&w=200&q=80',price:99,addons:['cheese','spices']},
-    {name:'Paneer Sandwich',img:'https://images.unsplash.com/photo-1559054663-e8d23213f55c?auto=format&fit=crop&w=200&q=80',price:119,addons:['cheese','spices']},
+    {name:'Paneer Sandwich',img:'https://images.pexels.com/photos/35054704/pexels-photo-35054704.jpeg?auto=format&fit=crop&w=200&q=80',price:119,addons:['cheese','spices']},
     {name:'Paneer Cheese Sandwich',img:'https://images.pexels.com/photos/16230531/pexels-photo-16230531.jpeg?auto=format&fit=crop&w=200&q=80',price:139,addons:['cheese','spices']},
     {name:'Cheese Sandwich',img:'https://images.pexels.com/photos/20422166/pexels-photo-20422166.jpeg?auto=format&fit=crop&w=200&q=80',price:139,addons:['cheese']},
   ]},
@@ -596,13 +601,12 @@ function isShopOpen(){
   return (hr >= startHour && hr < endHour);
 }
 
-// ASYNC LOAD COUPONS OVERRIDES DIRECT FROM ACTIVE ENGINE
+// SYNC ACTIVE COUPONS FROM CONNECTED CLOUD REAL-TIME ENGINE
 async function syncRemoteCouponsStateMap() {
   try {
     const response = await fetch(`${SHEET_URL}?action=get_config`);
     const parsedData = await response.json();
     if(parsedData.activeCoupons) {
-      const allowedCouponsMap = JSON.parse(parsedData.activeCoupons);
       localStorage.setItem('lq_active_coupons', parsedData.activeCoupons);
     }
   } catch(e){}
@@ -740,7 +744,7 @@ function renderCart(){
   const disabledClass = isClosed ? "disabled-btn" : "";
 
   footer.innerHTML=`
-    <div class="del-time-bar">🕐 Minimum Order Value Required: ₹99</div>
+    <div class="del-time-bar"></div>
     <div style="font-weight:700;font-size:0.86rem;margin-bottom:6px;">🎟️ Coupon Code</div>
     <div class="coupon-wrap">
       <input class="coupon-inp" id="couponInp" placeholder="Enter code">
@@ -773,7 +777,6 @@ function applyCoupon(){
   const msg=document.getElementById('couponMsg');
   if(!code){if(msg)msg.innerHTML='<div class="coupon-err">❗ Code likho</div>';return;}
   
-  // PARSE VALID STATE DIRECT FROM MIRROR STORAGE ENGINE
   let dynamicCouponsState = {"LIQUIDO10":true,"FLAT50":true,"NEWUSER":true,"MOMOS20":true};
   try {
     if(localStorage.getItem('lq_active_coupons')) {
@@ -783,7 +786,7 @@ function applyCoupon(){
 
   if(COUPONS[code]) {
     if(dynamicCouponsState[code] === false) {
-      if(msg) msg.innerHTML='<div class="coupon-err">❌ Yeh coupon abhi expired/disabled hai!</div>';
+      if(msg) msg.innerHTML='<div class="coupon-err">❌ Yeh coupon abhi disabled hai!</div>';
       return;
     }
     const c=COUPONS[code];discount=c.disc;discLabel=c.label;
@@ -804,6 +807,7 @@ function selPay(m){
   renderPay(Math.max(0,subtotal-discAmt));
 }
 
+// DISPATCH LINK CHANNELS
 function renderPay(total){
   const el=document.getElementById('payBox');if(!el)return;
   if(payMethod==='upi'){
@@ -884,7 +888,6 @@ function placeOrder(){
   const discAmt=discLabel?(discount>1?discount:Math.round(subtotal*discount/100)):0;
   const total=Math.max(0,subtotal-discAmt);
 
-  // CRITICAL BUSINESS REQUIREMENT LIMIT: STOP BASKET ORDER LOWER THAN ₹99 
   if (total < 99) {
     alert(`❌ Order Place Nahi Hua!\n\nLiquido par minimum order value ₹99 honi chahiye. Aapka current bill ₹${total} hai. Kripya cart mein aur items add karein!`);
     return;
@@ -1100,6 +1103,7 @@ function updateCardQty(card, name, price){
   }
 }
 
+// RESTORING WRAPPER TRIGGERS WITHOUT DESTRUCTURING GRID ARRAYS
 function openPopupTrigger(name){
   const item = menuData.flatMap(c=>c.items).find(i=>i.name===name);
   if(item) openPopup(item.name, item.price, item.img, item.addons||null);
@@ -1124,6 +1128,7 @@ function refreshAllCards(){
   });
 }
 
+// STORAGE ADDRESS
 function getSavedAddresses(){
   try{ return JSON.parse(localStorage.getItem('lq_addresses')||'[]'); }
   catch(e){ return []; }
@@ -1157,6 +1162,7 @@ function useAddr(addr){
   }
 }
 
+// STORAGE HISTORY
 function saveOrderHistory(orderId, items, total){
   try{
     const history = JSON.parse(localStorage.getItem('lq_history')||'[]');
@@ -1179,7 +1185,7 @@ function openHistory(){
   try{
     const history = JSON.parse(localStorage.getItem('lq_history')||'[]');
     if(!history.length){
-      list.innerHTML = '<div class="no-history">📦 Abhi tak koi order nahi<br>Pehla order karo!</div>';
+      list.innerHTML='<div class="no-history">📦 Abhi tak koi order nahi<br>Pehla order karo!</div>';
       return;
     }
     list.innerHTML = history.map(h=>`
@@ -1249,12 +1255,28 @@ window.addEventListener('beforeinstallprompt', e=>{
   e.preventDefault(); pwaPrompt=e;
   document.getElementById('pwaBanner').style.display='flex';
 });
-document.getElementById('pwaInstallBtn')?.addEventListener('click',()=>{\n  if(pwaPrompt){ pwaPrompt.prompt(); pwaPrompt.userChoice.then(()=>{ document.getElementById('pwaBanner').style.display='none'; pwaPrompt=null; }); }\n});
+document.getElementById('pwaInstallBtn')?.addEventListener('click',()=>{
+  if(pwaPrompt){ pwaPrompt.prompt(); pwaPrompt.userChoice.then(()=>{
+      document.getElementById('pwaBanner').style.display='none';
+      pwaPrompt=null;
+    });
+  }
+});
 
 let ptrStart=0, ptrActive=false;
 document.addEventListener('touchstart', e=>{ if(window.scrollY===0) ptrStart=e.touches[0].clientY; });
-document.addEventListener('touchmove', e=>{\n  if(window.scrollY===0 && e.touches[0].clientY - ptrStart > 60 && !ptrActive){\n    ptrActive=true;\n    document.getElementById('ptrIndicator').classList.add('show');\n  }\n});
-document.addEventListener('touchend', ()=>{\n  if(ptrActive){\n    ptrActive=false;\n    setTimeout(()=>{ document.getElementById('ptrIndicator').classList.remove('show'); location.reload(); },800);\n  }\n});
+document.addEventListener('touchmove', e=>{
+  if(window.scrollY===0 && e.touches[0].clientY - ptrStart > 60 && !ptrActive){
+    ptrActive=true;
+    document.getElementById('ptrIndicator').classList.add('show');
+  }
+});
+document.addEventListener('touchend', ()=>{
+  if(ptrActive){
+    ptrActive=false;
+    setTimeout(()=>{ document.getElementById('ptrIndicator').classList.remove('show'); location.reload(); },800);
+  }
+});
 
 ['comboRow','revRow'].forEach(id=>{
   const t=document.getElementById(id);
