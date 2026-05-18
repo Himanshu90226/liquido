@@ -67,16 +67,16 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:var(--dark);trans
 .combo-price{font-size:0.92rem;font-weight:800;color:var(--purple)}
 .combo-add{background:var(--yellow);color:var(--purple);border:none;border-radius:7px;padding:5px 10px;font-family:'Poppins',sans-serif;font-size:0.74rem;font-weight:800;cursor:pointer}
 
-/* MENU - SWIGGY GRID STYLE */
+/* MENU - SWIGGY 2-COLUMN GRID STYLE */
 .menu-section{padding:0 10px 130px}
 .category{margin-top:20px}
 .cat-title{font-size:1rem;font-weight:800;color:var(--purple);border-left:5px solid var(--yellow);padding-left:10px;margin-bottom:12px}
 .items-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.item-card{background:white;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.09);display:flex;flex-direction:column;cursor:pointer;transition:transform 0.15s}
+.item-card{background:white;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.09);display:flex;flex-direction:column;cursor:pointer;transition:transform 0.15s;position:relative}
 .item-card:active{transform:scale(0.97)}
-.item-img-wrap{position:relative;width:100%;height:130px}
+.item-img-wrap{position:relative;width:100%;height:130px;overflow:hidden}
 .item-img{width:100%;height:100%;object-fit:cover;display:block;background:#f0e6ff}
-.best-badge{position:absolute;top:0;left:0;background:#3d9e56;color:white;font-size:0.58rem;font-weight:800;padding:4px 8px;border-radius:0 0 10px 0}
+.best-badge{position:absolute;top:0;left:0;background:#3d9e56;color:white;font-size:0.58rem;font-weight:800;padding:4px 8px;border-radius:0 0 10px 0;z-index:1}
 .item-body{padding:8px 10px 10px;display:flex;flex-direction:column;flex:1}
 .veg-row{display:flex;align-items:center;gap:4px;margin-bottom:3px}
 .veg-icon{width:13px;height:13px;border:2px solid #16a34a;border-radius:2px;display:inline-flex;align-items:center;justify-content:center;background:white;flex-shrink:0}
@@ -164,12 +164,16 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:var(--dark);trans
 .loc-btn{width:100%;background:#f0e6ff;color:var(--purple);border:2px dashed #d8b4fe;border-radius:10px;padding:10px;font-family:'Poppins',sans-serif;font-size:0.82rem;font-weight:600;cursor:pointer;margin-top:10px}
 .loc-ok{font-size:0.73rem;color:green;background:#e8ffe8;border-radius:8px;padding:6px 10px;margin-top:6px}
 
-/* THIRD PARTY SERVICE PICKUP CHANNELS (NEW UI DESIGN ELEMENT) */
+/* PICKUP / DELIVERY FIELD CHOICES */
 .pickup-opts{display:flex;gap:8px;margin:10px 0}
 .pickup-opt{flex:1;padding:10px 6px;border:2px solid #e0d0ff;border-radius:10px;text-align:center;cursor:pointer;font-size:0.78rem;font-weight:700;color:#555}
 .pickup-opt.sel{border-color:var(--purple);background:#f5eeff;color:var(--purple)}
 .pickup-opt .icon{font-size:1.2rem;display:block;margin-bottom:2px}
 .delivery-notice-box{background:#fff8e1;border:1px solid #ffe082;border-radius:10px;padding:10px;font-size:0.74rem;color:#b78103;margin-top:8px;font-weight:600;line-height:1.4}
+
+/* PREMIUM SAVE ADDRESS ACTION COMPONENT BUTTON (FIXED TEXT LINK LOOKS) */
+.save-addr-pwa-btn{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;background:white;color:var(--purple);border:1.5px solid #d8b4fe;border-radius:10px;padding:10px;font-family:'Poppins',sans-serif;font-size:0.78rem;font-weight:700;cursor:pointer;margin-top:10px;box-shadow:0 2px 6px rgba(107,33,168,0.06);transition:all 0.2s}
+.save-addr-pwa-btn:active{background:#f5eeff;transform:scale(0.99)}
 
 /* PAYMENT */
 .pay-opts{display:flex;gap:8px;margin:10px 0}
@@ -207,6 +211,8 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:var(--dark);trans
 .dark .cust-opt-row{border-bottom-color:#2c2c2c!important}
 .dark .pickup-opt{border-color:#333; color:#aaa}
 .dark .pickup-opt.sel{border-color:var(--purple); background:#1e1228; color:white}
+.dark .save-addr-pwa-btn{background:#1a1a1a; color:#d8b4fe; border-color:#4c1d95}
+.dark .save-addr-pwa-btn:active{background:#2e1065}
 
 /* TOAST */
 .toast{position:fixed;bottom:88px;left:50%;transform:translateX(-50%);background:#1a1a1a;color:white;padding:9px 20px;border-radius:50px;font-size:0.8rem;font-weight:600;z-index:500;opacity:0;transition:opacity 0.3s;white-space:nowrap;pointer-events:none}
@@ -239,6 +245,10 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:var(--dark);trans
 .back-top{position:fixed;bottom:78px;right:14px;width:38px;height:38px;background:var(--purple);color:white;border:none;border-radius:50%;font-size:1.2rem;cursor:pointer;box-shadow:0 3px 12px rgba(107,33,168,0.4);z-index:149;display:none;align-items:center;justify-content:center}
 .back-top.show{display:flex}
 
+/* PULL TO REFRESH INDICATION ENGINES HARD HIDDEN STATE RE-OVERRIDDEN (FIXED) */
+.ptr-indicator{position:fixed;top:0;left:0;right:0;height:50px;background:var(--purple);color:white;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:600;z-index:999;transform:translateY(-100%);transition:transform 0.3s}
+.ptr-indicator.show{transform:translateY(0)!important}
+
 /* SWIGGY CUSTOM POPUP COMPONENT STYLE */
 .item-popup{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:400;align-items:flex-end}
 .item-popup.show{display:flex}
@@ -266,6 +276,38 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:var(--dark);trans
 /* FIXED ACCUMULATOR FOOTER BAR FOR POPUPS */
 .popup-footer-bar{position:sticky;bottom:0;left:0;right:0;background:white;padding:12px 16px;border-top:1px solid #eee;display:flex;align-items:center;justify-content:space-between;z-index:5}
 .popup-footer-add-btn{width:100%;background:#3d9e56;color:white;border:none;border-radius:12px;padding:14px;font-family:'Poppins',sans-serif;font-size:0.92rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:space-between;box-shadow:0 4px 12px rgba(61,158,86,0.3)}
+
+/* PREMIUM 3D DIAGONAL STAMP LOOKS OVERLAY SYSTEM FOR SOLD_OUT SCALES (FIXED) */
+.sold-out-overlay-stamp {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  backdrop-filter: blur(1.5px);
+}
+.sold-out-stamp-graphics {
+  border: 4px double #ef4444;
+  color: #ef4444;
+  font-size: 1.1rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 6px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  letter-spacing: 2px;
+  transform: rotate(-15deg);
+  font-family: 'Poppins', sans-serif;
+  text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+  animation: stampPopIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+@keyframes stampPopIn {
+  from { opacity: 0; transform: scale(1.4) rotate(-35deg); }
+  to { opacity: 1; transform: scale(1) rotate(-15deg); }
+}
 
 /* FIXED ACTIONABLE ORDER CONFIRM SCREEN SYSTEM OVERRIDES */
 .confirm-screen{display:none !important;position:fixed;inset:0;background:white;z-index:600;flex-direction:column;align-items:center;justify-content:center;padding:30px 20px;text-align:center}
@@ -513,7 +555,7 @@ const BESTSELLERS=['Veg Steam Momos','Schezwan Momos','Masala Maggi','Oreo Cold 
 
 let formFieldsState = { name: '', phone: '', address: '', note: '' };
 let cart=[],locText='',locCoords='',payMethod='upi',darkMode=false,discount=0,discLabel='';
-let orderType='delivery'; // Default operational state tracker
+let orderType='delivery'; 
 
 // FIXED BASE SPECS WITH EXACT SPECIFIED PRICINGS
 const ADDON_SPECS = {
@@ -603,6 +645,7 @@ function isShopOpen(){
   return (hr >= startHour && hr < endHour);
 }
 
+// SYNC ACTIVE COUPONS FROM CONNECTED CLOUD REAL-TIME ENGINE
 async function syncRemoteCouponsStateMap() {
   try {
     const response = await fetch(`${SHEET_URL}?action=get_config`);
@@ -696,7 +739,7 @@ function removeItem(name){
   if(idx>-1){cart[idx].qty--;if(cart[idx].qty<=0)cart.splice(idx,1);}
   updateCartBtn();renderCart();
 }
-// INTERACTIVE PORTION SELECTOR FOR PICKUP / DELIVERY OPTIONS
+
 function toggleOrderTypeMode(type) {
   orderType = type;
   document.getElementById('otDelivery').classList.toggle('sel', type === 'delivery');
@@ -778,7 +821,7 @@ function renderCart(){
     <div id="checkoutAddressWrapperContainer" style="display: ${orderType === 'pickup' ? 'none' : 'block'};">
       <label class="flabel">📍 Delivery Address *</label>
       <input class="finput" id="cAddr" placeholder="Ghar/Dukaan no. , Gali , Area" value="${formFieldsState.address}" oninput="syncFieldState('address', this.value)">
-      <button class="save-addr-btn" onclick="saveCurrentAddr()">💾 Yeh Address Future Keliye Save Karo</button>
+      <button class="save-addr-pwa-btn" onclick="saveCurrentAddr()">💾 Save Address for Future Orders</button>
       <button class="loc-btn" id="locBtn" onclick="getLocation()">📍 GPS se Location Detect Karo</button>
       <div id="locRes"></div>
       <div class="delivery-notice-box">💡 NOTICE: Aap apna food parcel pickup karne ke liye *Ola, Uber, ya Porter* application se bhi runner bhej sakte hain! 🛵</div>
@@ -838,7 +881,7 @@ function renderPay(total){
     el.innerHTML=`<div class="upi-box">
       <div class="upi-id">UPI ID: <b>${UPI}</b></div>
       <div class="upi-id" style="margin-top:3px">Name: <b>${UNAME}</b></div>
-      <div class="upi-amt">₹total</div>
+      <div class="upi-amt">₹${total}</div>
       <div style="font-size:0.7rem;color:#888;">PhonePe • GPay • Paytm • BharatPe</div>
       <a class="upi-link" href="${link}">🔗 UPI App Kholo aur Pay Karo</a>
     </div>`;
@@ -926,7 +969,6 @@ function placeOrder(){
 
   alert("📢 REMINDER:\nAapko abhi WhatsApp par redirect kiya jaa raha hai.\n\nKripya WhatsApp open hote hi chat box mein 'SEND' button ko zaroor dabayein taaki aapka order hamare paas confirm receive ho sake! 🙏");
 
-  // Push record structure down to data sheets pipelines
   fetch(SHEET_URL,{
     method:'POST',mode:'no-cors',
     headers:{'Content-Type':'application/json'},
@@ -1156,7 +1198,6 @@ function refreshAllCards(){
   });
 }
 
-// STORAGE ADDRESS
 function getSavedAddresses(){
   try{ return JSON.parse(localStorage.getItem('lq_addresses')||'[]'); }
   catch(e){ return []; }
@@ -1190,7 +1231,6 @@ function useAddr(addr){
   }
 }
 
-// STORAGE HISTORY
 function saveOrderHistory(orderId, items, total){
   try{
     const history = JSON.parse(localStorage.getItem('lq_history')||'[]');
@@ -1262,12 +1302,12 @@ function applySoldOut(){
   currentSoldOutList.forEach(name=>{
     document.querySelectorAll('.item-card').forEach(card=>{
       if(card.dataset.name === name.toLowerCase()){
-        card.style.pointerEvents='none';card.style.opacity='0.65';
+        card.style.pointerEvents='none';card.style.opacity='0.85';
         const wrap = card.querySelector('.item-img-wrap');
-        if(wrap && !wrap.querySelector('.sold-out-overlay')){
+        if(wrap && !wrap.querySelector('.sold-out-overlay-stamp')){
           const ov=document.createElement('div');
-          ov.className='sold-out-overlay';
-          ov.innerHTML='<div class="sold-out-text">SOLD OUT</div>';
+          ov.className='sold-out-overlay-stamp';
+          ov.innerHTML='<div class="sold-out-stamp-graphics">SOLD OUT</div>';
           wrap.style.position='relative';
           wrap.appendChild(ov);
         }
@@ -1284,11 +1324,7 @@ window.addEventListener('beforeinstallprompt', e=>{
   document.getElementById('pwaBanner').style.display='flex';
 });
 document.getElementById('pwaInstallBtn')?.addEventListener('click',()=>{
-  if(pwaPrompt){ pwaPrompt.prompt(); pwaPrompt.userChoice.then(()=>{
-      document.getElementById('pwaBanner').style.display='none';
-      pwaPrompt=null;
-    });
-  }
+  if(pwaPrompt){ pwaPrompt.prompt(); pwaPrompt.userChoice.then(()=>{ document.getElementById('pwaBanner').style.display='none'; pwaPrompt=null; }); }
 });
 
 let ptrStart=0, ptrActive=false;
