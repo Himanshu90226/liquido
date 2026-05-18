@@ -49,9 +49,17 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:#1a1a1a}
 .config-label{font-size:0.75rem;font-weight:700;color:#555;margin-bottom:4px}
 .config-inp{padding:10px;border:2px solid #e0d0ff;border-radius:10px;font-family:'Poppins';font-size:0.85rem;outline:none}
 .config-select{padding:10px;border:2px solid #e0d0ff;border-radius:10px;font-family:'Poppins';font-size:0.85rem;outline:none;background:white}
-.save-config-btn{width:100%;background:#3d9e56;color:white;border:none;border-radius:10px;padding:12px;font-family:'Poppins';font-size:0.85rem;font-weight:700;cursor:pointer}
+.save-config-btn{width:100%;background:#3d9e56;color:white;border:none;border-radius:10px;padding:12px;font-family:'Poppins';font-size:0.85rem;font-weight:700;cursor:pointer;margin-top:10px}
 
-/* INVENTORY ITEM CONTROL SWITCH LOOKS */
+/* INVENTORY ITEM CONTROL ADVANCED EDITOR BLOCK */
+.menu-item-editor-card{background:#f9f6ff;border:1px solid #e0d0ff;border-radius:12px;padding:14px;margin-bottom:14px}
+.menu-editor-title{font-size:0.85rem;font-weight:800;color:#6B21A8;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.editor-grid{display:grid;grid-template-columns:1fr;gap:8px}
+.editor-field{display:flex;flex-direction:column}
+.editor-lbl{font-size:0.7rem;font-weight:700;color:#666;margin-bottom:2px}
+.editor-inp-field{padding:7px 10px;border:1px solid #d8b4fe;border-radius:8px;font-family:'Poppins';font-size:0.78rem;outline:none}
+.editor-inp-field:focus{border-color:#6B21A8}
+
 .stock-item-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f5f5f5}
 .stock-item-name{font-size:0.82rem;font-weight:600;color:#333}
 .stock-toggle-btn{padding:5px 12px;border-radius:6px;border:none;font-family:'Poppins';font-size:0.7rem;font-weight:700;cursor:pointer}
@@ -99,6 +107,7 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:#1a1a1a}
   <div class="tab-row">
     <button class="dtab active" onclick="showTab('orders')">📦 Orders</button>
     <button class="dtab" onclick="showTab('config')">⚙️ Store Setup</button>
+    <button class="dtab" onclick="showTab('menuEditor')">🍔 Manage Menu</button>
     <button class="dtab" onclick="showTab('customers')">👥 Customers</button>
     <button class="dtab" onclick="showTab('monthly')">📊 Monthly</button>
     <button class="dtab" onclick="showTab('offer')">📢 Offers Blast</button>
@@ -146,6 +155,15 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:#1a1a1a}
     </div>
   </div>
 
+  <div id="tab-menuEditor" style="display:none">
+    <div class="config-card">
+      <div class="section-title">🍔 Live Menu Database Editor (Price, Detail & Image)</div>
+      <div style="font-size:0.72rem; color:#666; margin-bottom:14px;">Yahan se aap kisi bhi food item ka price, swap links ya custom dynamic updates badal sakte hain.</div>
+      <div id="menuItemsEditorContainer"></div>
+      <button class="save-config-btn" style="background:#6B21A8;" onclick="saveDynamicMenuDatabaseRemote()">💾 Synchronize Menu Updates Live</button>
+    </div>
+  </div>
+
   <div id="tab-customers" style="display:none">
     <div class="customers-card">
       <div class="section-title">👥 Lifetime Customer Directory</div>
@@ -173,13 +191,14 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:#1a1a1a}
 </div>
 
 <script>
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxe4hQF2NpzkQuFIqL-m9TK1mmAqf-0rRADTJWRMw6ztshrkY5obZHGc33DOV-CV87e/exec';
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxi4hQF2NpzkQuFIqL-m9TK1mmAqf-0rRADTJWRMw6ztshrkY5obZHGc33DOV-CV87e/exec';
 
 let allOrders = [];
 let allCustomers = [];
 let currentTab = 'orders';
 let activeSoldOutItemsArray = [];
 let couponsStateMap = {"LIQUIDO10":true,"FLAT50":true,"NEWUSER":true,"MOMOS20":true};
+let dynamicMenuDataOverrides = {};
 let internalCacheOrdersLength = 0;
 
 const staticMenuInventoryReference = [
@@ -228,7 +247,12 @@ async function loadData() {
     activeSoldOutItemsArray = JSON.parse(cfgData.soldOutList || '[]');
     couponsStateMap = JSON.parse(cfgData.activeCoupons || '{"LIQUIDO10":true,"FLAT50":true,"NEWUSER":true,"MOMOS20":true}');
     
-    if (currentTab !== 'config') {
+    // Fallback dictionary loader if schema properties aren't initialized yet
+    try {
+      dynamicMenuDataOverrides = JSON.parse(cfgData.menuOverrides || '{}');
+    } catch(err) { dynamicMenuDataOverrides = {}; }
+
+    if (currentTab !== 'config' && currentTab !== 'menuEditor') {
       document.getElementById('cfgStartHour').value = cfgData.startHour;
       document.getElementById('cfgEndHour').value = cfgData.endHour;
       document.getElementById('cfgManualStatus').value = cfgData.manualStatus;
@@ -267,7 +291,7 @@ function processData() {
 
 function showTab(tab) {
   currentTab = tab;
-  ['orders','customers','monthly','offer','config'].forEach(t => {
+  ['orders','customers','monthly','offer','config','menuEditor'].forEach(t => {
     const el = document.getElementById('tab-' + t);
     if (el) el.style.display = t === tab ? 'block' : 'none';
   });
@@ -280,6 +304,7 @@ function renderCurrentTab() {
     renderConfigPanelLayout();
     renderCouponsControlLayout();
   }
+  else if (currentTab === 'menuEditor') renderMenuDataManagementInputs();
   else if (currentTab === 'customers') renderCustomers();
   else if (currentTab === 'monthly') renderMonthly();
   else if (currentTab === 'offer') renderOffer();
@@ -289,7 +314,6 @@ async function updateOrderStateRemoteSequence(orderId, selectConsole) {
   selectConsole.style.opacity = '0.4';
   try {
     await fetch(`${SHEET_URL}?action=updateStatus&orderId=${orderId}&status=${encodeURIComponent(selectConsole.value)}`);
-    showToast("✅ Status Updated Successfully");
   } catch(e) { alert("Matrix Sync Timeout"); }
   selectConsole.style.opacity = '1';
 }
@@ -332,16 +356,12 @@ function renderOrders() {
 function renderConfigPanelLayout() {
   const container = document.getElementById('adminStockControlList');
   if (!container) return;
-  
   container.innerHTML = staticMenuInventoryReference.map(itemName => {
     const isCurrentlySoldOut = activeSoldOutItemsArray.includes(itemName);
-    const switchLabelText = isCurrentlySoldOut ? "🔴 OUT OF STOCK" : "🟢 IN STOCK";
-    const cssToggleBtnClass = isCurrentlySoldOut ? "stock-toggle-btn out-of-stock" : "stock-toggle-btn in-stock";
-    
     return `
       <div class="stock-item-row">
         <span class="stock-item-name">${itemName}</span>
-        <button class="${cssToggleBtnClass}" onclick="toggleSingleStockItemRemote('${itemName.replace(/'/g, "\\'")}')">${switchLabelText}</button>
+        <button class="${isCurrentlySoldOut ? 'stock-toggle-btn out-of-stock' : 'stock-toggle-btn in-stock'}" onclick="toggleSingleStockItemRemote('${itemName.replace(/'/g, "\\'")}')">${isCurrentlySoldOut ? '🔴 OUT OF STOCK' : '🟢 IN STOCK'}</button>
       </div>
     `;
   }).join('');
@@ -350,19 +370,65 @@ function renderConfigPanelLayout() {
 function renderCouponsControlLayout() {
   const container = document.getElementById('adminCouponsControlList');
   if (!container) return;
-  
   container.innerHTML = Object.keys(couponsStateMap).map(couponCode => {
     const isCouponActive = couponsStateMap[couponCode];
-    const switchLabelText = isCouponActive ? "🟢 ACTIVE (ON)" : "🔴 DISABLED (OFF)";
-    const cssToggleBtnClass = isCouponActive ? "stock-toggle-btn in-stock" : "stock-toggle-btn out-of-stock";
-    
     return `
       <div class="stock-item-row">
         <span class="stock-item-name" style="font-weight:700; color:#6B21A8;">🎟️ ${couponCode}</span>
-        <button class="${cssToggleBtnClass}" onclick="toggleSingleCouponStateRemote('${couponCode}')">${switchLabelText}</button>
+        <button class="${isCouponActive ? 'stock-toggle-btn in-stock' : 'stock-toggle-btn out-of-stock'}" onclick="toggleSingleCouponStateRemote('${couponCode}')">${isCouponActive ? '🟢 ACTIVE (ON)' : '🔴 DISABLED (OFF)'}</button>
       </div>
     `;
   }).join('');
+}
+
+// TOGGLE FIELDS TO UPDATE PRICE DETAILS IMAGE OBJECT REFERENCE (NEW FEATURE ADDED)
+function renderMenuDataManagementInputs() {
+  const container = document.getElementById('menuItemsEditorContainer');
+  if (!container) return;
+  
+  container.innerHTML = staticMenuInventoryReference.map(itemName => {
+    const dataRef = dynamicMenuDataOverrides[itemName] || { price: "", desc: "", img: "" };
+    const safeKey = itemName.replace(/\s/g, '_');
+    
+    return `
+      <div class="menu-item-editor-card">
+        <div class="menu-editor-title">✨ ${itemName}</div>
+        <div class="editor-grid">
+          <div class="editor-field">
+            <span class="editor-lbl">Price Override (In ₹)</span>
+            <input type="number" class="editor-inp-field menu-field-override" data-item="${itemName}" data-prop="price" id="ed_price_${safeKey}" placeholder="Leave blank for menu default price" value="${dataRef.price || ''}">
+          </div>
+          <div class="editor-field">
+            <span class="editor-lbl">Custom Swiggy Description</span>
+            <input type="text" class="editor-inp-field menu-field-override" data-item="${itemName}" data-prop="desc" id="ed_desc_${safeKey}" placeholder="Custom item formulation detail text" value="${dataRef.desc || ''}">
+          </div>
+          <div class="editor-field">
+            <span class="editor-lbl">Custom Image Matrix Link (Pexels / Postimg URL)</span>
+            <input type="text" class="editor-inp-field menu-field-override" data-item="${itemName}" data-prop="img" id="ed_img_${safeKey}" placeholder="Paste high-res image link context" value="${dataRef.img || ''}">
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+async function saveDynamicMenuDatabaseRemote() {
+  const overridesContainer = {};
+  document.querySelectorAll('.menu-field-override').forEach(input => {
+    const item = input.getAttribute('data-item');
+    const prop = input.getAttribute('data-prop');
+    const value = input.value.trim();
+    
+    if(value) {
+      if(!overridesContainer[item]) overridesContainer[item] = {};
+      overridesContainer[item][prop] = value;
+    }
+  });
+  
+  dynamicMenuDataOverrides = overridesContainer;
+  localStorage.setItem('lq_menu_overrides_cache', JSON.stringify(overridesContainer));
+  await pushConfigTransactionPayloadRemote();
+  alert("🍔 Menu prices, descriptions, and dynamic image layers synchronized successfully!");
 }
 
 function toggleSingleCouponStateRemote(couponCode) {
@@ -394,13 +460,15 @@ async function pushConfigTransactionPayloadRemote() {
   const manualStatus = document.getElementById('cfgManualStatus').value;
   const serializedList = JSON.stringify(activeSoldOutItemsArray);
   const serializedCoupons = JSON.stringify(couponsStateMap);
+  const serializedMenuOverrides = JSON.stringify(dynamicMenuDataOverrides);
   
   localStorage.setItem('lq_admin_config', JSON.stringify({ startHour, endHour, manualStatus }));
   localStorage.setItem('lq_sold_out_items', serializedList);
   localStorage.setItem('lq_active_coupons', serializedCoupons);
+  localStorage.setItem('lq_menu_overrides_cache', serializedMenuOverrides);
 
   try {
-    await fetch(`${SHEET_URL}?action=update_config&startHour=${startHour}&endHour=${endHour}&manualStatus=${manualStatus}&soldOutList=${encodeURIComponent(serializedList)}&activeCoupons=${encodeURIComponent(serializedCoupons)}`);
+    await fetch(`${SHEET_URL}?action=update_config&startHour=${startHour}&endHour=${endHour}&manualStatus=${manualStatus}&soldOutList=${encodeURIComponent(serializedList)}&activeCoupons=${encodeURIComponent(serializedCoupons)}&menuOverrides=${encodeURIComponent(serializedMenuOverrides)}`);
   } catch(e) {}
 }
 
