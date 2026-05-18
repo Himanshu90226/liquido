@@ -33,7 +33,7 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:#1a1a1a}
 .orders-card, .customers-card, .month-card, .offer-card, .config-card{background:white;border-radius:16px;padding:16px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
 .section-title{font-size:0.95rem;font-weight:800;color:#1a1a1a;margin-bottom:14px;border-left:4px solid #6B21A8;padding-left:8px}
 
-/* LIVE PIPELINE ROW FACTORY */
+/* LIVE PIPELINE ITEM ROW FACTORY */
 .order-item{background:#f9f6ff;border-radius:12px;padding:14px;margin-bottom:12px;border-left:5px solid #6B21A8}
 .order-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
 .order-name{font-size:0.88rem;font-weight:700;color:#1a1a1a}
@@ -132,6 +132,10 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:#1a1a1a}
           <option value="CLOSED">🔴 Force CLOSED Kitchen Permanently</option>
         </select>
       </div>
+      
+      <div class="section-title" style="margin-top:20px;">🎟️ Manage Coupons & Offers Toggle</div>
+      <div id="adminCouponsControlList" style="margin-bottom:15px;"></div>
+      
       <button class="save-config-btn" onclick="saveGlobalControlConfigRemote()">💾 Push Configuration Overrides Live</button>
     </div>
 
@@ -175,9 +179,9 @@ let allOrders = [];
 let allCustomers = [];
 let currentTab = 'orders';
 let activeSoldOutItemsArray = [];
+let couponsStateMap = {"LIQUIDO10":true,"FLAT50":true,"NEWUSER":true,"MOMOS20":true};
 let internalCacheOrdersLength = 0;
 
-// Master references copy of static items arrays to manage toggle indexes securely
 const staticMenuInventoryReference = [
   "Veg Steam Momos", "Deep Fried Momos", "Pan Fried Momos", "Fire Tossed Momos", "Kurkure Veg Momos", "Schezwan Momos", "Peri Peri Momos",
   "Grilled Sandwich", "Grilled Cheese Sandwich", "Cheese Corn Sandwich", "Paneer Sandwich", "Paneer Cheese Sandwich", "Cheese Sandwich",
@@ -190,7 +194,6 @@ const staticMenuInventoryReference = [
   "Water Bottle", "Soft Drinks"
 ];
 
-// Audio Telemetry Warning System Integration Module
 const alertSoundEngine = new (window.AudioContext || window.webkitAudioContext)();
 function triggerIncomingAlertSiren() {
   try {
@@ -207,7 +210,7 @@ function triggerIncomingAlertSiren() {
 }
 
 loadData();
-setInterval(loadData, 25000); // Systematic real-time refresh every 25 seconds
+setInterval(loadData, 25000);
 
 async function loadData() {
   try {
@@ -215,18 +218,16 @@ async function loadData() {
     const data = await res.json();
     allOrders = data.orders || [];
     
-    // Play system alarm chime warning alert if a new record row appends to sheet matrix
     if (allOrders.length > internalCacheOrdersLength && internalCacheOrdersLength !== 0) {
       triggerIncomingAlertSiren();
     }
     internalCacheOrdersLength = allOrders.length;
 
-    // Pull config state frames right after parsing pipeline vectors
     const cfgRes = await fetch(SHEET_URL + '?action=get_config');
     const cfgData = await cfgRes.json();
     activeSoldOutItemsArray = JSON.parse(cfgData.soldOutList || '[]');
+    couponsStateMap = JSON.parse(cfgData.activeCoupons || '{"LIQUIDO10":true,"FLAT50":true,"NEWUSER":true,"MOMOS20":true}');
     
-    // Update structural DOM input defaults only if tab isn't active to protect cursor states
     if (currentTab !== 'config') {
       document.getElementById('cfgStartHour').value = cfgData.startHour;
       document.getElementById('cfgEndHour').value = cfgData.endHour;
@@ -275,7 +276,10 @@ function showTab(tab) {
 
 function renderCurrentTab() {
   if (currentTab === 'orders') renderOrders();
-  else if (currentTab === 'config') renderConfigPanelLayout();
+  else if (currentTab === 'config') {
+    renderConfigPanelLayout();
+    renderCouponsControlLayout();
+  }
   else if (currentTab === 'customers') renderCustomers();
   else if (currentTab === 'monthly') renderMonthly();
   else if (currentTab === 'offer') renderOffer();
@@ -343,6 +347,30 @@ function renderConfigPanelLayout() {
   }).join('');
 }
 
+function renderCouponsControlLayout() {
+  const container = document.getElementById('adminCouponsControlList');
+  if (!container) return;
+  
+  container.innerHTML = Object.keys(couponsStateMap).map(couponCode => {
+    const isCouponActive = couponsStateMap[couponCode];
+    const switchLabelText = isCouponActive ? "🟢 ACTIVE (ON)" : "🔴 DISABLED (OFF)";
+    const cssToggleBtnClass = isCouponActive ? "stock-toggle-btn in-stock" : "stock-toggle-btn out-of-stock";
+    
+    return `
+      <div class="stock-item-row">
+        <span class="stock-item-name" style="font-weight:700; color:#6B21A8;">🎟️ ${couponCode}</span>
+        <button class="${cssToggleBtnClass}" onclick="toggleSingleCouponStateRemote('${couponCode}')">${switchLabelText}</button>
+      </div>
+    `;
+  }).join('');
+}
+
+function toggleSingleCouponStateRemote(couponCode) {
+  couponsStateMap[couponCode] = !couponsStateMap[couponCode];
+  renderCouponsControlLayout();
+  pushConfigTransactionPayloadRemote();
+}
+
 async function toggleSingleStockItemRemote(itemName) {
   let list = [...activeSoldOutItemsArray];
   if (list.includes(itemName)) {
@@ -357,7 +385,7 @@ async function toggleSingleStockItemRemote(itemName) {
 
 async function saveGlobalControlConfigRemote() {
   await pushConfigTransactionPayloadRemote();
-  alert("⚙️ Store configurations and timers synchronized to main data sheet successfully!");
+  alert("⚙️ Store configurations, timers, and coupons synchronized live!");
 }
 
 async function pushConfigTransactionPayloadRemote() {
@@ -365,13 +393,14 @@ async function pushConfigTransactionPayloadRemote() {
   const endHour = document.getElementById('cfgEndHour').value;
   const manualStatus = document.getElementById('cfgManualStatus').value;
   const serializedList = JSON.stringify(activeSoldOutItemsArray);
+  const serializedCoupons = JSON.stringify(couponsStateMap);
   
-  // Local storage retention mirror sync hook for instant caching structures
   localStorage.setItem('lq_admin_config', JSON.stringify({ startHour, endHour, manualStatus }));
   localStorage.setItem('lq_sold_out_items', serializedList);
+  localStorage.setItem('lq_active_coupons', serializedCoupons);
 
   try {
-    await fetch(`${SHEET_URL}?action=update_config&startHour=${startHour}&endHour=${endHour}&manualStatus=${manualStatus}&soldOutList=${encodeURIComponent(serializedList)}`);
+    await fetch(`${SHEET_URL}?action=update_config&startHour=${startHour}&endHour=${endHour}&manualStatus=${manualStatus}&soldOutList=${encodeURIComponent(serializedList)}&activeCoupons=${encodeURIComponent(serializedCoupons)}`);
   } catch(e) {}
 }
 
