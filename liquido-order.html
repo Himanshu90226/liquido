@@ -67,7 +67,7 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:var(--dark);trans
 .combo-price{font-size:0.92rem;font-weight:800;color:var(--purple)}
 .combo-add{background:var(--yellow);color:var(--purple);border:none;border-radius:7px;padding:5px 10px;font-family:'Poppins',sans-serif;font-size:0.74rem;font-weight:800;cursor:pointer}
 
-/* MENU - SWIGGY GRID STYLE RESTORED */
+/* MENU - SWIGGY GRID STYLE */
 .menu-section{padding:0 10px 130px}
 .category{margin-top:20px}
 .cat-title{font-size:1rem;font-weight:800;color:var(--purple);border-left:5px solid var(--yellow);padding-left:10px;margin-bottom:12px}
@@ -164,6 +164,13 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:var(--dark);trans
 .loc-btn{width:100%;background:#f0e6ff;color:var(--purple);border:2px dashed #d8b4fe;border-radius:10px;padding:10px;font-family:'Poppins',sans-serif;font-size:0.82rem;font-weight:600;cursor:pointer;margin-top:10px}
 .loc-ok{font-size:0.73rem;color:green;background:#e8ffe8;border-radius:8px;padding:6px 10px;margin-top:6px}
 
+/* THIRD PARTY SERVICE PICKUP CHANNELS (NEW UI DESIGN ELEMENT) */
+.pickup-opts{display:flex;gap:8px;margin:10px 0}
+.pickup-opt{flex:1;padding:10px 6px;border:2px solid #e0d0ff;border-radius:10px;text-align:center;cursor:pointer;font-size:0.78rem;font-weight:700;color:#555}
+.pickup-opt.sel{border-color:var(--purple);background:#f5eeff;color:var(--purple)}
+.pickup-opt .icon{font-size:1.2rem;display:block;margin-bottom:2px}
+.delivery-notice-box{background:#fff8e1;border:1px solid #ffe082;border-radius:10px;padding:10px;font-size:0.74rem;color:#b78103;margin-top:8px;font-weight:600;line-height:1.4}
+
 /* PAYMENT */
 .pay-opts{display:flex;gap:8px;margin:10px 0}
 .pay-opt{flex:1;padding:9px 6px;border:2px solid #e0d0ff;border-radius:10px;text-align:center;cursor:pointer;font-size:0.78rem;font-weight:600;color:#666}
@@ -198,6 +205,8 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:var(--dark);trans
 .dark .bottom-nav{background:#111!important;border-color:#222}
 .dark .cust-block-header{background:#251c3a!important;color:#d8b4fe!important}
 .dark .cust-opt-row{border-bottom-color:#2c2c2c!important}
+.dark .pickup-opt{border-color:#333; color:#aaa}
+.dark .pickup-opt.sel{border-color:var(--purple); background:#1e1228; color:white}
 
 /* TOAST */
 .toast{position:fixed;bottom:88px;left:50%;transform:translateX(-50%);background:#1a1a1a;color:white;padding:9px 20px;border-radius:50px;font-size:0.8rem;font-weight:600;z-index:500;opacity:0;transition:opacity 0.3s;white-space:nowrap;pointer-events:none}
@@ -229,10 +238,6 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:var(--dark);trans
 /* BACK TO TOP */
 .back-top{position:fixed;bottom:78px;right:14px;width:38px;height:38px;background:var(--purple);color:white;border:none;border-radius:50%;font-size:1.2rem;cursor:pointer;box-shadow:0 3px 12px rgba(107,33,168,0.4);z-index:149;display:none;align-items:center;justify-content:center}
 .back-top.show{display:flex}
-
-/* FIXED PULL TO REFRESH INDICATION ENGINES HIDDEN STATES */
-.ptr-indicator{position:fixed;top:0;left:0;right:0;height:50px;background:var(--purple);color:white;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:600;z-index:999;transform:translateY(-100%);transition:transform 0.3s}
-.ptr-indicator.show{transform:translateY(0)}
 
 /* SWIGGY CUSTOM POPUP COMPONENT STYLE */
 .item-popup{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:400;align-items:flex-end}
@@ -502,15 +507,13 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:var(--dark);trans
 const WA='917014809238';
 const UPI='BHARATPE.8P0M0U9N8Z03820@fbpe';
 const UNAME='Liquido';
-
-// YAHA APNA NAYA APPS SCRIPT WEB APP URL PASTE KAREIN
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxi4hQF2NpzkQuFIqL-m9TK1mmAqf-0rRADTJWRMw6ztshrkY5obZHGc33DOV-CV87e/exec';
-
+const SHEET_URL='https://script.google.com/macros/s/AKfycbyTiAvaulNhOx2ObBvvhjaII3y5ol3OAHtwJsEN6BrE4dYF4ECvJmrCcqVBf68ZMbpB/exec';
 let COUPONS={'LIQUIDO10':{disc:10,type:'pct',label:'10% off'},'FLAT50':{disc:50,type:'flat',label:'₹50 off'},'NEWUSER':{disc:15,type:'pct',label:'15% off'},'MOMOS20':{disc:20,type:'pct',label:'20% off'}};
 const BESTSELLERS=['Veg Steam Momos','Schezwan Momos','Masala Maggi','Oreo Cold Coffee','Oreo Shake','Veg Cheesy Burger','Kurkure Veg Momos'];
 
 let formFieldsState = { name: '', phone: '', address: '', note: '' };
 let cart=[],locText='',locCoords='',payMethod='upi',darkMode=false,discount=0,discLabel='';
+let orderType='delivery'; // Default operational state tracker
 
 // FIXED BASE SPECS WITH EXACT SPECIFIED PRICINGS
 const ADDON_SPECS = {
@@ -520,7 +523,6 @@ const ADDON_SPECS = {
   drinks: { title: "Select Soft Drink Variant (Choose 1)", type: "radio", opts: [{ n: "Coca Cola", p: 0 }, { n: "Sprite", p: 0 }, { n: "Thums Up", p: 0 }, { n: "Fanta", p: 0 }] }
 };
 
-// SYNCHRONIZED MATRIX CONFIGS - IMAGES ABSOLUTELY PRESERVED 
 const menuData=[
   {cat:'Momos',items:[
     {name:'Veg Steam Momos',img:'https://images.pexels.com/photos/33670191/pexels-photo-33670191.jpeg?auto=format&fit=crop&w=200&q=80',price:50,addons:['sizes','cheese','spices']},
@@ -601,7 +603,6 @@ function isShopOpen(){
   return (hr >= startHour && hr < endHour);
 }
 
-// SYNC ACTIVE COUPONS FROM CONNECTED CLOUD REAL-TIME ENGINE
 async function syncRemoteCouponsStateMap() {
   try {
     const response = await fetch(`${SHEET_URL}?action=get_config`);
@@ -695,6 +696,18 @@ function removeItem(name){
   if(idx>-1){cart[idx].qty--;if(cart[idx].qty<=0)cart.splice(idx,1);}
   updateCartBtn();renderCart();
 }
+// INTERACTIVE PORTION SELECTOR FOR PICKUP / DELIVERY OPTIONS
+function toggleOrderTypeMode(type) {
+  orderType = type;
+  document.getElementById('otDelivery').classList.toggle('sel', type === 'delivery');
+  document.getElementById('otPickup').classList.toggle('sel', type === 'pickup');
+  
+  const addressBlock = document.getElementById('checkoutAddressWrapperContainer');
+  if(addressBlock) {
+    addressBlock.style.display = type === 'pickup' ? 'none' : 'block';
+  }
+}
+
 function updateCartBtn(){
   const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
   const count=cart.reduce((s,i)=>s+i.qty,0);
@@ -755,11 +768,22 @@ function renderCart(){
     <input class="finput" id="cName" placeholder="Enter Name" value="${formFieldsState.name}" oninput="syncFieldState('name', this.value)">
     <label class="flabel">📞 Phone Number *</label>
     <input class="finput" id="cPhone" placeholder="10-digit mobile number" type="tel" value="${formFieldsState.phone}" oninput="syncFieldState('phone', this.value)">
-    <label class="flabel">📍 Delivery Address *</label>
-    <input class="finput" id="cAddr" placeholder="Ghar/Dukaan no. , Gali , Area" value="${formFieldsState.address}" oninput="syncFieldState('address', this.value)">
-    <button class="save-addr-btn" onclick="saveCurrentAddr()">💾 Yeh Address Future Keliye Save Karo</button>
-    <button class="loc-btn" id="locBtn" onclick="getLocation()">📍 GPS se Location Detect Karo</button>
-    <div id="locRes"></div>
+    
+    <label class="flabel">📦 Order Options (Select 1) *</label>
+    <div class="pickup-opts">
+      <div class="pickup-opt ${orderType === 'delivery' ? 'sel' : ''}" id="otDelivery" onclick="toggleOrderTypeMode('delivery')"><span class="icon">🛵</span>Food Delivery</div>
+      <div class="pickup-opt ${orderType === 'pickup' ? 'sel' : ''}" id="otPickup" onclick="toggleOrderTypeMode('pickup')"><span class="icon">🛍️</span>Self Pickup</div>
+    </div>
+
+    <div id="checkoutAddressWrapperContainer" style="display: ${orderType === 'pickup' ? 'none' : 'block'};">
+      <label class="flabel">📍 Delivery Address *</label>
+      <input class="finput" id="cAddr" placeholder="Ghar/Dukaan no. , Gali , Area" value="${formFieldsState.address}" oninput="syncFieldState('address', this.value)">
+      <button class="save-addr-btn" onclick="saveCurrentAddr()">💾 Yeh Address Future Keliye Save Karo</button>
+      <button class="loc-btn" id="locBtn" onclick="getLocation()">📍 GPS se Location Detect Karo</button>
+      <div id="locRes"></div>
+      <div class="delivery-notice-box">💡 NOTICE: Aap apna food parcel pickup karne ke liye *Ola, Uber, ya Porter* application se bhi runner bhej sakte hain! 🛵</div>
+    </div>
+
     <label class="flabel">📝 Special Instructions (optional)</label>
     <input class="finput" id="cNote" placeholder="Extra Sauce, Extra Cheese, etc." value="${formFieldsState.note}" oninput="syncFieldState('note', this.value)">
     <div style="font-weight:700;font-size:0.88rem;margin-top:14px;margin-bottom:6px;">💳 Payment Method</div>
@@ -807,7 +831,6 @@ function selPay(m){
   renderPay(Math.max(0,subtotal-discAmt));
 }
 
-// DISPATCH LINK CHANNELS
 function renderPay(total){
   const el=document.getElementById('payBox');if(!el)return;
   if(payMethod==='upi'){
@@ -815,7 +838,7 @@ function renderPay(total){
     el.innerHTML=`<div class="upi-box">
       <div class="upi-id">UPI ID: <b>${UPI}</b></div>
       <div class="upi-id" style="margin-top:3px">Name: <b>${UNAME}</b></div>
-      <div class="upi-amt">₹${total}</div>
+      <div class="upi-amt">₹total</div>
       <div style="font-size:0.7rem;color:#888;">PhonePe • GPay • Paytm • BharatPe</div>
       <a class="upi-link" href="${link}">🔗 UPI App Kholo aur Pay Karo</a>
     </div>`;
@@ -871,7 +894,7 @@ function placeOrder(){
 
   const name=formFieldsState.name.trim();
   const phone=formFieldsState.phone.trim();
-  const addr=formFieldsState.address.trim();
+  const addr=orderType === 'pickup' ? 'SELF PICKUP FROM KITCHEN' : formFieldsState.address.trim();
   const note=formFieldsState.note.trim();
   
   if(!name){showToast('❗ Naam likhein');return;}
@@ -883,7 +906,7 @@ function placeOrder(){
     return;
   }
   
-  if(!addr&&!locText){showToast('❗ Address ya location dein');return;}
+  if(orderType === 'delivery' && !addr && !locText){showToast('❗ Address ya location dein');return;}
   const subtotal=cart.reduce((s,i)=>s+i.price*i.qty,0);
   const discAmt=discLabel?(discount>1?discount:Math.round(subtotal*discount/100)):0;
   const total=Math.max(0,subtotal-discAmt);
@@ -903,10 +926,11 @@ function placeOrder(){
 
   alert("📢 REMINDER:\nAapko abhi WhatsApp par redirect kiya jaa raha hai.\n\nKripya WhatsApp open hote hi chat box mein 'SEND' button ko zaroor dabayein taaki aapka order hamare paas confirm receive ho sake! 🙏");
 
+  // Push record structure down to data sheets pipelines
   fetch(SHEET_URL,{
     method:'POST',mode:'no-cors',
     headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({date,time,name,phone,address:addr||'GPS',items:cart.map(i=>`${i.name} x${i.qty}`).join(', '),total,payment:payMethod==='upi'?'UPI / Online':'Cash on Delivery',location:locText||'',orderId,coupon:discLabel||'None',discount:discAmt})
+    body:JSON.stringify({date,time,name,phone,address:addr||'GPS',items:cart.map(i=>`${i.name} x${i.qty}`).join(', '),total,payment:payMethod==='upi'?'UPI / Online':'Cash on Delivery',location:locText||'',orderId,coupon:discLabel||'None',discount:discAmt,type:orderType})
   }).catch(()=>{});
 
   let msg = `🛒 *NEW ORDER - LIQUIDO*\n`;
@@ -914,6 +938,7 @@ function placeOrder(){
   msg += `🆔 *Order ID:* ${orderId}\n`;
   msg += `👤 *Naam:* ${name}\n`;
   msg += `📞 *Phone:* ${phone}\n`;
+  msg += `📦 *Order Type:* ${orderType === 'pickup' ? '🛍️ Self Pickup From Kitchen' : '🛵 Delivery Pack'}\n`;
   msg += `---------------------------\n`;
   msg += `🍽️ *Items Ordered:*\n${items}\n`;
   msg += `---------------------------\n`;
@@ -921,8 +946,12 @@ function placeOrder(){
   msg += `💰 *Total Bill:* ₹${total}\n`;
   msg += `💳 *Payment Mode:* ${payMethod==='upi'?'UPI / Online App':'Cash on Delivery'}\n`;
   msg += `---------------------------\n`;
-  if(addr) msg += `🏠 *Address:* ${addr}\n`;
-  if(locText) msg += `📍 *Maps Location Link:* ${locText}\n`;
+  if(orderType === 'delivery') {
+    if(addr) msg += `🏠 *Address:* ${addr}\n`;
+    if(locText) msg += `📍 *Maps Location Link:* ${locText}\n`;
+  } else {
+    msg += `🏬 *Pickup Instruction:* Customer self-pick or launching runner via Ola/Uber/Porter App.\n`;
+  }
   if(note) msg += `📝 *Instructions:* ${note}\n`;
   msg += `---------------------------\n`;
   msg += `Please confirm my order. Thank you! 🙏`;
@@ -1103,7 +1132,6 @@ function updateCardQty(card, name, price){
   }
 }
 
-// RESTORING WRAPPER TRIGGERS WITHOUT DESTRUCTURING GRID ARRAYS
 function openPopupTrigger(name){
   const item = menuData.flatMap(c=>c.items).find(i=>i.name===name);
   if(item) openPopup(item.name, item.price, item.img, item.addons||null);
@@ -1185,7 +1213,7 @@ function openHistory(){
   try{
     const history = JSON.parse(localStorage.getItem('lq_history')||'[]');
     if(!history.length){
-      list.innerHTML='<div class="no-history">📦 Abhi tak koi order nahi<br>Pehla order karo!</div>';
+      list.innerHTML = '<div class="no-history">📦 Abhi tak koi order nahi<br>Pehla order karo!</div>';
       return;
     }
     list.innerHTML = history.map(h=>`
