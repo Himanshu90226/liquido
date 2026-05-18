@@ -38,7 +38,7 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:var(--dark);trans
 
 /* TABS */
 .tabs-wrap{background:white;border-bottom:2px solid #eee;position:sticky;top:60px;z-index:99}
-.tabs{display:flex;overflow-x:auto;gap:4px;padding:9px 12px;scrollbar-width:none}
+.tabs(display:flex;overflow-x:auto;gap:4px;padding:9px 12px;scrollbar-width:none}
 .tabs::-webkit-scrollbar{display:none}
 .tab{flex-shrink:0;background:#f0e6ff;color:var(--purple);border:none;border-radius:20px;padding:5px 13px;font-size:0.73rem;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif;white-space:nowrap}
 .tab.active,.tab:hover{background:var(--purple);color:white}
@@ -230,7 +230,7 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:var(--dark);trans
 .back-top{position:fixed;bottom:78px;right:14px;width:38px;height:38px;background:var(--purple);color:white;border:none;border-radius:50%;font-size:1.2rem;cursor:pointer;box-shadow:0 3px 12px rgba(107,33,168,0.4);z-index:149;display:none;align-items:center;justify-content:center}
 .back-top.show{display:flex}
 
-/* PULL TO REFRESH DESIGN FIXED STYLES */
+/* PULL TO REFRESH INDICATION ENGINES HIDDEN STATES */
 .ptr-indicator{position:fixed;top:0;left:0;right:0;height:50px;background:var(--purple);color:white;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:600;z-index:999;transform:translateY(-100%);transition:transform 0.3s}
 .ptr-indicator.show{transform:translateY(0)}
 
@@ -465,7 +465,6 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:var(--dark);trans
         <span class="popup-mrp" id="popupMrp"></span>
         <span class="popup-save" id="popupSave"></span>
       </div>
-      <div class="popup-veg" id="popupVegBadge" style="display:none; margin-bottom:10px;"><span class="veg-icon"><span class="veg-dot"></span></span> <span id="popupCustomizationHeading">Customise as per your taste</span></div>
       <div class="popup-desc" id="popupDesc"></div>
       
       <div id="popupCustomizationContainer"></div>
@@ -504,13 +503,12 @@ const WA='917014809238';
 const UPI='BHARATPE.8P0M0U9N8Z03820@fbpe';
 const UNAME='Liquido';
 const SHEET_URL='https://script.google.com/macros/s/AKfycbxe4hQF2NpzkQuFIqL-m9TK1mmAqf-0rRADTJWRMw6ztshrkY5obZHGc33DOV-CV87e/exec';
-const COUPONS={'LIQUIDO10':{disc:10,type:'pct',label:'10% off'},'FLAT50':{disc:50,type:'flat',label:'₹50 off'},'NEWUSER':{disc:15,type:'pct',label:'15% off'},'MOMOS20':{disc:20,type:'pct',label:'20% off'}};
+let COUPONS={'LIQUIDO10':{disc:10,type:'pct',label:'10% off'},'FLAT50':{disc:50,type:'flat',label:'₹50 off'},'NEWUSER':{disc:15,type:'pct',label:'15% off'},'MOMOS20':{disc:20,type:'pct',label:'20% off'}};
 const BESTSELLERS=['Veg Steam Momos','Schezwan Momos','Masala Maggi','Oreo Cold Coffee','Oreo Shake','Veg Cheesy Burger','Kurkure Veg Momos'];
 
 let formFieldsState = { name: '', phone: '', address: '', note: '' };
 let cart=[],locText='',locCoords='',payMethod='upi',darkMode=false,discount=0,discLabel='';
 
-// FIXED BASE SPECS WITH EXACT SPECIFIED PRICINGS (Cheese globally ₹20)
 const ADDON_SPECS = {
   sizes: { title: "Portion Size (Choose 1)", type: "radio", opts: [{ n: "Half Plate", p: 0 }, { n: "Full Plate", p: 30 }] },
   cheese: { title: "Addons Cheese (Max 1)", type: "checkbox", opts: [{ n: "Extra Cheese", p: 20 }] }, 
@@ -518,88 +516,98 @@ const ADDON_SPECS = {
   drinks: { title: "Select Soft Drink Variant (Choose 1)", type: "radio", opts: [{ n: "Coca Cola", p: 0 }, { n: "Sprite", p: 0 }, { n: "Thums Up", p: 0 }, { n: "Fanta", p: 0 }] }
 };
 
-// SYNCHRONIZED MATRIX CONFIGS - ALL ASSET PATHS SECURELY PRESERVED
 const menuData=[
   {cat:'Momos',items:[
-    {name:'Veg Steam Momos',img:'https://images.pexels.com/photos/33670191/pexels-photo-33670191.jpeg',price:50,addons:['sizes','cheese','spices']},
-    {name:'Deep Fried Momos',img:'https://images.pexels.com/photos/28445587/pexels-photo-28445587.jpeg',price:50,addons:['sizes','cheese','spices']},
-    {name:'Pan Fried Momos',img:'https://images.pexels.com/photos/32292049/pexels-photo-32292049.jpeg',price:50,addons:['sizes','cheese','spices']},
-    {name:'Fire Tossed Momos',img:'https://images.pexels.com/photos/5409021/pexels-photo-5409021.jpeg',price:70,addons:['sizes','cheese']},
-    {name:'Kurkure Veg Momos',img:'https://images.pexels.com/photos/14883824/pexels-photo-14883824.jpeg',price:89,addons:['sizes','cheese','spices']},
-    {name:'Schezwan Momos',img:'https://images.pexels.com/photos/36701435/pexels-photo-36701435.jpeg',price:119,addons:['sizes','cheese']},
-    {name:'Peri Peri Momos',img:'https://images.pexels.com/photos/17321009/pexels-photo-17321009.jpeg',price:119,addons:['sizes','cheese']},
+    {name:'Veg Steam Momos',img:'https://images.pexels.com/photos/33670191/pexels-photo-33670191.jpeg?auto=format&fit=crop&w=200&q=80',price:50,addons:['sizes','cheese','spices']},
+    {name:'Deep Fried Momos',img:'https://images.pexels.com/photos/28445587/pexels-photo-28445587.jpeg?auto=format&fit=crop&w=200&q=80',price:50,addons:['sizes','cheese','spices']},
+    {name:'Pan Fried Momos',img:'https://images.pexels.com/photos/32292049/pexels-photo-32292049.jpeg?auto=format&fit=crop&w=200&q=80',price:50,addons:['sizes','cheese','spices']},
+    {name:'Fire Tossed Momos',img:'https://images.pexels.com/photos/5409021/pexels-photo-5409021.jpeg?auto=format&fit=crop&w=200&q=80',price:70,addons:['sizes','cheese']},
+    {name:'Kurkure Veg Momos',img:'https://images.pexels.com/photos/14883824/pexels-photo-14883824.jpeg?auto=format&fit=crop&w=200&q=80',price:89,addons:['sizes','cheese','spices']},
+    {name:'Schezwan Momos',img:'https://images.pexels.com/photos/36701435/pexels-photo-36701435.jpeg?auto=format&fit=crop&w=200&q=80',price:119,addons:['sizes','cheese']},
+    {name:'Peri Peri Momos',img:'https://images.pexels.com/photos/17321009/pexels-photo-17321009.jpeg?auto=format&fit=crop&w=200&q=80',price:119,addons:['sizes','cheese']},
   ]},
   {cat:'Sandwich',items:[
-    {name:'Grilled Sandwich',img:'https://images.pexels.com/photos/29699515/pexels-photo-29699515.jpeg',price:79,addons:['cheese','spices']},
-    {name:'Grilled Cheese Sandwich',img:'https://images.pexels.com/photos/29173115/pexels-photo-29173115.jpeg',price:99,addons:['cheese']},
-    {name:'Cheese Corn Sandwich',img:'https://images.pexels.com/photos/36268517/pexels-photo-36268517.jpeg',price:99,addons:['cheese','spices']},
+    {name:'Grilled Sandwich',img:'https://images.pexels.com/photos/29699515/pexels-photo-29699515.jpeg?auto=format&fit=crop&w=200&q=80',price:79,addons:['cheese','spices']},
+    {name:'Grilled Cheese Sandwich',img:'https://images.pexels.com/photos/29173115/pexels-photo-29173115.jpeg?auto=format&fit=crop&w=200&q=80',price:99,addons:['cheese']},
+    {name:'Cheese Corn Sandwich',img:'https://images.pexels.com/photos/36268517/pexels-photo-36268517.jpeg?auto=format&fit=crop&w=200&q=80',price:99,addons:['cheese','spices']},
     {name:'Paneer Sandwich',img:'https://images.unsplash.com/photo-1559054663-e8d23213f55c?auto=format&fit=crop&w=200&q=80',price:119,addons:['cheese','spices']},
-    {name:'Paneer Cheese Sandwich',img:'https://images.pexels.com/photos/16230531/pexels-photo-16230531.jpeg',price:139,addons:['cheese','spices']},
-    {name:'Cheese Sandwich',img:'https://images.pexels.com/photos/20422166/pexels-photo-20422166.jpeg',price:139,addons:['cheese']},
+    {name:'Paneer Cheese Sandwich',img:'https://images.pexels.com/photos/16230531/pexels-photo-16230531.jpeg?auto=format&fit=crop&w=200&q=80',price:139,addons:['cheese','spices']},
+    {name:'Cheese Sandwich',img:'https://images.pexels.com/photos/20422166/pexels-photo-20422166.jpeg?auto=format&fit=crop&w=200&q=80',price:139,addons:['cheese']},
   ]},
   {cat:'Maggi',items:[
-    {name:'Masala Maggi',img:'https://images.pexels.com/photos/8477649/pexels-photo-8477649.jpeg',price:40,addons:['cheese','spices']},
-    {name:'Vegetable Maggi',img:'https://images.pexels.com/photos/18440381/pexels-photo-18440381.jpeg',price:50,addons:['cheese','spices']},
-    {name:'Vegetable Cheese Maggi',img:'https://i.postimg.cc/gJrYG24K/1779052986280.png',price:80,addons:['cheese','spices']},
-    {name:'Butter Maggi',img:'https://i.postimg.cc/VkYv3myr/1779053123267.png',price:60,addons:['cheese','spices']},
-    {name:'Butter Cheese Maggi',img:'https://i.postimg.cc/WpY7pN63/1779053819878.png',price:80,addons:['cheese','spices']},
-    {name:'Schezwan Masala Maggi',img:'https://i.postimg.cc/QC0wCQtC/1779053992141.png',price:70,addons:['cheese','spices']},
-    {name:'Schezwan Cheese Maggi',img:'https://i.postimg.cc/Sx6QdKgY/1779054141089.png',price:80,addons:['cheese','spices']},
-    {name:'Peri Peri Cheese Maggi',img:'https://i.postimg.cc/26hfkcgn/file-0000000047a47209a33544f80c786da6.png',price:80,addons:['cheese','spices']},
+    {name:'Masala Maggi',img:'https://images.pexels.com/photos/8477649/pexels-photo-8477649.jpeg?auto=format&fit=crop&w=200&q=80',price:40,addons:['cheese','spices']},
+    {name:'Vegetable Maggi',img:'https://images.pexels.com/photos/18440381/pexels-photo-18440381.jpeg?auto=format&fit=crop&w=200&q=80',price:50,addons:['cheese','spices']},
+    {name:'Vegetable Cheese Maggi',img:'https://i.postimg.cc/gJrYG24K/1779052986280.png?auto=format&fit=crop&w=200&q=80',price:80,addons:['cheese','spices']},
+    {name:'Butter Maggi',img:'https://i.postimg.cc/VkYv3myr/1779053123267.png?auto=format&fit=crop&w=200&q=80',price:60,addons:['cheese','spices']},
+    {name:'Butter Cheese Maggi',img:'https://i.postimg.cc/WpY7pN63/1779053819878.png?auto=format&fit=crop&w=200&q=80',price:80,addons:['cheese','spices']},
+    {name:'Schezwan Masala Maggi',img:'https://i.postimg.cc/QC0wCQtC/1779053992141.png?auto=format&fit=crop&w=200&q=80',price:70,addons:['cheese','spices']},
+    {name:'Schezwan Cheese Maggi',img:'https://i.postimg.cc/Sx6QdKgY/1779054141089.png?auto=format&fit=crop&w=200&q=80',price:80,addons:['cheese','spices']},
+    {name:'Peri Peri Cheese Maggi',img:'https://i.postimg.cc/26hfkcgn/file-0000000047a47209a33544f80c786da6.png?auto=format&fit=crop&w=200&q=80',price:80,addons:['cheese','spices']},
   ]},
   {cat:'Wrap',items:[
-    {name:'Classic Veggie Delight Wrap',img:'https://images.pexels.com/photos/9980749/pexels-photo-9980749.jpeg',price:89,addons:['cheese','spices']},
-    {name:'Tandoori Paneer Power Wrap',img:'https://images.pexels.com/photos/5175629/pexels-photo-5175629.jpeg',price:129,addons:['cheese','spices']},
-    {name:'Tofu Wrap (Gym Special)',img:'https://images.pexels.com/photos/14775667/pexels-photo-14775667.jpeg',price:139,addons:['cheese']},
+    {name:'Classic Veggie Delight Wrap',img:'https://images.pexels.com/photos/9980749/pexels-photo-9980749.jpeg?auto=format&fit=crop&w=200&q=80',price:89,addons:['cheese','spices']},
+    {name:'Tandoori Paneer Power Wrap',img:'https://images.pexels.com/photos/5175629/pexels-photo-5175629.jpeg?auto=format&fit=crop&w=200&q=80',price:129,addons:['cheese','spices']},
+    {name:'Tofu Wrap (Gym Special)',img:'https://images.pexels.com/photos/14775667/pexels-photo-14775667.jpeg?auto=format&fit=crop&w=200&q=80',price:139,addons:['cheese']},
   ]},
   {cat:'Cold Coffee',items:[
-    {name:'Classic Cold Coffee',img:'https://images.pexels.com/photos/33066988/pexels-photo-33066988.jpeg',price:59},
-    {name:'Java Chip Cold Coffee',img:'https://images.pexels.com/photos/35080970/pexels-photo-35080970.jpeg',price:79},
-    {name:'Double Chocolate CC',img:'https://images.pexels.com/photos/15455284/pexels-photo-15455284.jpeg',price:99},
-    {name:'Oreo Cold Coffee',img:'https://images.pexels.com/photos/8743859/pexels-photo-8743859.jpeg',price:99},
+    {name:'Classic Cold Coffee',img:'https://images.pexels.com/photos/33066988/pexels-photo-33066988.jpeg?auto=format&fit=crop&w=200&q=80',price:59},
+    {name:'Java Chip Cold Coffee',img:'https://images.pexels.com/photos/35080970/pexels-photo-35080970.jpeg?auto=format&fit=crop&w=200&q=80',price:79},
+    {name:'Double Chocolate CC',img:'https://images.pexels.com/photos/15455284/pexels-photo-15455284.jpeg?auto=format&fit=crop&w=200&q=80',price:99},
+    {name:'Oreo Cold Coffee',img:'https://images.pexels.com/photos/8743859/pexels-photo-8743859.jpeg?auto=format&fit=crop&w=200&q=80',price:99},
   ]},
   {cat:'Shake',items:[
-    {name:'Oreo Shake',img:'https://images.pexels.com/photos/17321326/pexels-photo-17321326.jpeg',price:79},
-    {name:'Mango Shake',img:'https://images.pexels.com/photos/12364376/pexels-photo-12364376.jpeg',price:79},
-    {name:'Strawberry Shake',img:'https://images.pexels.com/photos/25469620/pexels-photo-25469620.jpeg',price:79},
-    {name:'Blueberry Shake',img:'https://images.pexels.com/photos/7463309/pexels-photo-7463309.jpeg',price:79},
-    {name:'Bubblegum Shake',img:'https://images.pexels.com/photos/17321345/pexels-photo-17321345.jpeg',price:99},
-    {name:'Kitkat Shake',img:'https://images.pexels.com/photos/11381485/pexels-photo-11381485.jpeg',price:99},
-    {name:'Kitkat Oreo Shake',img:'https://images.pexels.com/photos/16825482/pexels-photo-16825482.jpeg',price:99},
+    {name:'Oreo Shake',img:'https://images.pexels.com/photos/17321326/pexels-photo-17321326.jpeg?auto=format&fit=crop&w=200&q=80',price:79},
+    {name:'Mango Shake',img:'https://images.pexels.com/photos/12364376/pexels-photo-12364376.jpeg?auto=format&fit=crop&w=200&q=80',price:79},
+    {name:'Strawberry Shake',img:'https://images.pexels.com/photos/25469620/pexels-photo-25469620.jpeg?auto=format&fit=crop&w=200&q=80',price:79},
+    {name:'Blueberry Shake',img:'https://images.pexels.com/photos/7463309/pexels-photo-7463309.jpeg?auto=format&fit=crop&w=200&q=80',price:79},
+    {name:'Bubblegum Shake',img:'https://images.pexels.com/photos/17321345/pexels-photo-17321345.jpeg?auto=format&fit=crop&w=200&q=80',price:99},
+    {name:'Kitkat Shake',img:'https://images.pexels.com/photos/11381485/pexels-photo-11381485.jpeg?auto=format&fit=crop&w=200&q=80',price:99},
+    {name:'Kitkat Oreo Shake',img:'https://images.pexels.com/photos/16825482/pexels-photo-16825482.jpeg?auto=format&fit=crop&w=200&q=80',price:99},
   ]},
   {cat:'Burger',items:[
-    {name:'Aloo Tikki Burger',img:'https://images.pexels.com/photos/29173097/pexels-photo-29173097.jpeg',price:49,addons:['cheese']},
-    {name:'Veg Cheesy Burger',img:'https://images.pexels.com/photos/20741663/pexels-photo-20741663.jpeg',price:59,addons:['cheese']},
-    {name:'Veg Paneer Burger',img:'https://images.pexels.com/photos/16175495/pexels-photo-16175495.jpeg',price:89,addons:['cheese']},
+    {name:'Aloo Tikki Burger',img:'https://images.pexels.com/photos/29173097/pexels-photo-29173097.jpeg?auto=format&fit=crop&w=200&q=80',price:49,addons:['cheese']},
+    {name:'Veg Cheesy Burger',img:'https://images.pexels.com/photos/20741663/pexels-photo-20741663.jpeg?auto=format&fit=crop&w=200&q=80',price:59,addons:['cheese']},
+    {name:'Veg Paneer Burger',img:'https://images.pexels.com/photos/16175495/pexels-photo-16175495.jpeg?auto=format&fit=crop&w=200&q=80',price:89,addons:['cheese']},
   ]},
   {cat:'Fries',items:[
-    {name:'Plain Salted Fries',img:'https://images.pexels.com/photos/15656541/pexels-photo-15656541.jpeg',price:69,addons:['cheese']},
-    {name:'Peri Peri Masala Fries',img:'https://images.pexels.com/photos/36925838/pexels-photo-36925838.jpeg',price:99,addons:['cheese']},
-    {name:'Crispy Garlic Butter Fries',img:'https://images.pexels.com/photos/6428247/pexels-photo-6428247.jpeg',price:129,addons:['cheese']},
+    {name:'Plain Salted Fries',img:'https://images.pexels.com/photos/15656541/pexels-photo-15656541.jpeg?auto=format&fit=crop&w=200&q=80',price:69,addons:['cheese']},
+    {name:'Peri Peri Masala Fries',img:'https://images.pexels.com/photos/36925838/pexels-photo-36925838.jpeg?auto=format&fit=crop&w=200&q=80',price:99,addons:['cheese']},
+    {name:'Crispy Garlic Butter Fries',img:'https://images.pexels.com/photos/6428247/pexels-photo-6428247.jpeg?auto=format&fit=crop&w=200&q=80',price:129,addons:['cheese']},
   ]},
   {cat:'Drinks',items:[
-    {name:'Water Bottle',img:'https://images.pexels.com/photos/11860562/pexels-photo-11860562.jpeg',price:20},
-    {name:'Soft Drinks',img:'https://images.pexels.com/photos/4113621/pexels-photo-4113621.jpeg',price:40,addons:['drinks']},
+    {name:'Water Bottle',img:'https://images.pexels.com/photos/11860562/pexels-photo-11860562.jpeg?auto=format&fit=crop&w=200&q=80',price:20},
+    {name:'Soft Drinks',img:'https://images.pexels.com/photos/4113621/pexels-photo-4113621.jpeg?auto=format&fit=crop&w=200&q=80',price:40,addons:['drinks']},
   ]},
 ];
 
-// BACKEND DYNAMIC OVERRIDES SYNC CHANNELS
 function getOperationalConfig() {
-  try {
-    return JSON.parse(localStorage.getItem('lq_admin_config') || '{}');
-  } catch(e) { return {}; }
+  try { return JSON.parse(localStorage.getItem('lq_admin_config') || '{}'); } catch(e) { return {}; }
 }
 
 function isShopOpen(){
   const config = getOperationalConfig();
   if (config.manualStatus) {
-    return config.manualStatus === 'OPEN';
+    if (config.manualStatus === 'OPEN') return true;
+    if (config.manualStatus === 'CLOSED') return false;
   }
   const hr = new Date().getHours();
   const startHour = config.startHour !== undefined ? parseInt(config.startHour) : 16;
   const endHour = config.endHour !== undefined ? parseInt(config.endHour) : 23;
   return (hr >= startHour && hr < endHour);
 }
+
+// ASYNC LOAD COUPONS OVERRIDES DIRECT FROM ACTIVE ENGINE
+async function syncRemoteCouponsStateMap() {
+  try {
+    const response = await fetch(`${SHEET_URL}?action=get_config`);
+    const parsedData = await response.json();
+    if(parsedData.activeCoupons) {
+      const allowedCouponsMap = JSON.parse(parsedData.activeCoupons);
+      localStorage.setItem('lq_active_coupons', parsedData.activeCoupons);
+    }
+  } catch(e){}
+}
+setTimeout(syncRemoteCouponsStateMap, 2000);
 
 function updateShopStatusUI(){
   const isOpen = isShopOpen();
@@ -732,7 +740,7 @@ function renderCart(){
   const disabledClass = isClosed ? "disabled-btn" : "";
 
   footer.innerHTML=`
-    <div class="del-time-bar">🕐 Estimated Delivery: 30–45 minutes</div>
+    <div class="del-time-bar">🕐 Minimum Order Value Required: ₹99</div>
     <div style="font-weight:700;font-size:0.86rem;margin-bottom:6px;">🎟️ Coupon Code</div>
     <div class="coupon-wrap">
       <input class="coupon-inp" id="couponInp" placeholder="Enter code">
@@ -764,7 +772,20 @@ function applyCoupon(){
   const code=document.getElementById('couponInp')?.value.trim().toUpperCase();
   const msg=document.getElementById('couponMsg');
   if(!code){if(msg)msg.innerHTML='<div class="coupon-err">❗ Code likho</div>';return;}
-  if(COUPONS[code]){
+  
+  // PARSE VALID STATE DIRECT FROM MIRROR STORAGE ENGINE
+  let dynamicCouponsState = {"LIQUIDO10":true,"FLAT50":true,"NEWUSER":true,"MOMOS20":true};
+  try {
+    if(localStorage.getItem('lq_active_coupons')) {
+      dynamicCouponsState = JSON.parse(localStorage.getItem('lq_active_coupons'));
+    }
+  } catch(e){}
+
+  if(COUPONS[code]) {
+    if(dynamicCouponsState[code] === false) {
+      if(msg) msg.innerHTML='<div class="coupon-err">❌ Yeh coupon abhi expired/disabled hai!</div>';
+      return;
+    }
     const c=COUPONS[code];discount=c.disc;discLabel=c.label;
     if(msg)msg.innerHTML=`<div class="coupon-ok">✅ "${code}" apply ho gaya! ${c.label}</div>`;
     setTimeout(()=>renderCart(),400);
@@ -823,19 +844,18 @@ function getLocation(){
   );
 }
 
-// BUILT-IN OSCILLATOR TELEMETRY SIGNAL ALARM GENERATOR
-const audioAlertNode = new (window.AudioContext || window.webkitAudioContext)();
+const windowAudioEngine = new (window.AudioContext || window.webkitAudioContext)();
 function playOperationalPingAlertNotification() {
   try {
-    const osc = audioAlertNode.createOscillator();
-    const gain = audioAlertNode.createGain();
+    const osc = windowAudioEngine.createOscillator();
+    const gain = windowAudioEngine.createGain();
     osc.connect(gain);
-    gain.connect(audioAlertNode.destination);
+    gain.connect(windowAudioEngine.destination);
     osc.type = 'triangle';
-    osc.frequency.setValueAtTime(880, audioAlertNode.currentTime); // A5 system diagnostic pitch note
-    gain.gain.setValueAtTime(0.2, audioAlertNode.currentTime);
+    osc.frequency.setValueAtTime(880, windowAudioEngine.currentTime);
+    gain.gain.setValueAtTime(0.2, windowAudioEngine.currentTime);
     osc.start();
-    osc.stop(audioAlertNode.currentTime + 0.15);
+    osc.stop(windowAudioEngine.currentTime + 0.15);
   } catch(e){}
 }
 
@@ -863,16 +883,21 @@ function placeOrder(){
   const subtotal=cart.reduce((s,i)=>s+i.price*i.qty,0);
   const discAmt=discLabel?(discount>1?discount:Math.round(subtotal*discount/100)):0;
   const total=Math.max(0,subtotal-discAmt);
+
+  // CRITICAL BUSINESS REQUIREMENT LIMIT: STOP BASKET ORDER LOWER THAN ₹99 
+  if (total < 99) {
+    alert(`❌ Order Place Nahi Hua!\n\nLiquido par minimum order value ₹99 honi chahiye. Aapka current bill ₹${total} hai. Kripya cart mein aur items add karein!`);
+    return;
+  }
+
   const items=cart.map(i=>`• ${i.name} × ${i.qty} = ₹${i.price*i.qty}`).join('\n');
   const now=new Date();
   const date=now.toLocaleDateString('en-IN');
   const time=now.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
   const orderId='LQ-'+Math.floor(1000+Math.random()*9000);
 
-  // Triggering Telemetry Sound Chimes instantly during dispatch calculation pipelines
   playOperationalPingAlertNotification();
 
-  // Graphical Interception UI Alerts (Instruction Prompt Reminder)
   alert("📢 REMINDER:\nAapko abhi WhatsApp par redirect kiya jaa raha hai.\n\nKripya WhatsApp open hote hi chat box mein 'SEND' button ko zaroor dabayein taaki aapka order hamare paas confirm receive ho sake! 🙏");
 
   fetch(SHEET_URL,{
@@ -1154,7 +1179,7 @@ function openHistory(){
   try{
     const history = JSON.parse(localStorage.getItem('lq_history')||'[]');
     if(!history.length){
-      list.innerHTML='<div class="no-history">📦 Abhi tak koi order nahi<br>Pehla order karo!</div>';
+      list.innerHTML = '<div class="no-history">📦 Abhi tak koi order nahi<br>Pehla order karo!</div>';
       return;
     }
     list.innerHTML = history.map(h=>`
@@ -1194,14 +1219,9 @@ function reorderItems(orderId){
   } catch(e){ showToast('❌ Could not reorder'); }
 }
 
-// INVENTORY STOCK CONTROL VIA LOCALSTORAGE/ADMIN HANDLERS INTEGRATION
 function getActiveSoldOutList() {
-  try {
-    return JSON.parse(localStorage.getItem('lq_sold_out_items') || '[]');
-  } catch(e) { return []; }
+  try { return JSON.parse(localStorage.getItem('lq_sold_out_items') || '[]'); } catch(e) { return []; }
 }
-
-const SOLD_OUT = getActiveSoldOutList(); 
 
 function applySoldOut(){
   const currentSoldOutList = getActiveSoldOutList();
@@ -1229,31 +1249,18 @@ window.addEventListener('beforeinstallprompt', e=>{
   e.preventDefault(); pwaPrompt=e;
   document.getElementById('pwaBanner').style.display='flex';
 });
-document.getElementById('pwaInstallBtn')?.addEventListener('click',()=>{
-  if(pwaPrompt){ pwaPrompt.prompt(); pwaPrompt.userChoice.then(()=>{ document.getElementById('pwaBanner').style.display='none'; pwaPrompt=null; }); }
-});
+document.getElementById('pwaInstallBtn')?.addEventListener('click',()=>{\n  if(pwaPrompt){ pwaPrompt.prompt(); pwaPrompt.userChoice.then(()=>{ document.getElementById('pwaBanner').style.display='none'; pwaPrompt=null; }); }\n});
 
 let ptrStart=0, ptrActive=false;
 document.addEventListener('touchstart', e=>{ if(window.scrollY===0) ptrStart=e.touches[0].clientY; });
-document.addEventListener('touchmove', e=>{
-  if(window.scrollY===0 && e.touches[0].clientY - ptrStart > 60 && !ptrActive){
-    ptrActive=true;
-    document.getElementById('ptrIndicator').classList.add('show');
-  }
-});
-document.addEventListener('touchend', ()=>{
-  if(ptrActive){
-    ptrActive=false;
-    setTimeout(()=>{ document.getElementById('ptrIndicator').classList.remove('show'); location.reload(); },800);
-  }
-});
+document.addEventListener('touchmove', e=>{\n  if(window.scrollY===0 && e.touches[0].clientY - ptrStart > 60 && !ptrActive){\n    ptrActive=true;\n    document.getElementById('ptrIndicator').classList.add('show');\n  }\n});
+document.addEventListener('touchend', ()=>{\n  if(ptrActive){\n    ptrActive=false;\n    setTimeout(()=>{ document.getElementById('ptrIndicator').classList.remove('show'); location.reload(); },800);\n  }\n});
 
 ['comboRow','revRow'].forEach(id=>{
   const t=document.getElementById(id);
   if(t)t.innerHTML+=t.innerHTML;
 });
 
-// Sync operations trigger
 updateShopStatusUI();
 </script>
 </body>
