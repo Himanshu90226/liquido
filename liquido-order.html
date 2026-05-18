@@ -230,7 +230,7 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:var(--dark);trans
 .back-top{position:fixed;bottom:78px;right:14px;width:38px;height:38px;background:var(--purple);color:white;border:none;border-radius:50%;font-size:1.2rem;cursor:pointer;box-shadow:0 3px 12px rgba(107,33,168,0.4);z-index:149;display:none;align-items:center;justify-content:center}
 .back-top.show{display:flex}
 
-/* PULL TO REFRESH INDICATION ENGINES HIDDEN STATES */
+/* PULL TO REFRESH DESIGN FIXED STYLES */
 .ptr-indicator{position:fixed;top:0;left:0;right:0;height:50px;background:var(--purple);color:white;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:600;z-index:999;transform:translateY(-100%);transition:transform 0.3s}
 .ptr-indicator.show{transform:translateY(0)}
 
@@ -297,7 +297,7 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:var(--dark);trans
 
 <div class="hero-slider">
   <div class="hero-slide active">
-    <img src="https://images.pexels.com/photos/28445587/pexels-photo-28445587.jpeg?auto=format&fit=crop&w=600&q=80" alt="Momos">
+    <img src="https://images.pexels.com/photos/33670191/pexels-photo-33670191.jpeg?auto=format&fit=crop&w=600&q=80" alt="Momos">
     <div class="hero-overlay"></div>
     <div class="hero-text"><h2>🥟 Fresh Momos<br>Har Style Mein!</h2><p>7 varieties • Half se sirf ₹50</p><button class="hero-btn" onclick="scrollToSec(0)">Order Now →</button></div>
   </div>
@@ -465,6 +465,7 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:var(--dark);trans
         <span class="popup-mrp" id="popupMrp"></span>
         <span class="popup-save" id="popupSave"></span>
       </div>
+      <div class="popup-veg" id="popupVegBadge" style="display:none; margin-bottom:10px;"><span class="veg-icon"><span class="veg-dot"></span></span> <span id="popupCustomizationHeading">Customise as per your taste</span></div>
       <div class="popup-desc" id="popupDesc"></div>
       
       <div id="popupCustomizationContainer"></div>
@@ -509,7 +510,7 @@ const BESTSELLERS=['Veg Steam Momos','Schezwan Momos','Masala Maggi','Oreo Cold 
 let formFieldsState = { name: '', phone: '', address: '', note: '' };
 let cart=[],locText='',locCoords='',payMethod='upi',darkMode=false,discount=0,discLabel='';
 
-// FIXED BASE SPECS WITH EXACT SPECIFIED PRICINGS
+// FIXED BASE SPECS WITH EXACT SPECIFIED PRICINGS (Cheese globally ₹20)
 const ADDON_SPECS = {
   sizes: { title: "Portion Size (Choose 1)", type: "radio", opts: [{ n: "Half Plate", p: 0 }, { n: "Full Plate", p: 30 }] },
   cheese: { title: "Addons Cheese (Max 1)", type: "checkbox", opts: [{ n: "Extra Cheese", p: 20 }] }, 
@@ -517,7 +518,7 @@ const ADDON_SPECS = {
   drinks: { title: "Select Soft Drink Variant (Choose 1)", type: "radio", opts: [{ n: "Coca Cola", p: 0 }, { n: "Sprite", p: 0 }, { n: "Thums Up", p: 0 }, { n: "Fanta", p: 0 }] }
 };
 
-// SYNCHRONIZED MATRIX CONFIGS
+// SYNCHRONIZED MATRIX CONFIGS - ALL ASSET PATHS SECURELY PRESERVED
 const menuData=[
   {cat:'Momos',items:[
     {name:'Veg Steam Momos',img:'https://images.pexels.com/photos/33670191/pexels-photo-33670191.jpeg',price:50,addons:['sizes','cheese','spices']},
@@ -532,7 +533,7 @@ const menuData=[
     {name:'Grilled Sandwich',img:'https://images.pexels.com/photos/29699515/pexels-photo-29699515.jpeg',price:79,addons:['cheese','spices']},
     {name:'Grilled Cheese Sandwich',img:'https://images.pexels.com/photos/29173115/pexels-photo-29173115.jpeg',price:99,addons:['cheese']},
     {name:'Cheese Corn Sandwich',img:'https://images.pexels.com/photos/36268517/pexels-photo-36268517.jpeg',price:99,addons:['cheese','spices']},
-    {name:'Paneer Sandwich',img:'https://images.pexels.com/photos/35054704/pexels-photo-35054704.jpeg',price:119,addons:['cheese','spices']},
+    {name:'Paneer Sandwich',img:'https://images.unsplash.com/photo-1559054663-e8d23213f55c?auto=format&fit=crop&w=200&q=80',price:119,addons:['cheese','spices']},
     {name:'Paneer Cheese Sandwich',img:'https://images.pexels.com/photos/16230531/pexels-photo-16230531.jpeg',price:139,addons:['cheese','spices']},
     {name:'Cheese Sandwich',img:'https://images.pexels.com/photos/20422166/pexels-photo-20422166.jpeg',price:139,addons:['cheese']},
   ]},
@@ -582,25 +583,40 @@ const menuData=[
   ]},
 ];
 
+// BACKEND DYNAMIC OVERRIDES SYNC CHANNELS
+function getOperationalConfig() {
+  try {
+    return JSON.parse(localStorage.getItem('lq_admin_config') || '{}');
+  } catch(e) { return {}; }
+}
+
 function isShopOpen(){
+  const config = getOperationalConfig();
+  if (config.manualStatus) {
+    return config.manualStatus === 'OPEN';
+  }
   const hr = new Date().getHours();
-  return (hr >= 16 && hr < 23);
+  const startHour = config.startHour !== undefined ? parseInt(config.startHour) : 16;
+  const endHour = config.endHour !== undefined ? parseInt(config.endHour) : 23;
+  return (hr >= startHour && hr < endHour);
 }
 
 function updateShopStatusUI(){
   const isOpen = isShopOpen();
   const label = document.getElementById('shopStatusLabel');
+  const config = getOperationalConfig();
   if(label){
     if(isOpen){
       label.className = "del-tag green";
       label.textContent = "🟢 Open Now";
     } else {
       label.className = "del-tag red";
-      label.textContent = "🔴 Closed (Opens 4PM)";
+      const closingMsg = config.startHour !== undefined ? `Closed (Opens at ${config.startHour}:00)` : "🔴 Closed (Opens 4PM)";
+      label.textContent = closingMsg;
     }
   }
 }
-setInterval(updateShopStatusUI, 10000);
+setInterval(updateShopStatusUI, 5000);
 
 // GENERATE CATEGORY TABS
 const tabsEl=document.getElementById('tabs');
@@ -712,7 +728,7 @@ function renderCart(){
     <div class="total-row"><span>Total</span><span>₹${finalTotal}</span></div>`;
 
   const isClosed = !isShopOpen();
-  const checkoutBtnText = isClosed ? "🔴 Closed (Opening at 4 PM)" : "💬 WhatsApp pe Order Bhejo";
+  const checkoutBtnText = isClosed ? "🔴 Closed (Opening Soon)" : "💬 WhatsApp pe Order Bhejo";
   const disabledClass = isClosed ? "disabled-btn" : "";
 
   footer.innerHTML=`
@@ -758,7 +774,6 @@ function applyCoupon(){
   }
 }
 
-// INBOUND DISPATCH INTEGRATION
 function selPay(m){
   payMethod=m;
   document.getElementById('pUPI').classList.toggle('sel',m==='upi');
@@ -808,9 +823,25 @@ function getLocation(){
   );
 }
 
+// BUILT-IN OSCILLATOR TELEMETRY SIGNAL ALARM GENERATOR
+const audioAlertNode = new (window.AudioContext || window.webkitAudioContext)();
+function playOperationalPingAlertNotification() {
+  try {
+    const osc = audioAlertNode.createOscillator();
+    const gain = audioAlertNode.createGain();
+    osc.connect(gain);
+    gain.connect(audioAlertNode.destination);
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(880, audioAlertNode.currentTime); // A5 system diagnostic pitch note
+    gain.gain.setValueAtTime(0.2, audioAlertNode.currentTime);
+    osc.start();
+    osc.stop(audioAlertNode.currentTime + 0.15);
+  } catch(e){}
+}
+
 function placeOrder(){
   if(!isShopOpen()){
-    showToast('🔴 Outlet abhi closed hai! Open hours: 4 PM - 11 PM.');
+    showToast('🔴 Outlet abhi closed hai!');
     return;
   }
 
@@ -837,6 +868,12 @@ function placeOrder(){
   const date=now.toLocaleDateString('en-IN');
   const time=now.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
   const orderId='LQ-'+Math.floor(1000+Math.random()*9000);
+
+  // Triggering Telemetry Sound Chimes instantly during dispatch calculation pipelines
+  playOperationalPingAlertNotification();
+
+  // Graphical Interception UI Alerts (Instruction Prompt Reminder)
+  alert("📢 REMINDER:\nAapko abhi WhatsApp par redirect kiya jaa raha hai.\n\nKripya WhatsApp open hote hi chat box mein 'SEND' button ko zaroor dabayein taaki aapka order hamare paas confirm receive ho sake! 🙏");
 
   fetch(SHEET_URL,{
     method:'POST',mode:'no-cors',
@@ -865,7 +902,6 @@ function placeOrder(){
   window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,'_blank');
   closeCart();
   
-  // Triggers the modal popup to show clean after actual execution link redirection
   document.getElementById('confirmOrderId').textContent='Order ID: '+orderId;
   document.getElementById('confirmScreen').classList.add('show');
   saveOrderHistory(orderId, cart.map(i=>i.name+' x'+i.qty).join(', '), total);
@@ -908,7 +944,6 @@ function clearSearch(){
   doSearch('');
 }
 
-// SWITCHER BANNER ENGINE
 const banners=[
   '🏷️ Social Media tag karo + Google Review do → 10% OFF!',
   '🎟️ Coupon: NEWUSER — 15% off pehle order pe!',
@@ -924,7 +959,6 @@ setInterval(()=>{
   if(el){el.style.opacity='0';setTimeout(()=>{el.textContent=banners[bannerIdx];el.style.opacity='1';},300);}
 },4000);
 
-// CAROUSEL SYSTEM
 let slideIdx=0;
 const slides=document.querySelectorAll('.hero-slide');
 const dots=document.querySelectorAll('.hero-dot');
@@ -947,7 +981,6 @@ window.addEventListener('scroll',()=>{
   if(btn)btn.classList.toggle('show',window.scrollY>400);
 });
 
-// SWIGGY MASTER MODAL ENGINE ARCHITECTURES
 const DESCS={'Veg Steam Momos':'Ghar jaisi recipe — soft cover, spicy filling. Mint chutney ke saath best!','Schezwan Momos':'Fiery Schezwan sauce mein toss — spice lovers must try!','Masala Maggi':'Special Liquido masala — bilkul ghar jaisa taste!','Oreo Cold Coffee':'Thick creamy cold coffee with crushed Oreos!','Oreo Shake':'Oreo + vanilla ice cream thick shake — yummy!','Veg Cheesy Burger':'Double cheese crispy burger — cheesy goodness!','Aloo Tikki Burger':'Classic Indian burger — street food ka dil!'};
 let currentPopupBasePrice = 0;
 let currentPopupItemName = "";
@@ -1066,7 +1099,6 @@ function refreshAllCards(){
   });
 }
 
-// STORAGE ADDRESS
 function getSavedAddresses(){
   try{ return JSON.parse(localStorage.getItem('lq_addresses')||'[]'); }
   catch(e){ return []; }
@@ -1100,7 +1132,6 @@ function useAddr(addr){
   }
 }
 
-// STORAGE LOCAL HISTORY PIPELINES
 function saveOrderHistory(orderId, items, total){
   try{
     const history = JSON.parse(localStorage.getItem('lq_history')||'[]');
@@ -1163,15 +1194,23 @@ function reorderItems(orderId){
   } catch(e){ showToast('❌ Could not reorder'); }
 }
 
-// INVENTORY CONTROL
-const SOLD_OUT = []; 
+// INVENTORY STOCK CONTROL VIA LOCALSTORAGE/ADMIN HANDLERS INTEGRATION
+function getActiveSoldOutList() {
+  try {
+    return JSON.parse(localStorage.getItem('lq_sold_out_items') || '[]');
+  } catch(e) { return []; }
+}
+
+const SOLD_OUT = getActiveSoldOutList(); 
+
 function applySoldOut(){
-  SOLD_OUT.forEach(name=>{
+  const currentSoldOutList = getActiveSoldOutList();
+  currentSoldOutList.forEach(name=>{
     document.querySelectorAll('.item-card').forEach(card=>{
       if(card.dataset.name === name.toLowerCase()){
         card.style.pointerEvents='none';card.style.opacity='0.65';
         const wrap = card.querySelector('.item-img-wrap');
-        if(wrap){
+        if(wrap && !wrap.querySelector('.sold-out-overlay')){
           const ov=document.createElement('div');
           ov.className='sold-out-overlay';
           ov.innerHTML='<div class="sold-out-text">SOLD OUT</div>';
@@ -1182,7 +1221,7 @@ function applySoldOut(){
     });
   });
 }
-setTimeout(applySoldOut, 600);
+setTimeout(applySoldOut, 650);
 
 // PWA AND PTR TRIGGERS
 let pwaPrompt = null;
@@ -1214,6 +1253,7 @@ document.addEventListener('touchend', ()=>{
   if(t)t.innerHTML+=t.innerHTML;
 });
 
+// Sync operations trigger
 updateShopStatusUI();
 </script>
 </body>
