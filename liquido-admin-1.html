@@ -10,190 +10,229 @@
 body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:#1a1a1a}
 .header{background:#6B21A8;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 4px 12px rgba(107,33,168,0.25)}
 .header h1{font-size:1.3rem;font-weight:900;color:#FFD600;letter-spacing:1px}
-.header p{font-size:0.68rem;color:#e0c8ff;margin-top:2px;font-weight:500}
+.header p{font-size:0.68rem;color:#e0c8ff;margin-top:2px}
 .hright{text-align:right}
 .page{padding:16px;max-width:768px;margin:0 auto}
 
 /* STATS */
 .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
-.stat-card{background:white;border-radius:14px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,0.05);border-bottom:3px solid #e0d0ff}
+.stat-card{background:white;border-radius:14px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
 .stat-icon{font-size:1.4rem;margin-bottom:6px}
 .stat-val{font-size:1.5rem;font-weight:900;color:#6B21A8;line-height:1}
-.stat-label{font-size:0.68rem;color:#888;margin-top:4px;font-weight:700;text-transform:uppercase}
-.stat-card.green{border-color:#16a34a}.stat-card.green .stat-val{color:#16a34a}
-.stat-card.orange{border-color:#ea580c}.stat-card.orange .stat-val{color:#ea580c}
+.stat-label{font-size:0.68rem;color:#888;margin-top:4px;font-weight:700}
+.stat-card.green .stat-val{color:#16a34a}
+.stat-card.orange .stat-val{color:#ea580c}
 
-/* SYSTEM INTERACTIVE NAVIGATION TABS */
-.tab-row{display:flex;gap:4px;margin-bottom:16px;overflow-x:auto;scrollbar-width:none}
+/* NAVIGATION TABS */
+.tab-row{display:flex;gap:6px;margin-bottom:16px;overflow-x:auto;scrollbar-width:none}
 .tab-row::-webkit-scrollbar{display:none}
-.dtab{flex:1;background:#f0e6ff;color:#6B21A8;border:none;border-radius:10px;padding:10px 8px;font-family:'Poppins',sans-serif;font-size:0.7rem;font-weight:700;cursor:pointer;white-space:nowrap;transition:all 0.2s}
+.dtab{flex:1;background:#f0e6ff;color:#6B21A8;border:none;border-radius:10px;padding:10px;font-family:'Poppins',sans-serif;font-size:0.75rem;font-weight:700;cursor:pointer;white-space:nowrap}
 .dtab.active{background:#6B21A8;color:white;box-shadow:0 4px 8px rgba(107,33,168,0.2)}
 
 /* CONTAINERS */
-.orders-card, .customers-card, .month-card, .offer-card, .control-card{background:white;border-radius:16px;padding:16px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.orders-card, .customers-card, .month-card, .offer-card, .config-card{background:white;border-radius:16px;padding:16px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
 .section-title{font-size:0.95rem;font-weight:800;color:#1a1a1a;margin-bottom:14px;border-left:4px solid #6B21A8;padding-left:8px}
 
-/* INVENTORY ITEM CONTROL LISTS */
-.inventory-row{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:#f9f6ff;border-radius:12px;margin-bottom:8px;border:1px solid #e0d0ff}
-.inventory-name{font-size:0.82rem;font-weight:700;color:#1a1a1a}
-.stock-toggle-btn{padding:6px 12px;border:none;border-radius:8px;font-family:'Poppins';font-size:0.7rem;font-weight:800;cursor:pointer;transition:all 0.15s}
-.stock-toggle-btn.in-stock{background:#dcfce7;color:#16a34a;border:1px solid #16a34a}
-.stock-toggle-btn.sold-out{background:#fef2f2;color:#dc2626;border:1px solid #dc2626}
-
-/* MANUAL OUTLET OVERRIDE CONSOLE STYLE */
-.override-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
-.override-btn{padding:12px 8px;border-radius:10px;font-family:'Poppins';font-weight:700;font-size:0.75rem;cursor:pointer;text-align:center;border:2px solid #e0d0ff;background:#f9f6ff;color:#6B21A8;transition:all 0.2s}
-.override-btn.active-Open{background:#10b981;color:white;border-color:#10b981;box-shadow:0 4px 10px rgba(16,185,129,0.3)}
-.override-btn.active-Closed{background:#ef4444;color:white;border-color:#ef4444;box-shadow:0 4px 10px rgba(239,68,68,0.3)}
-.override-btn.active-Auto{background:#6B21A8;color:white;border-color:#6B21A8;box-shadow:0 4px 10px rgba(107,33,168,0.3)}
-
-/* OPERATIONAL QUEUE LIST ENGINE */
+/* LIVE PIPELINE ROW FACTORY */
 .order-item{background:#f9f6ff;border-radius:12px;padding:14px;margin-bottom:12px;border-left:5px solid #6B21A8}
-.order-item.status-Preparing{border-left-color:#3b82f6;background:#f0f6ff}
-.order-item.status-Dispatch{border-left-color:#f59e0b;background:#fffbeb}
-.order-item.status-Delivered{border-left-color:#10b981;background:#f0fdf4;opacity:0.85}
-.order-item.status-Cancelled{border-left-color:#ef4444;background:#fef2f2;opacity:0.6}
 .order-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
 .order-name{font-size:0.88rem;font-weight:700;color:#1a1a1a}
 .order-amount{font-size:0.95rem;font-weight:900;color:#6B21A8}
 .order-items{font-size:0.78rem;color:#444;margin-bottom:8px;line-height:1.5;background:white;padding:8px;border-radius:8px;border:1px dashed #e0d0ff}
 .order-meta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
 .order-tag{font-size:0.65rem;background:#e0d0ff;color:#6B21A8;padding:3px 8px;border-radius:20px;font-weight:600}
-.status-select-console{padding:6px 10px;border-radius:8px;font-family:'Poppins',sans-serif;font-size:0.72rem;font-weight:700;outline:none;background:white;border:2px solid #6B21A8;cursor:pointer;color:#6B21A8;width:100%;margin-top:6px}
+
+/* CONTROL SELECTS & TIMING OVERRIDES */
+.status-select-console{padding:8px;border-radius:8px;font-family:'Poppins',sans-serif;font-size:0.75rem;font-weight:700;outline:none;background:white;border:2px solid #6B21A8;cursor:pointer;color:#6B21A8;width:100%;margin-top:6px}
+.config-row-flex{display:flex;gap:10px;margin-bottom:12px}
+.config-col{flex:1;display:flex;flex-direction:column}
+.config-label{font-size:0.75rem;font-weight:700;color:#555;margin-bottom:4px}
+.config-inp{padding:10px;border:2px solid #e0d0ff;border-radius:10px;font-family:'Poppins';font-size:0.85rem;outline:none}
+.config-select{padding:10px;border:2px solid #e0d0ff;border-radius:10px;font-family:'Poppins';font-size:0.85rem;outline:none;background:white}
+.save-config-btn{width:100%;background:#3d9e56;color:white;border:none;border-radius:10px;padding:12px;font-family:'Poppins';font-size:0.85rem;font-weight:700;cursor:pointer}
+
+/* INVENTORY ITEM CONTROL SWITCH LOOKS */
+.stock-item-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f5f5f5}
+.stock-item-name{font-size:0.82rem;font-weight:600;color:#333}
+.stock-toggle-btn{padding:5px 12px;border-radius:6px;border:none;font-family:'Poppins';font-size:0.7rem;font-weight:700;cursor:pointer}
+.stock-toggle-btn.in-stock{background:#dcfce7;color:#16a34a}
+.stock-toggle-btn.out-of-stock{background:#fecaca;color:#dc2626}
+
 .action-grid-flex{display:flex;gap:6px;margin-top:8px}
-.action-btn-node{flex:1;padding:8px;border-radius:8px;border:none;font-family:'Poppins',sans-serif;font-size:0.7rem;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:4px}
+.action-btn-node{flex:1;padding:8px;border-radius:8px;border:none;font-family:'Poppins',sans-serif;font-size:0.7rem;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
 .action-btn-node.wa-node{background:#25D366;color:white}
 .action-btn-node.map-node{background:#3b82f6;color:white}
 
-.offer-card{background:linear-gradient(135deg,#6B21A8,#9333ea);color:white}
 .offer-inp{width:100%;padding:10px 12px;border:none;border-radius:10px;font-family:'Poppins',sans-serif;font-size:0.84rem;outline:none;margin-bottom:8px}
 .send-btn{width:100%;background:#FFD600;color:#6B21A8;border:none;border-radius:10px;padding:12px;font-family:'Poppins',sans-serif;font-size:0.88rem;font-weight:800;cursor:pointer}
-.search-inp{width:100%;padding:10px 14px;border:2px solid #e0d0ff;border-radius:10px;font-family:'Poppins',sans-serif;font-size:0.85rem;outline:none;margin-bottom:12px}
-.customer-item{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid #f5f5f5}
+.search-inp{width:100%;padding:9px 12px;border:2px solid #e0d0ff;border-radius:10px;font-family:'Poppins',sans-serif;font-size:0.82rem;outline:none;margin-bottom:12px}
+.customer-item{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f5f5f5;gap:8px}
 .cust-avatar{width:36px;height:36px;border-radius:50%;background:#6B21A8;color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem}
-.month-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f5f5f5}
+.month-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f5f5f5}
 .month-amount{font-size:0.9rem;font-weight:800;color:#6B21A8}
 .loading{text-align:center;padding:30px;color:#aaa;font-size:0.85rem}
 .spinner{font-size:1.5rem;animation:spin 1s linear infinite;display:block;margin-bottom:8px}
 @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
-.empty-state{text-align:center;padding:32px 16px;color:#bbb;font-size:0.85rem;font-weight:500}
+.empty-state{text-align:center;padding:24px;color:#bbb;font-size:0.82rem}
 </style>
 </head>
 <body>
 
 <div class="header">
   <div>
-    <h1>🍜 Liquido Command Center</h1>
-    <p>Admin Workspace Panel</p>
+    <h1>🍜 Liquido Command Admin</h1>
+    <p>Connected Cloud Operations Ecosystem</p>
   </div>
   <div class="hright">
-    <div style="font-size:0.72rem;color:#e0c8ff;font-weight:600" id="lastUpdate">Syncing Row Matrices...</div>
+    <div style="font-size:0.7rem;color:#e0c8ff" id="lastUpdate">Syncing Matrix...</div>
   </div>
 </div>
 
 <div class="page">
   <div class="stats" id="statsGrid">
-    <div class="stat-card"><div class="stat-icon">📦</div><div class="stat-val" id="totalOrders">--</div><div class="stat-label">Total Volume</div></div>
-    <div class="stat-card green"><div class="stat-icon">💰</div><div class="stat-val" id="totalRevenue">--</div><div class="stat-label">Gross Revenue</div></div>
-    <div class="stat-card orange"><div class="stat-icon">🔥</div><div class="stat-val" id="todayOrders">--</div><div class="stat-label">Today's Load</div></div>
-    <div class="stat-card"><div class="stat-icon">👥</div><div class="stat-val" id="totalCustomers">--</div><div class="stat-label">Total Base</div></div>
+    <div class="stat-card"><div class="stat-icon">📦</div><div class="stat-val" id="totalOrders">--</div><div class="stat-label">Total Orders</div></div>
+    <div class="stat-card green"><div class="stat-icon">💰</div><div class="stat-val" id="totalRevenue">--</div><div class="stat-label">Total Revenue</div></div>
+    <div class="stat-card orange"><div class="stat-icon">📅</div><div class="stat-val" id="todayOrders">--</div><div class="stat-label">Today Orders</div></div>
+    <div class="stat-card"><div class="stat-icon">👥</div><div class="stat-val" id="totalCustomers">--</div><div class="stat-label">Customers</div></div>
   </div>
 
   <div class="tab-row">
-    <button class="dtab active" onclick="showTab('orders')">📦 Queue</button>
-    <button class="dtab" onclick="showTab('control')">🎛️ Shop Control</button>
-    <button class="dtab" onclick="showTab('inventory')">🍳 Manage Inventory</button>
+    <button class="dtab active" onclick="showTab('orders')">📦 Orders</button>
+    <button class="dtab" onclick="showTab('config')">⚙️ Store Setup</button>
     <button class="dtab" onclick="showTab('customers')">👥 Customers</button>
-    <button class="dtab" onclick="showTab('monthly')">📊 Analytics</button>
-    <button class="dtab" onclick="showTab('offer')">📢 Broadcast</button>
+    <button class="dtab" onclick="showTab('monthly')">📊 Monthly</button>
+    <button class="dtab" onclick="showTab('offer')">📢 Offers Blast</button>
   </div>
 
   <div id="tab-orders">
     <div class="orders-card">
-      <div class="section-title">Incoming Food Invoices Order Streams</div>
-      <div id="ordersList"><div class="loading"><span class="spinner">⏳</span>Syncing live updates...</div></div>
+      <div class="section-title">🕐 Incoming Orders Pipeline</div>
+      <div id="ordersList"><div class="loading"><span class="spinner">⏳</span>Syncing stream vectors...</div></div>
     </div>
   </div>
 
-  <div id="tab-control" style="display:none">
-    <div class="control-card">
-      <div class="section-title">Manual Timing Override Dashboard</div>
-      <div style="font-size:0.75rem; color:#666; line-height:1.4; margin-bottom:12px;">
-        Yahan se aap system timings ko force override kar sakte hain. <b>Auto</b> par website shaam 4 se raat 11 baje hi open dikhayegi.
+  <div id="tab-config" style="display:none">
+    <div class="config-card">
+      <div class="section-title">🕒 Manage Timing & Manual Status Overrides</div>
+      <div class="config-row-flex">
+        <div class="config-col">
+          <span class="config-label">Opening Hour (24h format)</span>
+          <input type="number" class="config-inp" id="cfgStartHour" value="16">
+        </div>
+        <div class="config-col">
+          <span class="config-label">Closing Hour (24h format)</span>
+          <input type="number" class="config-inp" id="cfgEndHour" value="23">
+        </div>
       </div>
-      <div class="override-grid">
-        <button class="override-btn" id="ovBtn-Auto" onclick="triggerShopStatusOverride('Auto')">⚙️ Auto (Timer Based)</button>
-        <button class="override-btn" id="ovBtn-Manual_Open" onclick="triggerShopStatusOverride('Manual_Open')">🟢 Force OPEN Now</button>
-        <button class="override-btn" id="ovBtn-Manual_Closed" onclick="triggerShopStatusOverride('Manual_Closed')">🔴 Force CLOSED Now</button>
+      <div class="config-col" style="margin-bottom:14px;">
+        <span class="config-label">Force Manual Outlet Switch</span>
+        <select class="config-select" id="cfgManualStatus">
+          <option value="AUTO">⏰ Auto (Follow Timer Schedule)</option>
+          <option value="OPEN">🟢 Force OPEN Kitchen Permanently</option>
+          <option value="CLOSED">🔴 Force CLOSED Kitchen Permanently</option>
+        </select>
       </div>
+      <button class="save-config-btn" onclick="saveGlobalControlConfigRemote()">💾 Push Configuration Overrides Live</button>
     </div>
-  </div>
 
-  <div id="tab-inventory" style="display:none">
-    <div class="control-card">
-      <div class="section-title">Real-time Stock Stock-Out Management</div>
-      <div style="font-size:0.75rem; color:#666; margin-bottom:12px;">Kisi bhi item ko instant website se stock out karne ke liye switch karein.</div>
-      <div id="inventoryItemsManagerList"></div>
+    <div class="config-card">
+      <div class="section-title">🚫 Dynamic Stock Out Switch Grid</div>
+      <div style="font-size:0.72rem; color:#666; margin-bottom:10px;">Click toggles items immediately on customer page matrix.</div>
+      <div id="adminStockControlList"></div>
     </div>
   </div>
 
   <div id="tab-customers" style="display:none">
     <div class="customers-card">
-      <div class="section-title">Customer Lifetime Logs Registry</div>
-      <input class="search-inp" placeholder="🔍 Enter customer phone or name to filter..." oninput="filterCustomers(this.value)" id="custSearch">
+      <div class="section-title">👥 Lifetime Customer Directory</div>
+      <input class="search-inp" placeholder="🔍 Enter name or cellular number..." oninput="filterCustomers(this.value)" id="custSearch">
       <div id="customersList"></div>
     </div>
   </div>
 
   <div id="tab-monthly" style="display:none">
     <div class="month-card">
-      <div class="section-title">Gross Accounting Invoice Summaries</div>
+      <div class="section-title">📊 Accounting Reports</div>
       <div id="monthlyReport"></div>
     </div>
   </div>
 
   <div id="tab-offer" style="display:none">
     <div class="offer-card">
-      <div class="offer-title">Automated WhatsApp Broadcast Trigger Channel</div>
-      <input class="offer-inp" id="offerText" placeholder="Offer details message...">
-      <input class="offer-inp" id="offerLink" placeholder="Tracking Redirect URL link...">
-      <button class="send-btn" onclick="sendOfferToAll()">🚀 Launch Blast Target Campaign</button>
-      <div class="offer-count" id="offerCount">Analyzing subscriber sets...</div>
+      <div class="offer-title">📢 WhatsApp Campaign Campaign Scheduler</div>
+      <input class="offer-inp" id="offerText" placeholder="Enter offer copy statement...">
+      <input class="offer-inp" id="offerLink" placeholder="Campaign URL Target (Optional)">
+      <button class="send-btn" onclick="sendOfferToAll()">🚀 Launch Campaign Clipboard Blast</button>
+      <div class="offer-count" id="offerCount">Calculating segment arrays...</div>
     </div>
   </div>
 </div>
 
 <script>
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxe4hQF2NpzkQuFIqL-m9TK1mmAqf-0rRADTJWRMw6ztshrkY5obZHGc33DOV-CV87e/exec';
+
 let allOrders = [];
 let allCustomers = [];
 let currentTab = 'orders';
-let soldOutItemsBackendCache = [];
+let activeSoldOutItemsArray = [];
+let internalCacheOrdersLength = 0;
 
-// Base array structure matched directly from your main code database list parameters
-const MASTER_FOOD_INDEX = [
-  "Veg Steam Momos","Deep Fried Momos","Pan Fried Momos","Fire Tossed Momos","Kurkure Veg Momos","Schezwan Momos","Peri Peri Momos",
-  "Grilled Sandwich","Grilled Cheese Sandwich","Cheese Corn Sandwich","Paneer Sandwich","Paneer Cheese Sandwich","Cheese Sandwich",
-  "Masala Maggi","Vegetable Maggi","Vegetable Cheese Maggi","Butter Maggi","Butter Cheese Maggi","Schezwan Masala Maggi","Schezwan Cheese Maggi","Peri Peri Cheese Maggi",
-  "Classic Veggie Delight Wrap","Tandoori Paneer Power Wrap","Tofu Wrap (Gym Special)",
-  "Classic Cold Coffee","Java Chip Cold Coffee","Double Chocolate CC","Oreo Cold Coffee",
-  "Oreo Shake","Mango Shake","Strawberry Shake","Blueberry Shake","Bubblegum Shake","Kitkat Shake","Kitkat Oreo Shake",
-  "Aloo Tikki Burger","Veg Cheesy Burger","Veg Paneer Burger",
-  "Plain Salted Fries","Peri Peri Masala Fries","Crispy Garlic Butter Fries",
-  "Water Bottle","Soft Drinks"
+// Master references copy of static items arrays to manage toggle indexes securely
+const staticMenuInventoryReference = [
+  "Veg Steam Momos", "Deep Fried Momos", "Pan Fried Momos", "Fire Tossed Momos", "Kurkure Veg Momos", "Schezwan Momos", "Peri Peri Momos",
+  "Grilled Sandwich", "Grilled Cheese Sandwich", "Cheese Corn Sandwich", "Paneer Sandwich", "Paneer Cheese Sandwich", "Cheese Sandwich",
+  "Masala Maggi", "Vegetable Maggi", "Vegetable Cheese Maggi", "Butter Maggi", "Butter Cheese Maggi", "Schezwan Masala Maggi", "Schezwan Cheese Maggi", "Peri Peri Cheese Maggi",
+  "Classic Veggie Delight Wrap", "Tandoori Paneer Power Wrap", "Tofu Wrap (Gym Special)",
+  "Classic Cold Coffee", "Java Chip Cold Coffee", "Double Chocolate CC", "Oreo Cold Coffee",
+  "Oreo Shake", "Mango Shake", "Strawberry Shake", "Blueberry Shake", "Bubblegum Shake", "Kitkat Shake", "Kitkat Oreo Shake",
+  "Aloo Tikki Burger", "Veg Cheesy Burger", "Veg Paneer Burger",
+  "Plain Salted Fries", "Peri Peri Masala Fries", "Crispy Garlic Butter Fries",
+  "Water Bottle", "Soft Drinks"
 ];
 
+// Audio Telemetry Warning System Integration Module
+const alertSoundEngine = new (window.AudioContext || window.webkitAudioContext)();
+function triggerIncomingAlertSiren() {
+  try {
+    const osc = alertSoundEngine.createOscillator();
+    const gain = alertSoundEngine.createGain();
+    osc.connect(gain);
+    gain.connect(alertSoundEngine.destination);
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(660, alertSoundEngine.currentTime);
+    gain.gain.setValueAtTime(0.15, alertSoundEngine.currentTime);
+    osc.start();
+    osc.stop(alertSoundEngine.currentTime + 0.3);
+  } catch(e){}
+}
+
 loadData();
-setInterval(loadData, 15000); // Dynamic dynamic automatic poller loop execution sync points
+setInterval(loadData, 25000); // Systematic real-time refresh every 25 seconds
 
 async function loadData() {
   try {
     const res = await fetch(SHEET_URL + '?action=get');
     const data = await res.json();
     allOrders = data.orders || [];
-    soldOutItemsBackendCache = data.soldOutItems || [];
     
-    // Process override toggle highlights buttons styles contextually
-    highlightActiveOverrideButtons(data.shopOverrideStatus || 'Auto');
+    // Play system alarm chime warning alert if a new record row appends to sheet matrix
+    if (allOrders.length > internalCacheOrdersLength && internalCacheOrdersLength !== 0) {
+      triggerIncomingAlertSiren();
+    }
+    internalCacheOrdersLength = allOrders.length;
+
+    // Pull config state frames right after parsing pipeline vectors
+    const cfgRes = await fetch(SHEET_URL + '?action=get_config');
+    const cfgData = await cfgRes.json();
+    activeSoldOutItemsArray = JSON.parse(cfgData.soldOutList || '[]');
+    
+    // Update structural DOM input defaults only if tab isn't active to protect cursor states
+    if (currentTab !== 'config') {
+      document.getElementById('cfgStartHour').value = cfgData.startHour;
+      document.getElementById('cfgEndHour').value = cfgData.endHour;
+      document.getElementById('cfgManualStatus').value = cfgData.manualStatus;
+    }
+
     processData();
     document.getElementById('lastUpdate').textContent = 'Sync: ' + new Date().toLocaleTimeString('en-IN');
   } catch(e) {
@@ -227,117 +266,113 @@ function processData() {
 
 function showTab(tab) {
   currentTab = tab;
-  ['orders','control','inventory','customers','monthly','offer'].forEach(t => {
-    document.getElementById('tab-' + t).style.display = t === tab ? 'block' : 'none';
-  });
-  document.querySelectorAll('.dtab').forEach((btn, i) => {
-    btn.classList.toggle('active', ['orders','control','inventory','customers','monthly','offer'][i] === tab);
+  ['orders','customers','monthly','offer','config'].forEach(t => {
+    const el = document.getElementById('tab-' + t);
+    if (el) el.style.display = t === tab ? 'block' : 'none';
   });
   renderCurrentTab();
 }
 
 function renderCurrentTab() {
   if (currentTab === 'orders') renderOrders();
-  else if (currentTab === 'inventory') renderInventoryManagerConsole();
+  else if (currentTab === 'config') renderConfigPanelLayout();
   else if (currentTab === 'customers') renderCustomers();
   else if (currentTab === 'monthly') renderMonthly();
   else if (currentTab === 'offer') renderOffer();
 }
 
-function highlightActiveOverrideButtons(activeStatus) {
-  ['Auto', 'Manual_Open', 'Manual_Closed'].forEach(st => {
-    const btn = document.getElementById('ovBtn-' + st);
-    if(btn) {
-      btn.className = `override-btn ${st === activeStatus ? 'active-' + (st==='Auto'?'Auto':st.split('_')[1]) : ''}`;
-    }
-  });
-}
-
-async function triggerShopStatusOverride(targetStateStr) {
+async function updateOrderStateRemoteSequence(orderId, selectConsole) {
+  selectConsole.style.opacity = '0.4';
   try {
-    highlightActiveOverrideButtons(targetStateStr);
-    await fetch(`${SHEET_URL}?action=setShopStatus&status=${targetStateStr}`);
-    showToast(`✅ Shop timing set to: ${targetStateStr}`);
-  } catch(e) { alert("Failed to alter status."); }
+    await fetch(`${SHEET_URL}?action=updateStatus&orderId=${orderId}&status=${encodeURIComponent(selectConsole.value)}`);
+    showToast("✅ Status Updated Successfully");
+  } catch(e) { alert("Matrix Sync Timeout"); }
+  selectConsole.style.opacity = '1';
 }
 
-function renderInventoryManagerConsole() {
-  const container = document.getElementById('inventoryItemsManagerList');
-  if(!container) return;
+function renderOrders() {
+  const el = document.getElementById('ordersList');
+  if (!allOrders.length) {
+    el.innerHTML = '<div class="empty-state">📦 Operational pipeline queue clear.</div>';
+    return;
+  }
+  const sorted = [...allOrders].reverse().slice(0, 50);
+  el.innerHTML = sorted.map(order => `
+    <div class="order-item">
+      <div class="order-top">
+        <div>
+          <div class="order-name">👤 ${order.name}</div>
+          <div style="font-size:0.72rem;color:#888">📞 ID: #${order.orderId || 'N/A'} • ${order.phone}</div>
+        </div>
+        <div class="order-amount">₹${order.total}</div>
+      </div>
+      <div class="order-items">🍽️ ${order.items}</div>
+      <div class="order-meta">
+        <span class="order-tag">📅 ${order.date}</span>
+        <span class="order-tag">1️⃣ ${order.time}</span>
+        <span class="order-tag">${order.payment}</span>
+      </div>
+      <select class="status-select-console" onchange="updateOrderStateRemoteSequence('${order.orderId}', this)">
+        <option value="Placed" ${order.status === 'Placed' ? 'selected' : ''}>📥 Placed</option>
+        <option value="Preparing" ${order.status === 'Preparing' ? 'selected' : ''}>👨‍🍳 Preparing</option>
+        <option value="Dispatch" ${order.status === 'Dispatch' ? 'selected' : ''}>🛵 Dispatched</option>
+        <option value="Delivered" ${order.status === 'Delivered' ? 'selected' : ''}>✅ Delivered</option>
+      </select>
+      <div class="action-grid-flex">
+        <a class="action-btn-node wa-node" href="https://wa.me/91${order.phone.replace(/\D/g,'')}" target="_blank">💬 Chat</a>
+        ${order.location ? `<a class="action-btn-node map-node" href="${order.location}" target="_blank">📍 Route Map</a>` : ''}
+      </div>
+    </div>`).join('');
+}
+
+function renderConfigPanelLayout() {
+  const container = document.getElementById('adminStockControlList');
+  if (!container) return;
   
-  container.innerHTML = MASTER_FOOD_INDEX.map(item => {
-    const isSoldOut = soldOutItemsBackendCache.includes(item);
-    const btnText = isSoldOut ? "🔴 SOLD OUT" : "🟢 IN STOCK";
-    const btnClass = isSoldOut ? "sold-out" : "in-stock";
+  container.innerHTML = staticMenuInventoryReference.map(itemName => {
+    const isCurrentlySoldOut = activeSoldOutItemsArray.includes(itemName);
+    const switchLabelText = isCurrentlySoldOut ? "🔴 OUT OF STOCK" : "🟢 IN STOCK";
+    const cssToggleBtnClass = isCurrentlySoldOut ? "stock-toggle-btn out-of-stock" : "stock-toggle-btn in-stock";
+    
     return `
-      <div class="inventory-row">
-        <span class="inventory-name">${item}</span>
-        <button class="stock-toggle-btn ${btnClass}" onclick="toggleInventoryStockRemote('${item}', this)">${btnText}</button>
+      <div class="stock-item-row">
+        <span class="stock-item-name">${itemName}</span>
+        <button class="${cssToggleBtnClass}" onclick="toggleSingleStockItemRemote('${itemName.replace(/'/g, "\\'")}')">${switchLabelText}</button>
       </div>
     `;
   }).join('');
 }
 
-async function toggleInventoryStockRemote(itemName, btnElement) {
-  btnElement.disabled = true;
-  btnElement.style.opacity = "0.4";
+async function toggleSingleStockItemRemote(itemName) {
+  let list = [...activeSoldOutItemsArray];
+  if (list.includes(itemName)) {
+    list = list.filter(i => i !== itemName);
+  } else {
+    list.push(itemName);
+  }
+  activeSoldOutItemsArray = list;
+  renderConfigPanelLayout();
+  await pushConfigTransactionPayloadRemote();
+}
+
+async function saveGlobalControlConfigRemote() {
+  await pushConfigTransactionPayloadRemote();
+  alert("⚙️ Store configurations and timers synchronized to main data sheet successfully!");
+}
+
+async function pushConfigTransactionPayloadRemote() {
+  const startHour = document.getElementById('cfgStartHour').value;
+  const endHour = document.getElementById('cfgEndHour').value;
+  const manualStatus = document.getElementById('cfgManualStatus').value;
+  const serializedList = JSON.stringify(activeSoldOutItemsArray);
+  
+  // Local storage retention mirror sync hook for instant caching structures
+  localStorage.setItem('lq_admin_config', JSON.stringify({ startHour, endHour, manualStatus }));
+  localStorage.setItem('lq_sold_out_items', serializedList);
+
   try {
-    const res = await fetch(`${SHEET_URL}?action=toggleStock&item=${encodeURIComponent(itemName)}`);
-    const data = await res.json();
-    if(data.status === 'success') {
-      soldOutItemsBackendCache = data.soldOut;
-      const isSoldOut = soldOutItemsBackendCache.includes(itemName);
-      btnElement.textContent = isSoldOut ? "🔴 SOLD OUT" : "🟢 IN STOCK";
-      btnElement.className = `stock-toggle-btn ${isSoldOut ? 'sold-out' : 'in-stock'}`;
-    }
-  } catch(e) { alert("Network operation error."); }
-  btnElement.disabled = false;
-  btnElement.style.opacity = "1";
-}
-
-function renderOrders() {
-  const el = document.getElementById('ordersList');
-  if (!allOrders.length) { el.innerHTML = '<div class="empty-state">Queue is currently clear.</div>'; return; }
-  const sorted = [...allOrders].reverse().slice(0, 40);
-  el.innerHTML = sorted.map(order => {
-    const state = order.status || 'Placed';
-    return `
-    <div class="order-item status-${state}">
-      <div class="order-top">
-        <div><div class="order-name">👤 ${order.name}</div><div style="font-size:0.72rem;color:#555;font-weight:600">🆔 ID: #${order.orderId} • 📞 ${order.phone}</div></div>
-        <div class="order-amount">₹${order.total}</div>
-      </div>
-      <div class="order-items">${order.items}</div>
-      <div class="order-meta">
-        <span class="order-tag">📅 ${order.date}</span><span class="order-tag">静 ${order.time}</span>
-        <span class="order-tag">${order.payment}</span>
-        ${order.address ? `<span class="order-tag">📍 Pata: ${order.address}</span>` : ''}
-      </div>
-      <select class="status-select-console" onchange="modifyOrderStateRemote('${order.orderId}', this)">
-        <option value="Placed" ${state === 'Placed' ? 'selected' : ''}>📥 Order Placed (New)</option>
-        <option value="Preparing" ${state === 'Preparing' ? 'selected' : ''}>👨‍🍳 Kitchen Preparing</option>
-        <option value="Dispatch" ${state === 'Dispatch' ? 'selected' : ''}>🛵 Out for Delivery (Dispatch)</option>
-        <option value="Delivered" ${state === 'Delivered' ? 'selected' : ''}>✅ Delivered successfully</option>
-        <option value="Cancelled" ${state === 'Cancelled' ? 'selected' : ''}>❌ Cancelled Order</option>
-      </select>
-      <div class="action-grid-flex">
-        <button class="action-btn-node wa-node" onclick="launchWhatsAppStateTrigger('${order.phone}','${order.name}','${order.orderId}','${state}')">💬 Notify Status</button>
-        ${order.location ? `<a class="action-btn-node map-node" href="${order.location}" target="_blank">📍 Route Map</a>` : ''}
-      </div>
-    </div>`;
-  }).join('');
-}
-
-async function modifyOrderStateRemote(orderId, selectElement) {
-  try {
-    await fetch(`${SHEET_URL}?action=updateStatus&orderId=${orderId}&status=${selectElement.value}`);
-    loadData();
-  } catch(e){ alert("Status update timed out."); }
-}
-
-function launchWhatsAppStateTrigger(phone, name, orderId, status) {
-  let msg = `Hi ${name}! Aapka Liquido Order *#${orderId}* update ho gaya hai: *${status}*. Thank you! 🙏`;
-  window.open(`https://wa.me/91${phone.replace(/\D/g,'')}?text=${encodeURIComponent(msg)}`, '_blank');
+    await fetch(`${SHEET_URL}?action=update_config&startHour=${startHour}&endHour=${endHour}&manualStatus=${manualStatus}&soldOutList=${encodeURIComponent(serializedList)}`);
+  } catch(e) {}
 }
 
 function renderCustomers(filter = '') {
@@ -347,38 +382,48 @@ function renderCustomers(filter = '') {
   el.innerHTML = list.map(c => `
     <div class="customer-item">
       <div class="cust-avatar">${c.name.charAt(0).toUpperCase()}</div>
-      <div style="flex:1; margin-left:12px;">
-        <div class="cust-name">${c.name}</div><div class="cust-phone">📞 ${c.phone}</div>
-        <div style="font-size:0.7rem; color:#6B21A8; font-weight:700;">📦 ${c.orders} orders • Total Spend: ₹${c.total}</div>
+      <div style="flex:1; margin-left:10px;">
+        <div class="cust-name">${c.name}</div>
+        <div style="font-size:0.72rem; color:#666; font-weight:600;">📞 ${c.phone} • 📊 ${c.orders} Orders</div>
       </div>
+      <a class="wa-btn" style="text-decoration:none;" href="https://wa.me/91${c.phone.replace(/\D/g,'')}" target="_blank">💬 WA</a>
     </div>`).join('');
 }
+
+function filterCustomers(val) { renderCustomers(val); }
 
 function renderMonthly() {
   const el = document.getElementById('monthlyReport');
   const monthMap = {};
   allOrders.forEach(order => {
     if (!order.date) return;
-    const parts = order.date.split('/'); if (parts.length < 3) return;
+    const parts = order.date.split('/');
+    if (parts.length < 3) return;
     const key = parts[1] + '/' + parts[2];
-    if (!monthMap[key]) monthMap[key] = { label: parts[1]+'/'+parts[2], orders: 0, revenue: 0 };
-    monthMap[key].orders++; monthMap[key].revenue += parseFloat(order.total) || 0;
+    if (!monthMap[key]) monthMap[key] = { label: key, orders: 0, revenue: 0 };
+    monthMap[key].orders++;
+    monthMap[key].revenue += parseFloat(order.total) || 0;
   });
-  el.innerHTML = Object.values(monthMap).reverse().map(m => `
+  el.innerHTML = Object.values(monthMap).map(m => `
     <div class="month-row">
-      <div><div class="month-name">📅 Month Matrix: ${m.label}</div><div style="font-size:0.7rem; color:#666;">${m.orders} invoices</div></div>
+      <div><div class="month-name">📅 Month: ${m.label}</div><div style="font-size:0.7rem; color:#777;">${m.orders} Invoices</div></div>
       <div class="month-amount">₹${m.revenue}</div>
     </div>`).join('');
 }
 
-function renderOffer() { document.getElementById('offerCount').textContent = allCustomers.length + ' targets loaded.'; }
+function renderOffer() {
+  document.getElementById('offerCount').textContent = allCustomers.length + ' targets selected segment profiles synced';
+}
+
 function sendOfferToAll() {
   const offer = document.getElementById('offerText').value.trim();
-  if (!offer) { alert('Pehle message likho!'); return; }
-  const msg = `🥟 *Liquido Special Offer*\n\n${offer}\n\n🔗 Order Karo: https://himanshu90226.github.io/liquido/liquido-order.html`;
-  navigator.clipboard.writeText(msg).then(() => { alert("Campaign copied to clipboard!"); });
+  const link = document.getElementById('offerLink').value.trim();
+  if (!offer) { alert('Pehle offer text likho!'); return; }
+  const msg = `Pricing Special Blast: ${offer} \n Order link: ${link || 'himanshu90226.github.io/liquido/liquido-order.html'}`;
+  navigator.clipboard.writeText(msg).then(() => { alert("Campaign payload copied to clipboard!"); });
 }
-function showToast(m){ alert(m); }
+
+function showToast(m) { console.log(m); }
 </script>
 </body>
 </html>
