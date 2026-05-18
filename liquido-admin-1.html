@@ -66,6 +66,10 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:#1a1a1a}
 .stock-toggle-btn.in-stock{background:#dcfce7;color:#16a34a}
 .stock-toggle-btn.out-of-stock{background:#fecaca;color:#dc2626}
 
+/* FEEDBACK STAR LOOKS STYLE COMPONENT */
+.feedback-star-lbl{font-weight:700;color:#ea580c;background:#fff7ed;padding:2px 8px;border-radius:6px;font-size:0.72rem;display:inline-block;margin-top:4px}
+.feedback-review-text{font-size:0.75rem;color:#555;background:white;padding:6px 10px;border-radius:6px;margin-top:4px;border:1px solid #eee;font-style:italic}
+
 .action-grid-flex{display:flex;gap:6px;margin-top:8px}
 .action-btn-node{flex:1;padding:8px;border-radius:8px;border:none;font-family:'Poppins',sans-serif;font-size:0.7rem;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
 .action-btn-node.wa-node{background:#25D366;color:white}
@@ -101,7 +105,7 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:#1a1a1a}
     <div class="stat-card"><div class="stat-icon">📦</div><div class="stat-val" id="totalOrders">--</div><div class="stat-label">Total Orders</div></div>
     <div class="stat-card green"><div class="stat-icon">💰</div><div class="stat-val" id="totalRevenue">--</div><div class="stat-label">Total Revenue</div></div>
     <div class="stat-card orange"><div class="stat-icon">📅</div><div class="stat-val" id="todayOrders">--</div><div class="stat-label">Today Orders</div></div>
-    <div class="stat-card"><div class="stat-icon">👥</div><div class="stat-val" id="totalCustomers">--</div><div class="stat-label">Customers</div></div>
+    <div class="stat-card"><div class="stat-icon">⭐</div><div class="stat-val" id="avgSystemRating">0.0</div><div class="stat-label">Avg Rating</div></div>
   </div>
 
   <div class="tab-row">
@@ -115,14 +119,14 @@ body{font-family:'Poppins',sans-serif;background:#f5f0e8;color:#1a1a1a}
 
   <div id="tab-orders">
     <div class="orders-card">
-      <div class="section-title">🕐 Incoming Orders Pipeline</div>
+      <div class="section-title">Live Operational Pipeline Queue</div>
       <div id="ordersList"><div class="loading"><span class="spinner">⏳</span>Syncing stream vectors...</div></div>
     </div>
   </div>
 
   <div id="tab-config" style="display:none">
     <div class="config-card">
-      <div class="section-title">🕒 Manage Timing & Manual Status Overrides</div>
+      <div class="section-title">Manage Timing & Manual Status Overrides</div>
       <div class="config-row-flex">
         <div class="config-col">
           <span class="config-label">Opening Hour (24h format)</span>
@@ -247,7 +251,6 @@ async function loadData() {
     activeSoldOutItemsArray = JSON.parse(cfgData.soldOutList || '[]');
     couponsStateMap = JSON.parse(cfgData.activeCoupons || '{"LIQUIDO10":true,"FLAT50":true,"NEWUSER":true,"MOMOS20":true}');
     
-    // Fallback dictionary loader if schema properties aren't initialized yet
     try {
       dynamicMenuDataOverrides = JSON.parse(cfgData.menuOverrides || '{}');
     } catch(err) { dynamicMenuDataOverrides = {}; }
@@ -267,6 +270,9 @@ async function loadData() {
 
 function processData() {
   const custMap = {};
+  let totalStarsAccumulated = 0;
+  let ratedOrdersCount = 0;
+
   allOrders.forEach(order => {
     const phone = order.phone;
     if (!custMap[phone]) {
@@ -274,6 +280,15 @@ function processData() {
     }
     custMap[phone].orders++;
     custMap[phone].total += parseFloat(order.total) || 0;
+
+    // Process system analytical ratings dynamically from synced rows context
+    if(order.rating) {
+      const starValue = parseFloat(order.rating);
+      if(!isNaN(starValue) && starValue > 0) {
+        totalStarsAccumulated += starValue;
+        ratedOrdersCount++;
+      }
+    }
   });
   allCustomers = Object.values(custMap);
 
@@ -284,7 +299,10 @@ function processData() {
   document.getElementById('totalOrders').textContent = allOrders.length;
   document.getElementById('totalRevenue').textContent = '₹' + totalRev.toLocaleString('en-IN');
   document.getElementById('todayOrders').textContent = todayOrders.length;
-  document.getElementById('totalCustomers').textContent = allCustomers.length;
+  
+  // Update dynamic metric element system parameters 
+  const computedAverage = ratedOrdersCount > 0 ? (totalStarsAccumulated / ratedOrdersCount).toFixed(1) : "0.0";
+  document.getElementById('avgSystemRating').textContent = computedAverage + ' ★';
 
   renderCurrentTab();
 }
@@ -325,7 +343,14 @@ function renderOrders() {
     return;
   }
   const sorted = [...allOrders].reverse().slice(0, 50);
-  el.innerHTML = sorted.map(order => `
+  el.innerHTML = sorted.map(order => {
+    const starRatingValue = order.rating ? parseFloat(order.rating) : 0;
+    const feedbackBlockHTML = starRatingValue > 0 ? `
+      <div class="feedback-star-lbl">⭐ Customer Rating: ${starRatingValue} / 5</div>
+      ${order.review ? `<div class="feedback-review-text">"${order.review}"</div>` : ''}
+    ` : '';
+
+    return `
     <div class="order-item">
       <div class="order-top">
         <div>
@@ -339,7 +364,11 @@ function renderOrders() {
         <span class="order-tag">📅 ${order.date}</span>
         <span class="order-tag">1️⃣ ${order.time}</span>
         <span class="order-tag">${order.payment}</span>
+        <span class="order-tag" style="background:#fff3b0; color:#b7791f; font-weight:700;">${order.type === 'pickup' ? '🛍️ Pickup' : '🛵 Delivery'}</span>
       </div>
+      
+      ${feedbackBlockHTML}
+
       <select class="status-select-console" onchange="updateOrderStateRemoteSequence('${order.orderId}', this)">
         <option value="Placed" ${order.status === 'Placed' ? 'selected' : ''}>📥 Placed</option>
         <option value="Preparing" ${order.status === 'Preparing' ? 'selected' : ''}>👨‍🍳 Preparing</option>
@@ -350,7 +379,8 @@ function renderOrders() {
         <a class="action-btn-node wa-node" href="https://wa.me/91${order.phone.replace(/\D/g,'')}" target="_blank">💬 Chat</a>
         ${order.location ? `<a class="action-btn-node map-node" href="${order.location}" target="_blank">📍 Route Map</a>` : ''}
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
 
 function renderConfigPanelLayout() {
@@ -381,7 +411,6 @@ function renderCouponsControlLayout() {
   }).join('');
 }
 
-// TOGGLE FIELDS TO UPDATE PRICE DETAILS IMAGE OBJECT REFERENCE (NEW FEATURE ADDED)
 function renderMenuDataManagementInputs() {
   const container = document.getElementById('menuItemsEditorContainer');
   if (!container) return;
